@@ -19,6 +19,8 @@
             justify-content: center;
             align-items: center;
             font-size: 40px;
+            font-weight: bold; 
+            background-color:#130C90;
         }
     </style>
 </head>
