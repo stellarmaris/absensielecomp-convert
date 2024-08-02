@@ -8,4 +8,10 @@ class Profile extends BaseController
     {
         return view('profileview');
     }
+
+    // Show the profile edit view
+    public function edit(): string
+    {
+        return view('profileedit');
+    }
 }

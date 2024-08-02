@@ -35,16 +35,12 @@
             text-align: right;
             margin-right: 20px;
         }
-        .left-aligned-text {
-            text-align: left;
-            margin-right: 20px;
-        }
         .bold-text {
             font-weight: 900; 
         }
         .card {
             margin-bottom: 15px;
-            border-radius: 10px;
+            border-radius: 20px;
             overflow: hidden; 
         }
         .card-checkout .right-aligned-text {
@@ -80,7 +76,7 @@
         <!-- card check-out -->
         <div class="card check-in custom-font card-checkout">
             <div class="card-body d-flex justify-content-between align-items-center">
-                <div class="right-aligned-text">
+                <div>
                     <h1 class="card-title bold-text">CHECK - OUT</h1>
                     <p class="card-text bold-text">Use the "Check Out" button to record your attendance promptly.</p>
                 </div>
