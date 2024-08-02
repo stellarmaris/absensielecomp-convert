@@ -16,8 +16,8 @@
             font-family: 'Inter', sans-serif; 
         }
         .custom-btn {
-            width: 377px;
-            height: 179px;
+            width: 370px;
+            height: 150px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -57,7 +57,7 @@
         <!-- card title -->
         <div class="card title-card custom-font">
             <div class="card-body">
-                <h1 class="card-title bold-text">Welcome Back, Budi!</h1>
+                <h2 class="card-title bold-text">Welcome Back, Budi!</h2>
                 <p class="card-text bold-text">Please select an option below to record your attendance.</p>
             </div>
         </div>
