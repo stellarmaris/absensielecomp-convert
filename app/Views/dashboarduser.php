@@ -15,6 +15,9 @@
         .custom-font {
             font-family: 'Inter', sans-serif; 
         }
+        body{
+            background-color: #EFF0F7; 
+        }
         .custom-btn {
             width: 370px;
             height: 150px;
@@ -40,7 +43,9 @@
             font-weight: 900; 
         }
         .card {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            overflow: hidden; 
         }
         .card-checkout .right-aligned-text {
             text-align: left; 
