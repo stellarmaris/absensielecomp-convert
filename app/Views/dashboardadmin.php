@@ -36,8 +36,18 @@
         <!-- kartu judul -->
         <div class="card title-card custom-font">
             <div class="card-body">
-                <h2 class="card-title bold-text">Selamat Datang Kembali, Budi! Ini punya admin</h2>
-                <p class="card-text bold-text">Silakan pilih opsi di bawah ini untuk mencatat kehadiran Anda.</p>
+                <h4 class="card-title bold-text">Rekapitulasi</h4>
+                <p class="card-text">Rabu, 31 Agustus 2024</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="span6">
+                <button class= "btn btn-large btn-primary"> Present</button>
+            </div>
+
+            <div class="span6">
+                <button class= "btn btn-large btn-primary"> Present</button>
             </div>
         </div>
 
