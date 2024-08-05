@@ -8,4 +8,9 @@ class DashboardUser extends BaseController
     {
         return view('dashboarduser');
     }
+
+    public function signUp(): string
+    {
+        return view('signUp');
+    }
 }
