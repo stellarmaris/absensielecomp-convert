@@ -5,7 +5,7 @@ namespace App\Controllers;
 class historyUserController extends BaseController
 {
 
-    public function index(): string
+    public function riwayat()
     {
         return view('riwayat');
     }
