@@ -63,7 +63,7 @@
         <?= csrf_field() ?>
            <div class="mb-4" style="text-align: center;">
                 <h2>Pendaftaran Absensi</h2>
-                <p>Hai, masukkan detail informasi dirimu.</p>
+                <p>Haiii, masukkan detail informasi dirimu.</p>
            </div>
             
             <div class="mb-3">

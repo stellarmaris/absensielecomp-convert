@@ -117,21 +117,16 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php foreach($data_presensi as $dataPresensi){ ?>
                     <tr>
                         <td>1</td>
-                        <td>2024-05-03</td>
-                        <td>08.00</td>
-                        <td>16.00</td>
-                        <td>Membuat video digital marketing</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>2024-05-03</td>
-                        <td>08.00</td>
-                        <td>16.00</td>
-                        <td>Membuat video digital marketing</td>
+                        <td><?php echo $dataPresensi['tanggal'] ?></td>
+                        <td><?php echo $dataPresensi['jam_masuk'] ?></td>
+                        <td><?php echo $dataPresensi['jam_keluar']?></td>
+                        <td><?php echo $data_presensi['']?></td>
                     </tr>
                    
+                   <?php }?>
                 </tbody>
             </table>
             <div class="row">
