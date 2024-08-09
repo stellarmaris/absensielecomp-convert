@@ -48,6 +48,48 @@ class DashboardAdmin extends BaseController
 
     private function getTanggalHariIni(): string
     {
-        return date('Y-m-d'); 
+        $hari = date('l');
+        $tanggal = date('j');
+        $bulan = date('F');
+        $tahun = date('Y');
+
+        $namaHari = [
+            'Sunday' => 'Minggu',
+            'Monday' => 'Senin',
+            'Tuesday' => 'Selasa',
+            'Wednesday' => 'Rabu',
+            'Thursday' => 'Kamis',
+            'Friday' => 'Jumat',
+            'Saturday' => 'Sabtu'
+        ];
+
+        $namaBulan = [
+            'January' => 'Januari',
+            'February' => 'Februari',
+            'March' => 'Maret',
+            'April' => 'April',
+            'May' => 'Mei',
+            'June' => 'Juni',
+            'July' => 'Juli',
+            'August' => 'Agustus',
+            'September' => 'September',
+            'October' => 'Oktober',
+            'November' => 'November',
+            'December' => 'Desember'
+        ];
+        return $namaHari[$hari] . ', ' . $tanggal . ' ' . $namaBulan[$bulan] . ' ' . $tahun;
     }
+
+    public function detail(): string
+    {
+        $ModelPresensi = new presensiModel();
+        $ModelUser = new userModel();
+        $data['data_presensi'] = $ModelPresensi
+            ->select('presensi.*, user.nama as Nama')
+            ->join('user', 'user.id_magang = presensi.id_magang')
+            ->findAll();
+
+        return view('dashboardadminview', $data);
+    }
+
 }

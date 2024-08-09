@@ -118,13 +118,12 @@
         }
 
         .date-picker {
-            width: 150px;
+            width: 200px;
         }
         
 
         .pagination {
             display: flex;
-            justify-content: flex-end;
             margin-bottom: 15px;
         }
 
@@ -190,11 +189,6 @@
         </div>
 
         <div class="container">
-            <div class="search-container">
-                <input type="text" id="search" class="form-control" placeholder="Search...">
-                <i class="fas fa-search"></i>
-            </div>
-
             <div class="row mb-2">
                 <div>
                     <form action="<?= site_url('DashboardAdmin/Filtertanggal') ?>" method="get">
@@ -239,7 +233,6 @@
             </table>
 
             <div class="row">
-                <div class="col-12 col-md-6">Menampilkan <strong>5</strong> dari <strong>25</strong> entri</div>
                 <div class="col-12 col-md-6">
                     <div class="pagination">
                         <a href="#">Sebelumnya</a>
