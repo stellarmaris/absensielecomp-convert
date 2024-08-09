@@ -197,7 +197,10 @@
 
             <div class="row mb-2">
                 <div>
-                    <input type="date" id="date" class="form-control date-picker">
+                    <form action="<?= site_url('DashboardAdmin/Filtertanggal') ?>" method="get">
+                        <input type="date" id="date" name="tanggal" class="form-control date-picker" value="<?= isset($tanggal_pilih) ? $tanggal_pilih : $tanggal_hari_ini ?>">
+                        <button type="submit" class="btn custom-btn mt-2">Tampilkan Data</button>
+                    </form>
                 </div>
             </div>
 
