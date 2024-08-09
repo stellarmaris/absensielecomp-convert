@@ -152,9 +152,10 @@
         <div class="card title-card">
             <div class="card-body">
                 <h4 class="card-title bold-text">Rekapitulasi</h4>
-                <p class="card-text">Rabu, 3 Juli 2024</p>
+                <p class="card-text"><?= $tanggal_hari_ini ?></p>
             </div>
         </div>
+
 
         <!-- kartu sakit, izin, hadir -->    
         <div class="container mt-5">
@@ -213,17 +214,24 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php
+                        $nomor = 0;
+                        foreach ($data_presensi as $k => $v) {
+                            $nomor = $nomor + 1;
+                        ?>
                     <tr>
-                        <td>1</td>
-                        <td>03/05/2024</td>
-                        <td>Bintang Pamungkas</td>
-                        <td>08:00</td>
-                        <td>16:00</td>
-                        <td>Hadir</td>
+                        <td><?php echo $nomor ?></td>
+                        <td><?php echo $v['tanggal'] ?></td>
+                        <td><?php echo $v['Nama'] ?></td>
+                        <td><?php echo $v['jam_masuk'] ?></td>
+                        <td><?php echo $v['jam_keluar']?></td>
+                        <td><?php echo $v['status']; ?></td>
                         <td>
                             <a href="<?= site_url('dashboardadmin/detail'); ?>" class="btn custom-btn">Detail</a>
                         </td>
                     </tr>
+                   
+                   <?php }?>
                 </tbody>
             </table>
 
