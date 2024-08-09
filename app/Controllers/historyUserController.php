@@ -14,6 +14,7 @@ class historyUserController extends BaseController
     }
 
     public function search(){
+        
 
     }
     public function filterDate(){

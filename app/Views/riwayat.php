@@ -117,13 +117,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach($data_presensi as $dataPresensi){ ?>
+                    <?php
+                        $nomor = 0;
+                        foreach ($data_presensi as $k => $v) {
+                            $nomor = $nomor + 1;
+                        ?>
                     <tr>
-                        <td>1</td>
-                        <td><?php echo $dataPresensi['tanggal'] ?></td>
-                        <td><?php echo $dataPresensi['jam_masuk'] ?></td>
-                        <td><?php echo $dataPresensi['jam_keluar']?></td>
-                        <td><?php echo $data_presensi['']?></td>
+                        <td><?php echo $nomor ?></td>
+                        <td><?php echo $v['tanggal'] ?></td>
+                        <td><?php echo $v['jam_masuk'] ?></td>
+                        <td><?php echo $v['jam_keluar']?></td>
+                        <td><?php echo $v['kegiatan']; ?></td>
                     </tr>
                    
                    <?php }?>
