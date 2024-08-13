@@ -11,7 +11,6 @@ $routes->get('/signUp', 'AuthController::signUp');
 $routes->post('/signUp','AuthController::tambahUser');
 $routes->get('/riwayat','historyUserController::riwayat');
 
-$routes->get('/login', 'LoginController::index');
-$routes->post('/login', 'LoginController::login');
-$routes->get('/logout', 'LoginController::logout');
+$routes->get('/login','AuthController::login');
+$routes->post('/login','AuthController::authenticate');
 
