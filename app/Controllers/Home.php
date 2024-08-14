@@ -23,9 +23,6 @@ class Home extends BaseController
             'nama' => $userData['Nama'], // pass data Nama
         ];
 
-        // Add title data
-        $data['title'] = 'Dashboard';
-
         return view('dashboarduser', $data);
     }
 }
