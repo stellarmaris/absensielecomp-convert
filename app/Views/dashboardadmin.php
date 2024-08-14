@@ -162,23 +162,24 @@
                 <div class="col-md-4">
                     <div class="box box1">
                         <p>HADIR</p>
-                        <h1>15</h1>
+                        <h1><?= $total_hadir ?></h1>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="box box2">
                         <p>SAKIT</p>
-                        <h1>5</h1>
+                        <h1><?= $total_sakit ?></h1>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="box box3">
                         <p>IZIN</p>
-                        <h1>2</h1>
+                        <h1><?= $total_izin ?></h1>
                     </div>
                 </div>
             </div>
         </div>
+
 
         <!-- kartu judul2 -->
         <div class="card title-card">
