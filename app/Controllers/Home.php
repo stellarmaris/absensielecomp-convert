@@ -23,13 +23,9 @@ class Home extends BaseController
             'nama' => $userData['Nama'], // pass data Nama
         ];
 
-<<<<<<< Updated upstream
         // Add title data
         $data['title'] = 'Dashboard';
 
-        return view('dashboard', $data);
-=======
         return view('dashboarduser', $data);
->>>>>>> Stashed changes
     }
 }
