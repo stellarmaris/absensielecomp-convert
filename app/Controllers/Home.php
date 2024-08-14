@@ -6,7 +6,7 @@ use App\Models\UserModel;
 
 class Home extends BaseController
 {
-    public function index(): string
+    public function index()
     {
         if (!session()->get('logged_in')) {
             return redirect()->to('auth/login');
@@ -20,6 +20,9 @@ class Home extends BaseController
 
         // Merge session data with additional data (if any)
         $data = array_merge(session()->get(), $userData);
+
+        // Add title data
+        $data['title'] = 'Dashboard';
 
         return view('dashboard', $data);
     }

@@ -6,11 +6,10 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->setAutoRoute(true);
-$routes->get('/Dashboard', 'DashboardUser::index');
+$routes->get('/home', 'Home::index');
 $routes->get('/signUp', 'AuthController::signUp');
-$routes->post('/signUp','AuthController::tambahUser');
-$routes->get('/riwayat','historyUserController::riwayat');
+$routes->post('/signUp', 'AuthController::tambahUser');
+$routes->get('/riwayat', 'historyUserController::riwayat');
 
-$routes->get('/login','AuthController::login');
-$routes->post('/login','AuthController::authenticate');
-
+$routes->get('/login', 'AuthController::login');
+$routes->post('/login', 'AuthController::authenticate');
