@@ -15,10 +15,10 @@
         <li class="nav-item">
             <span class="nav-header">APPS</span>
             <a href="#" class="nav-link">
-                <i class='bx bx-user'></i> User Profile
+                <i class='bx bx-user'></i> Profil
             </a>
             <a href="#" class="nav-link">
-                <i class='bx bx-time-five'></i> Employee Location
+                <i class='bx bx-time-five'></i> Riwayat
             </a>
         </li>
         <li class="nav-item">

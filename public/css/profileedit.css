@@ -1,0 +1,65 @@
+.title {
+  margin-left: 12px;
+}
+.custom-font {
+  font-family: 'Inter', sans-serif; 
+}
+.custom-btn {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold; 
+  background-color: #130C90;
+  border-radius: 10px;
+  margin: 0 auto;
+  color: white;
+  text-decoration: none;
+}
+.custom-btn:hover {
+  background-color: #0C074F;
+}
+.bold-text {
+  font-weight: 900; 
+}
+.card {
+  margin-bottom: 15px;
+  border-radius: 10px;
+  overflow: hidden; 
+}
+.form-group {
+  margin-bottom: 20px;
+}
+.form-label {
+  font-weight: 500; 
+  font-size: 18px; 
+  margin-left: 12px;
+}
+.profile .form-control {
+  padding: 15px;
+  background-color: #F6F5FB; 
+  border: 2px solid #130C90;
+  border-radius: 10px;
+  font-size: 16px; 
+  font-weight: bold; 
+  width: 90%;
+  margin-left: 10px;
+}
+.profile .form-control[readonly] {
+  border: none;
+  box-shadow: none;
+}
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2%;
+  margin-bottom: 20px;
+}
+.form-group.flex-item {
+  width: 48%; 
+}
+.password-field {
+  margin-bottom: 20px;
+}

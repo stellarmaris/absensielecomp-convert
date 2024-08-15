@@ -23,7 +23,7 @@ class Profile extends BaseController
             'email' => $userData['email'],
             'alamat' => $userData['alamat']
         ];
-
+        $data['title'] = 'Profil';
         return view('profileview', $data);
     }
 
@@ -45,7 +45,7 @@ class Profile extends BaseController
             'alamat' => $userData['alamat'],
             'password' => '',
         ];
-
+        $data['title'] = 'Edit Profil';
         return view('profileedit', $data);
     }
 
