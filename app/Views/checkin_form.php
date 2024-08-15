@@ -34,13 +34,13 @@
             <input type="file" name="foto">
         </div>
     </div>
-    <div class="form-1">
+    <div class="form-1" hidden>
         <div class="label"><label for="latitude">Latitude</label></div>
         <div class="input">
             <input type="text" name="latitude" id="latitude" readonly>
         </div>
     </div>
-    <div class="form-1">
+    <div class="form-1" hidden>
         <div class="label"><label for="longitude">Longitude</label></div>
         <div class="input">
             <input type="text" name="longitude" id="longitude" readonly>
@@ -48,7 +48,7 @@
     </div>
 
     <!-- Tambahkan div untuk map -->
-    <div id="map" style="height: 300px; margin-top: 20px;"></div>
+    <div id="map" style="height: 250px; margin-top: 20px;"></div>
 
     <div class="btn">
         <button type="submit">Upload</button>
