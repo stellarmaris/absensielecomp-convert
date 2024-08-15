@@ -213,6 +213,11 @@
                 </thead>
                 <tbody>
                     <?php
+                        //buat ngurutin data dari terbaru
+                        usort($data_presensi, function($a, $b) {
+                            return strtotime($b['tanggal']) - strtotime($a['tanggal']);
+                        });
+                        //buat ngasih nomor
                         $nomor = 0;
                         foreach ($data_presensi as $k => $v) {
                             $nomor = $nomor + 1;
