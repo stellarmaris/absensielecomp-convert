@@ -3,7 +3,7 @@
         <i class='bx bx-x bx-sm'></i>
     </div>
     <div class="logo">
-        <img src="<?= base_url('/images/Logo.jpeg') ?>" alt="ELECOMP Indonesia">
+        <img src="<?= base_url('/images/Logo1.jpeg') ?>" alt="ELECOMP Indonesia">
     </div>
     <ul class="nav">
         <li class="nav-item">
