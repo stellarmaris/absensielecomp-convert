@@ -14,16 +14,15 @@ class Home extends BaseController
 
         $userId = session()->get('user_id');
 
-        // Fetch additional user data if needed
+        // Ambil data user dari usermodel
         $userModel = new UserModel();
         $userData = $userModel->find($userId);
 
-        // Merge session data with additional data (if any)
-        $data = array_merge(session()->get(), $userData);
+        // data array
+        $data = [
+            'nama' => $userData['Nama'], // pass data Nama
+        ];
 
-        // Add title data
-        $data['title'] = 'Dashboard';
-
-        return view('dashboard', $data);
+        return view('dashboarduser', $data);
     }
 }

@@ -100,7 +100,7 @@
                 <label class="form-label">Jenis Kelamin:</label>
                 <div class=" mb-2 form-check col">
                     <input type="radio" class="form-check-input" id="laki-laki" name="Jenis_kelamin" value="laki-laki" <?= set_radio('Jenis_kelamin','laki-laki') ?>>
-                    <label class="form-check-label" for="laki-laki">laki-laki</label>
+                    <label class="form-check-label" for="laki-laki">Laki-Laki</label>
                 </div>
                 <div class="form-check col" >
                     <input type="radio" class="form-check-input" id="perempuan" name="Jenis_kelamin" value="Perempuan" <?= set_radio('Jenis_kelamin','Perempuan')?>>
@@ -119,11 +119,6 @@
                 <label class="form-label">Password</label>
                     <div class="input-group">
                     <input type="password" class="form-control" name="password" placeholder="Setidaknya 8 karakter disertai angka dan spesial karakter" value="<?= set_value('password')?>" required>
-                        <div class="input-group-append">
-                            <span type="button" id="togglePassword" class="password-toggle-icon">
-                                <i class="fas fa-eye" id="togglePasswordIcon"></i>
-                            </span>
-                        </div>
                     </div>
                 
             </div>

@@ -1,22 +1,22 @@
 <?php
 
 namespace App\Controllers;
+
 use App\Models\presensiModel;
-use App\Models\userModel;
 
 class DashboardAdmin extends BaseController
 {
     public function index(): string
     {
         $ModelPresensi = new presensiModel();
-        $ModelUser = new userModel();
-
         $data['data_presensi'] = $ModelPresensi
             ->select('presensi.*, user.nama as Nama')
             ->join('user', 'user.id_magang = presensi.id_magang')
             ->findAll();
 
         $data['tanggal_hari_ini'] = $this->getTanggalHariIni();
+
+        $this->rekapitulasiHariIni($data);
 
         return view('dashboardadmin', $data);
     }
@@ -25,7 +25,6 @@ class DashboardAdmin extends BaseController
     {
         $tanggal = $this->request->getGet('tanggal');
         $ModelPresensi = new presensiModel();
-        $ModelUser = new userModel();
 
         if ($tanggal) {
             $data['data_presensi'] = $ModelPresensi
@@ -33,15 +32,18 @@ class DashboardAdmin extends BaseController
                 ->join('user', 'user.id_magang = presensi.id_magang')
                 ->where('tanggal', $tanggal)
                 ->findAll();
+
+            $data['tanggal_pilih'] = $tanggal;
         } else {
             $data['data_presensi'] = $ModelPresensi
                 ->select('presensi.*, user.nama as Nama')
                 ->join('user', 'user.id_magang = presensi.id_magang')
                 ->findAll();
-        }
 
-        $data['tanggal_pilih'] = $tanggal ? $tanggal : $this->getTanggalHariIni();
+            $data['tanggal_pilih'] = null;
+        }
         $data['tanggal_hari_ini'] = $this->getTanggalHariIni();
+        $this->rekapitulasiHariIni($data);
 
         return view('dashboardadmin', $data);
     }
@@ -77,19 +79,18 @@ class DashboardAdmin extends BaseController
             'November' => 'November',
             'December' => 'Desember'
         ];
+
         return $namaHari[$hari] . ', ' . $tanggal . ' ' . $namaBulan[$bulan] . ' ' . $tahun;
     }
 
-    public function detail(): string
+    private function rekapitulasiHariIni(&$data)
     {
         $ModelPresensi = new presensiModel();
-        $ModelUser = new userModel();
-        $data['data_presensi'] = $ModelPresensi
-            ->select('presensi.*, user.nama as Nama')
-            ->join('user', 'user.id_magang = presensi.id_magang')
-            ->findAll();
+        $tanggal_hari_ini = date('Y-m-d');
 
-        return view('dashboardadminview', $data);
+        $data['total_hadir'] = $ModelPresensi->where('status', 'HADIR')->where('tanggal', $tanggal_hari_ini)->countAllResults();
+        $data['total_sakit'] = $ModelPresensi->where('status', 'SAKIT')->where('tanggal', $tanggal_hari_ini)->countAllResults();
+        $data['total_izin'] = $ModelPresensi->where('status', 'IZIN')->where('tanggal', $tanggal_hari_ini)->countAllResults();
     }
-
+    
 }
