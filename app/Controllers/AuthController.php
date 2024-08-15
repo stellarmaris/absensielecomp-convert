@@ -34,6 +34,7 @@ class AuthController extends BaseController
         $sessionData = [
             'user_id' => $user['id_magang'],
             'email' => $user['email'],
+            'Nama' => $user['Nama'],
             'logged_in' => true
         ];
         session()->set($sessionData);

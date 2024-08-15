@@ -13,3 +13,9 @@ $routes->get('/riwayat', 'historyUserController::riwayat');
 
 $routes->get('/login', 'AuthController::login');
 $routes->post('/login', 'AuthController::authenticate');
+
+$routes->get('/izin-form','IzinController::index');
+$routes->post('/izin-form','IzinController::store');
+
+$routes-> get('/check-in-form', 'CheckInController::index');
+$routes-> post('/check-in-form', 'CheckInController::store');
