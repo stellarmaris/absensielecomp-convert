@@ -96,6 +96,13 @@
             </div>
         </div>
     </div>
+
+    <!-- kartu profil, testing aja -->
+    <div class="card profile custom-font">
+            <div class="card-body d-flex justify-content-center">
+                <a href="<?= site_url('profile'); ?>" class="btn btn-primary custom-btn">LIHAT PROFIL</a>
+            </div>
+        </div>
 </div>
 </body>
 </html>
