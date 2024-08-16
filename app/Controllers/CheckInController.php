@@ -29,6 +29,22 @@ class CheckInController extends BaseController
     }
     public function store()
     {
+        if (!session()->get('logged_in')) {
+            return redirect()->to('/login');
+        }
+
+        $idMagang = session()->get('user_id');
+
+        // Fetch additional user data if needed
+        $userModel = new UserModel();
+        $userData = $userModel->find($idMagang);
+
+        // Merge session data with additional data (if any)
+        $data = array_merge(session()->get(), $userData);
+
+        // Add title data
+        $data['title'] = 'Dashboard';
+
         $date = $this->request->getPost('date');
         $time = $this->request->getPost('time');
         $latitude = $this->request->getPost('latitude');
@@ -45,7 +61,7 @@ class CheckInController extends BaseController
 
             // Create the data array with the path to the uploaded photo
             $data = [
-                'id_magang' => 2,
+                'id_magang' => $idMagang ,
                 'status' => $status,
                 'tanggal' => $date,
                 'jam_masuk' => $time,
