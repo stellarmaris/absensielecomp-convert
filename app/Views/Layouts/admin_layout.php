@@ -60,7 +60,7 @@
         }
 
         .nav-item {
-            margin-bottom: 20px;
+            margin-bottom: 5px;
         }
 
         .nav-header {
@@ -79,7 +79,7 @@
             color: #333;
             text-decoration: none;
             font-size: 14px;
-            padding: 10px 0;
+            padding: 5px 0;
             transition: color 0.3s;
             font-weight: 500;
         }
@@ -130,7 +130,7 @@
 
 <body>
     <div class="container">
-        <?= $this->include('/partials/sidebar') ?>
+        <?= $this->include('/partials/sidebaradmin') ?>
 
         <div class="content">
             <?= $this->renderSection('content') ?>

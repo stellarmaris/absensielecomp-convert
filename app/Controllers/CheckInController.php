@@ -61,7 +61,7 @@ class CheckInController extends BaseController
 
             // Create the data array with the path to the uploaded photo
             $data = [
-                'id_magang' => $idMagang ,
+                'id_magang' => $idMagang,
                 'status' => $status,
                 'tanggal' => $date,
                 'jam_masuk' => $time,

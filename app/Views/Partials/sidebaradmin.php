@@ -5,17 +5,20 @@
     <ul class="nav">
         <li class="nav-item">
             <span class="nav-header">MAIN</span>
-            <a href="/home" class="nav-link">
+            <a href="/DashboardAdmin" class="nav-link">
                 <i class="fas fa-home"></i> Dashboard
             </a>
         </li>
         <li class="nav-item">
             <span class="nav-header">APPS</span>
-            <a href="/Profile" class="nav-link">
-                <i class="fa-regular fa-user"></i> Profil Pengguna
+            <a href="#" class="nav-link">
+                <i class="fa-solid fa-location-dot"></i> Lokasi Pengguna
             </a>
-            <a href="/riwayat" class="nav-link">
-                <i class="fa-regular fa-clock"></i> Riwayat Absensi
+        </li>
+        <li class="nav-item">
+            <span class="nav-header">SUPPORT</span>
+            <a href="#" class="nav-link">
+                <i class="fa-regular fa-circle-question"></i> Help & Support
             </a>
         </li>
     </ul>
