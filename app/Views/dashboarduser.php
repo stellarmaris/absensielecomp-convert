@@ -67,7 +67,7 @@
     <!-- kartu check-in -->
     <div class="card check-in custom-font">
         <div class="card-body d-flex justify-content-between align-items-center">
-            <a href="#" class="btn btn-primary custom-btn">CHECK - IN</a>
+            <a href="/check-in-form" class="btn btn-primary custom-btn">CHECK - IN</a>
             <div class="right-aligned-text">
                 <h1 class="card-title bold-text">CHECK - IN</h1>
                 <p class="card-text bold-text">Gunakan tombol "Check In" untuk mencatat kehadiran Anda dengan tepat.</p>
@@ -89,7 +89,7 @@
     <!-- kartu absen -->
     <div class="card check-in custom-font">
         <div class="card-body d-flex justify-content-between align-items-center">
-            <a href="#" class="btn btn-primary custom-btn">TIDAK HADIR</a>
+            <a href="/izin-form" class="btn btn-primary custom-btn">TIDAK HADIR</a>
             <div class="right-aligned-text">
                 <h1 class="card-title bold-text">TIDAK HADIR</h1>
                 <p class="card-text bold-text">Gunakan "Tidak Hadir" untuk mencatat status cuti atau sakit.</p>
