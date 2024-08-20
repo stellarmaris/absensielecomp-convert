@@ -9,7 +9,7 @@ class Home extends BaseController
     public function index()
     {
         if (!session()->get('logged_in')) {
-            return redirect()->to('auth/login');
+            return redirect()->to('/login');
         }
 
         $userId = session()->get('user_id');

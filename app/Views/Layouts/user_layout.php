@@ -106,7 +106,7 @@
             border-radius: 15px;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            height: calc(100vh - 70px);
+            height: calc(100vh - 30px);
         }
 
         @media screen and (max-width: 768px) {
@@ -129,6 +129,13 @@
 </head>
 
 <body>
+        <?php 
+            if (isset($validation)):?>
+            <div class="alert alert-danger">
+                <?= $validation->listErrors()?> 
+            </div>
+        <?php endif; ?>
+        
     <div class="container">
         <?= $this->include('/partials/sidebar') ?>
 

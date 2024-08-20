@@ -8,7 +8,7 @@ class AuthController extends BaseController
 {
     public function index(): string
     {
-        return view('welcome_message');
+        return view('signIn');
     }
     public function login()
     {
@@ -23,7 +23,7 @@ class AuthController extends BaseController
         $user = $userModel->where('email', $email)->first(); 
         if ($user && password_verify($password, $user['password'])) {
             $this->setUserSession($user);
-            return redirect()->to('/');
+            return redirect()->to('/home');
         } else {
             return redirect()->back()->with('error', 'Email atau password salah');
         }

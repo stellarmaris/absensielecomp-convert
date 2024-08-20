@@ -1,0 +1,56 @@
+h1{
+    font-size: 30px;
+    font-weight: bold;
+}
+.title{
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 20px;
+}
+
+p{
+     font-size: 16px;
+     margin-bottom: 30px;
+ }
+
+ .form-control{
+     border-radius: 10px;
+     background-color: rgba(19, 12, 144, 0.04);
+     font-size: 13px;
+ }
+
+ .form-label, .form-check-label, .form-check-input{
+     font-size: 14px;
+ }
+ 
+ /* .box {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 13px;
+    justify-content: center;
+    
+} */
+
+
+
+ .input-group-append{
+     cursor: pointer;
+ }
+
+ .input-group-append .btn{
+     padding: 0.5rem;
+     border-radius: 0 10px 10px 0;
+     border-color: #ddd;
+     background-color: rgba(19, 12, 144, 0.04);
+ }
+ .input-group-append .btn:hover{
+     color:#130C90
+ }
+
+ #map{
+    height: 250px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    border-color: #ddd;
+    
+ }

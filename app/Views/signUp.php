@@ -45,23 +45,18 @@
             padding: 20px;
         }
 
-        .password-toogle-icon{
-            position: absolute;
-            top:50%;
-            right: 10px;
-            transform: translateY(-50%);
+        .input-group-append{
             cursor: pointer;
         }
-        .password-toggle-icon i {
-  font-size: 18px;
-  line-height: 1;
-  color: #333;
-  transition: color 0.3s ease-in-out;
-  margin-bottom: 20px;
-}
 
         .input-group-append .btn{
             padding: 0.5rem;
+            border-radius: 0 10px 10px 0;
+            border-color: #ddd;
+            background-color: rgba(19, 12, 144, 0.04);
+        }
+        .input-group-append .btn:hover{
+            color:#130C90
         }
 
 
@@ -135,3 +130,4 @@
     </div>
 </body>
 </html>
+

@@ -20,4 +20,27 @@ class presensiModel extends Model{
         'checkout_longitude'
     ];
 
+    public function getPresensiUser($id_magang,$date=null, $limit=10, $offset =0){
+        
+       $builder =  $this->where('id_magang',$id_magang);
+
+        if($date){
+          $builder->where('tanggal',$date);
+        }
+
+        return $builder ->orderBy('tanggal','DESC')
+                        ->limit($limit,$offset)
+                        ->findAll();
+    }
+
+    public function getJumlahPresensi($id_magang, $tanggal = null){
+        $builder = $this->where('id_magang', $id_magang);
+
+        if($tanggal){
+            $builder->where('tanggal', $tanggal);
+        }
+
+        return $builder->countAllResults();
+    }
+
 }

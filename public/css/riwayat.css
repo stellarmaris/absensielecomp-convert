@@ -1,0 +1,84 @@
+
+           
+        .box {
+            margin-top: 20px;
+            background-color: white;
+            border-radius: 10px;
+            font-size: 13px;
+            width: 100%;
+        }
+
+        .title {
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 30px;
+
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: rgba(19, 12, 144, 0.04);
+            
+        }
+        thead{
+            background-color: #130C90;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            color: white;
+        }
+        .form-control{
+            background-color:  rgba(19, 12, 144, 0.04);
+            font-size: 13px;
+        }
+        .pagination{
+            display:flex;
+            justify-content: right;
+            
+        }
+        .pagination .page-item {
+            margin: 0 5px; /* Menambahkan jarak antar item */
+        }
+        .pagination .page-item .page-link {
+        color: #130C90; /* Mengubah warna teks */
+        padding: 10px 15px;
+        border: 1px solid #130C90; /* Menambahkan border */
+        border-radius: 5px;
+    }
+
+        .pagination a{
+            color: black;
+            padding: 0 4px;
+            text-decoration: none;
+            margin: 0 1px;
+            background-color:rgba(19, 12, 144, 0.04);
+        }
+        .pagination a.active{
+            background-color: #130C90;
+            color: white;
+        }
+        .pagination a:hover:not(.active) {
+            background-color: #ddd;
+        }
+
+        .search-container{
+            position: relative;
+        }
+
+        .search-container input{
+            padding-right: 30px;
+        }
+
+        .search-container i{
+            position:absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    
