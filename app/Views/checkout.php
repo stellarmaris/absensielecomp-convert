@@ -2,9 +2,11 @@
 <?= $this->section('customStyles') ?>
 <link rel="stylesheet" href="/css/checkout.css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
+
 <?php 
      if (isset($validation)):?>
             <div class="alert alert-danger">

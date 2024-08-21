@@ -9,8 +9,7 @@ $routes->setAutoRoute(true);
 $routes->get('/home', 'Home::index');
 $routes->get('/signUp', 'AuthController::signUp');
 $routes->post('/signUp','AuthController::tambahUser');
-$routes->get('/riwayat/(:num)','historyUserController::riwayat/$1');
-
+$routes->get('/riwayat','historyUserController::riwayat');
 
 $routes->get('/login', 'AuthController::login');
 $routes->post('/login', 'AuthController::authenticate');

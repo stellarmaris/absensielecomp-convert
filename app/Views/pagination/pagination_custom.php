@@ -1,53 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <!-- app/Views/pagination_custom.php -->
-<div class="pagination-wrapper">
+<?php $pager->setSurroundCount(2) ?>
+
+<nav aria-label="Page navigation">
     <ul class="pagination">
-        <?php if ($pager->hasPreviousPage()): ?>
+        <?php if ($pager->hasPreviousPage()) : ?>
+        
             <li class="page-item">
-                <a href="<?= $pager->getFirst() ?>" class="page-link">First</a>
-            </li>&nbsp;
-            <li class="page-item">
-                <a href="<?= $pager->getPrevious() ?>" class="page-link">Previous</a>
+                <a class="page-link" href="<?= $pager->getPreviousPage() ?>" aria-label="Previous">
+                    <span aria-hidden="true">&lt</span>
+                </a>
             </li>
-        <?php else: ?>
-            <li class="page-item disabled">
-                <span class="page-link">First</span>
-            </li>
-            <li class="page-item disabled">
-                <span class="page-link">Previous</span>
-            </li>
-        <?php endif; ?>
+        <?php endif ?>
 
-        <?php foreach ($pager->links() as $link): ?>
+        <?php foreach ($pager->links() as $link) : ?>
             <li class="page-item <?= $link['active'] ? 'active' : '' ?>">
-                <a href="<?= $link['uri'] ?>" class="page-link"><?= $link['title'] ?></a>
+                <a class="page-link" href="<?= $link['uri'] ?>">
+                    <?= $link['title'] ?>
+                </a>
             </li>
-        <?php endforeach; ?>
+        <?php endforeach ?>
 
-        <?php if ($pager->hasNextPage()): ?>
+        <?php if ($pager->hasNextPage()) : ?>
             <li class="page-item">
-                <a href="<?= $pager->getNext() ?>" class="page-link">Next</a>
+                <a class="page-link" href="<?= $pager->getNextPage() ?>" aria-label="Next">
+                    <span aria-hidden="true">&gt</span>
+                </a>
             </li>
-            <li class="page-item">
-                <a href="<?= $pager->getLast() ?>" class="page-link">Last</a>
-            </li>
-        <?php else: ?>
-            <li class="page-item disabled">
-                <span class="page-link">Next</span>
-            </li>
-            <li class="page-item disabled">
-                <span class="page-link">Last</span>
-            </li>
-        <?php endif; ?>
+        <?php endif ?>
     </ul>
-</div>
-
-</body>
-</html>
+</nav>
