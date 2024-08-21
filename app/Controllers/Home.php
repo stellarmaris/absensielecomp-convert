@@ -22,7 +22,7 @@ class Home extends BaseController
         $data = [
             'nama' => $userData['Nama'], // pass data Nama
         ];
-
+        $data['title'] = 'Dashboard';
         return view('dashboarduser', $data);
     }
 }

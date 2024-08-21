@@ -1,0 +1,58 @@
+
+.custom-font {
+  font-family: 'Inter', sans-serif;
+}
+
+.custom-btn {
+  width: 350px;
+  height: 130px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 35px;
+  font-weight: bold;
+  background-color: #130C90;
+  border-radius: 10px;
+  color: white;
+  text-decoration: none;
+}
+
+.custom-btn:hover {
+  background-color: #0C074F;
+}
+
+.right-aligned-text {
+  text-align: right;
+  margin-right: 20px;
+}
+
+.bold-text {
+  font-weight: 900;
+}
+
+.card {
+  border: 2px solid #130C90;
+  padding: 20px;
+  border-radius: 10px;
+  overflow: hidden; 
+  margin-bottom: 20px;
+}
+
+.card-checkout .right-aligned-text {
+  text-align: left;
+  margin-right: 0;
+}
+
+.card-checkout .custom-btn {
+  margin-left: auto;
+}
+
+.check-in .card-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title-card .card-body {
+  display: block; 
+}
