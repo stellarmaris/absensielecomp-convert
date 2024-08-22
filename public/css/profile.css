@@ -6,14 +6,14 @@
 }
 .custom-btn {
   width: 100%;
-  height: 40px;
+  height: 35px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold; 
   background-color: #130C90;
-  border-radius: 10px;
+  border-radius: 8px;
   margin: 0 auto;
   color: white;
   text-decoration: none;
@@ -25,25 +25,25 @@
   font-weight: 900; 
 }
 .card {
-  margin-bottom: 15px;
-  border-radius: 10px;
+  margin-bottom: 12px;
+  border-radius: 8px;
   overflow: hidden; 
 }
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 .form-label {
   font-weight: 500; 
-  font-size: 18px; 
-  margin-left: 12px;
+  font-size: 16px;
+  margin-left: 10px;
 }
 .profile .form-control {
-  padding: 20px;
+  padding: 15px;
   background-color: #F6F5FB; 
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
   box-shadow: none;
-  font-size: 16px; 
+  font-size: 14px; 
   font-weight: bold; 
   height: 100%; 
   width: 100%;

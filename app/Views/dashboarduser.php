@@ -7,7 +7,7 @@
     <div class="title-card custom-font">
         <div class="card-body">
             <h2 class="card-title bold-text">Selamat Datang Kembali, <?= $nama ?>!</h2>
-            <p class="card-text bold-text">Silakan pilih opsi di bawah ini untuk mencatat kehadiran Anda.</p>
+            <p class="card-text">Silakan pilih opsi di bawah ini untuk mencatat kehadiran Anda.</p>
         </div>
     </div>
     <!-- kartu check-in -->

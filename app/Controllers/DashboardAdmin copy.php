@@ -9,16 +9,31 @@ class DashboardAdmin extends BaseController
     public function index(): string
     {
         $ModelPresensi = new presensiModel();
+        $perPage = 5;
+
+        // dapetin nomer page 
+        $page = $this->request->getVar('page') ?? 1;
+
+        // offsetnya
+        $offset = ($page - 1) * $perPage;
+
+        // ambil total buat
+        $totalRecords = $ModelPresensi->countAllResults();
+
+        // ambil data
         $data['data_presensi'] = $ModelPresensi
             ->select('presensi.*, user.nama as Nama')
             ->join('user', 'user.id_magang = presensi.id_magang')
-            ->findAll();
+            ->orderBy('tanggal', 'desc')
+            ->findAll($perPage, $offset);
+
+        $data['totalPages'] = ceil($totalRecords / $perPage);
+        $data['currentPage'] = $page;
 
         $data['tanggal_hari_ini'] = $this->getTanggalHariIni();
 
         $this->rekapitulasiHariIni($data);
 
-        $data['title'] = 'Dashboard Admin';
         return view('dashboardadmin', $data);
     }
 
@@ -92,8 +107,6 @@ class DashboardAdmin extends BaseController
         $data['total_hadir'] = $ModelPresensi->where('status', 'HADIR')->where('tanggal', $tanggal_hari_ini)->countAllResults();
         $data['total_sakit'] = $ModelPresensi->where('status', 'SAKIT')->where('tanggal', $tanggal_hari_ini)->countAllResults();
         $data['total_izin'] = $ModelPresensi->where('status', 'IZIN')->where('tanggal', $tanggal_hari_ini)->countAllResults();
-        $data['total_rekap'] = $data['total_hadir'] + $data['total_sakit'] + $data['total_izin'];
-
     }
     public function delete($id_presensi)
     {
@@ -103,4 +116,5 @@ class DashboardAdmin extends BaseController
         return redirect()->to(site_url('dashboardadmin'))->with('success', 'Data berhasil dihapus.');
     }
     
+
 }

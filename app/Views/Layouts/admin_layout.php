@@ -107,6 +107,7 @@
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
             padding: 20px;
             height: calc(100vh - 70px);
+            overflow: auto;
         }
 
         @media screen and (max-width: 768px) {
