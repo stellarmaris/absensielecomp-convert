@@ -6,8 +6,12 @@ use App\Models\UserModel;
 
 class Profile extends BaseController
 {
-    public function index(): string
+    public function index()
     {
+        if (!session()->get('logged_in')) {
+            return redirect()->to('/login');
+        }
+
         $userId = session()->get('user_id');
 
         // Ambil data user dari userModel

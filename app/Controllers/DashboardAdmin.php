@@ -6,8 +6,14 @@ use App\Models\presensiModel;
 
 class DashboardAdmin extends BaseController
 {
-    public function index(): string
+    public function index()
     {
+        if (!session()->get('logged_in')) {
+            return redirect()->to('/login');
+        }
+
+        $userId = session()->get('user_id');
+
         $ModelPresensi = new presensiModel();
 
         // Gunakan pagination
