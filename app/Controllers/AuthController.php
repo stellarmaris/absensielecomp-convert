@@ -28,9 +28,9 @@ class AuthController extends BaseController
 
             // Check user role
             if ($user['role'] === 'admin') {
-                return redirect()->to('/dashboard_admin');
+                return redirect()->to('/DashboardAdmin');
             } else {
-                return redirect()->to('/check-in-form');
+                return redirect()->to('/Home');
             }
         } else {
             return redirect()->back()->with('error', 'Email atau password salah');
