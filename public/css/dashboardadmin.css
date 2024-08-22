@@ -116,3 +116,26 @@ th {
 .custom-btn:hover {
   background-color: #0C074F;
 }
+
+
+.pagination {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.pagination a {
+  color: black;
+  padding: 0 4px;
+  text-decoration: none;
+  margin: 0 1px;
+  background-color: rgba(19, 12, 144, 0.04);
+}
+
+.pagination a.active {
+  background-color: #130C90;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+}
