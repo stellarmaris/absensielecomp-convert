@@ -7,6 +7,7 @@ use App\Models\presensiModel;
 class DashboardAdmin extends BaseController
 {
     public function index(): string
+    
     {
         $ModelPresensi = new presensiModel();
         $data['data_presensi'] = $ModelPresensi

@@ -23,7 +23,7 @@
         </li>
     </ul>
     <div class="logout">
-        <a href="#" class="nav-link">
+        <a href="<?= base_url('/logout') ?>" class="nav-link">
             <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
         </a>
     </div>

@@ -21,9 +21,17 @@ class AuthController extends BaseController
         $password = $this->request->getPost('password');
 
         $user = $userModel->where('email', $email)->first(); 
+
+
         if ($user && password_verify($password, $user['password'])) {
             $this->setUserSession($user);
-            return redirect()->to('/home');
+
+            // Check user role
+            if ($user['role'] === 'admin') {
+                return redirect()->to('/dashboard_admin');
+            } else {
+                return redirect()->to('/check-in-form');
+            }
         } else {
             return redirect()->back()->with('error', 'Email atau password salah');
         }
@@ -34,12 +42,11 @@ class AuthController extends BaseController
         $sessionData = [
             'user_id' => $user['id_magang'],
             'email' => $user['email'],
-            'Nama' => $user['Nama'],
-            'logged_in' => true
+            'logged_in' => true,
+            'role' => $user['role']
         ];
         session()->set($sessionData);
     }
-
     public function signUp()
     {
         return view('signUp');
