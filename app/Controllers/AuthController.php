@@ -20,7 +20,7 @@ class AuthController extends BaseController
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
 
-        $user = $userModel->where('email', $email)->first(); 
+        $user = $userModel->where('email', $email)->first();
 
 
         if ($user && password_verify($password, $user['password'])) {
@@ -132,5 +132,13 @@ class AuthController extends BaseController
 
             echo view('/signUp', $data);
         }
+    }
+    public function logout()
+    {
+        // Destroy the session to log the user out
+        session()->destroy();
+
+        // Redirect to the login page
+        return redirect()->to('/login');
     }
 }
