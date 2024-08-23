@@ -14,6 +14,11 @@
             margin-bottom: 30px;
 
         }
+        .table-responsive{
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
 
         table {
             width: 100%;
@@ -22,6 +27,8 @@
             background-color: rgba(19, 12, 144, 0.04);
             
         }
+
+       
         thead{
             background-color: #130C90;
         }
@@ -40,45 +47,60 @@
         .pagination{
             display:flex;
             justify-content: right;
-            
+            list-style-type: none;
         }
-        .pagination .page-item {
-            margin: 0 5px; /* Menambahkan jarak antar item */
+        .page-item {
+            margin: 0 2px; /* Menambahkan jarak antar item */
+            margin-top: 12px;
+            list-style-type: none;
         }
-        .pagination .page-item .page-link {
+       
+       .page-link {
+        display: block;
         color: #130C90; /* Mengubah warna teks */
-        padding: 10px 15px;
+        padding: 8px 18px;
         border: 1px solid #130C90; /* Menambahkan border */
-        border-radius: 5px;
-    }
-
-        .pagination a{
-            color: black;
-            padding: 0 4px;
-            text-decoration: none;
-            margin: 0 1px;
-            background-color:rgba(19, 12, 144, 0.04);
+        border-radius: 4px;
+        text-decoration: none;
         }
-        .pagination a.active{
+
+        .page-link:hover {
+            background-color: rgba(19, 12, 144, 0.04);; 
+            color: #130C90; 
+            border-color: #130C90; 
+        }
+
+        .page-item.active .page-link {
+            background-color: #130C90;; 
+            color: white; 
+            border-color: #130C90;; 
+        }
+       
+        .input-group{
+            display: flex;
+            align-items: center;
+            justify-content: left;
+        }
+
+        .input-group input[type="date"]{
+            border: 1px solid #130C90;
+            border-radius: 4px  0 0 4px ;
+            padding: 6px;
+            font-size: 14px;
+        }
+
+        .input-group button{
+            padding: 8px 14px;
+            font-size: 14px;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
             background-color: #130C90;
             color: white;
+            transition: background-color 0.3s ease;
         }
-        .pagination a:hover:not(.active) {
-            background-color: #ddd;
+        .input-group button:hover {
+            background-color: #0e086e;
         }
-
-        .search-container{
-            position: relative;
-        }
-
-        .search-container input{
-            padding-right: 30px;
-        }
-
-        .search-container i{
-            position:absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
+     
     

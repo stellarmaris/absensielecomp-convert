@@ -7,12 +7,11 @@
 
 <?= $this->section('content') ?>
 
-<?php 
-     if (isset($validation)):?>
-            <div class="alert alert-danger">
-                <?= $validation->listErrors()?> 
-            </div>
-        <?php endif; ?>
+<?php if (session()->getFlashdata('error')) : ?>
+        <div class="alert alert-danger">
+            <?= session()->getFlashdata('error'); ?>
+        </div>
+    <?php endif; ?>
 
 <div class="title">
     <h1>Checkout</h1>
@@ -20,23 +19,23 @@
 </div>
 
 <div class="row justify-content-center">
-<div class="col-md-12"> 
-    <form action="<?= base_url('/checkout')?>" method="POST">
+
+    <form action="<?= base_url('/checkout')?>" method="POST" class="input-group">
         <div class="row">
-        <div class="mb-3 col-md-6 col-sm-6">
-            <label class="form-label">Tanggal:</label>
-            <input type="date" class="form-control" name="tanggalKeluar">
+            <div class="col">
+                <label class="form-label">Tanggal:</label>
+                <input type="date" class="form-control" name="tanggalKeluar">
+            </div>
+            <div class="col mb-3">
+                <label class="form-label">Jam keluar:</label>
+                <input type="text" class="form-control" name="jamKeluar" id="jamKeluar" readonly>
+            </div>
         </div>
-        <div class="mb-3 col-md-6 col-sm-6">
-            <label class="form-label">Jam keluar:</label>
-            <input type="time" class="form-control" name="jamKeluar">
-        </div>
-        </div>
-        <div class="mb-3 col-md-12">
+        <div class="mb-3">
             <label class="form-label">Progress:</label>
             <textarea rows="5" class="form-control" name="Progress" placeholder="Masukkan progress anda hari ini.."></textarea>
         </div>
-        <div class="mb-3 col-md-12">
+        <div class="mb-3">
             <label class="form-label">Lokasi:</label>
            
             <input type="hidden" class="form-control" id="latitude_checkout" name="latitude_checkout">
@@ -50,9 +49,20 @@
     </form>
 
 
-   
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Ambil jam saat ini
+        var sekarang = new Date();
+        var jam = String(sekarang.getHours()).padStart(2, '0');
+        var menit = String(sekarang.getMinutes()).padStart(2, '0');
+
+        // Setel value input jam keluar
+        document.getElementById('jamKeluar').value = jam + ':' + menit;
+    });
+</script>
 <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 <script >
+
     var map = L.map('map').fitWorld();
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     maxZoom: 19,

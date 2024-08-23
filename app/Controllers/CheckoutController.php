@@ -30,10 +30,12 @@ class CheckoutController extends BaseController
 
     public function checkout()
     {
+        $validation = \Config\Services::validation();
+
         $ModelPresensi = new presensiModel();
        
-        //ambil data dari form
 
+        //ambil data dari form
         $id_magang = session()->get('user_id');
         $jam_keluar = $this->request->getPost('jamKeluar');
         $kegiatan = $this->request->getPost('Progress');
@@ -58,9 +60,10 @@ class CheckoutController extends BaseController
 
             return redirect()->to('/home')->with('success','Checkout berhasil dilakukan');
         }else{
-            return redirect()->back()->with('eror','Gagal checkout');
+            session()->setFlashdata('error', 'Check-out gagal. Pastikan anda sudah melakukan check-in pada tanggal tersebut.');
+            return redirect()->back()->withInput();
         }
-
+        
         $data['title']='checkout';
         echo view('checkout',$data);    
     }
