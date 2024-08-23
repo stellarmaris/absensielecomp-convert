@@ -84,10 +84,11 @@ class AuthController extends BaseController
                 ],
                 'email' => [
                     'label' => 'Email',
-                    'rules' => 'required|valid_email',
+                    'rules' => 'required|valid_email|is_unique[user.email]',
                     'errors' => [
                         'required' => '{field} harus diisi',
-                        'valid_email' => 'Email tidak valid'
+                        'valid_email' => 'Email tidak valid',
+                        'is_unique' => '{field} sudah terdaftar, gunakan email lain.'
                     ]
                 ],
                 'password' => [
@@ -125,6 +126,7 @@ class AuthController extends BaseController
                     $data['eror'] = 'Terjadi kesalahan saat menyimpan data';
                 }
             } else {
+               
                 $data['validation'] = $this->validator;
             }
 

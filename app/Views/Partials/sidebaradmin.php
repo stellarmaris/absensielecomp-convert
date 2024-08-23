@@ -11,7 +11,7 @@
         </li>
         <li class="nav-item">
             <span class="nav-header">APPS</span>
-            <a href="#" class="nav-link">
+            <a href="/lokasiSemua" class="nav-link">
                 <i class="fa-solid fa-location-dot"></i> Lokasi Pengguna
             </a>
         </li>

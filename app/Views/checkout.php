@@ -24,7 +24,7 @@
         <div class="row">
             <div class="col">
                 <label class="form-label">Tanggal:</label>
-                <input type="date" class="form-control" name="tanggalKeluar">
+                <input type="date" class="form-control" name="tanggalKeluar" id="tanggalKeluar" readonly>
             </div>
             <div class="col mb-3">
                 <label class="form-label">Jam keluar:</label>
@@ -33,7 +33,7 @@
         </div>
         <div class="mb-3">
             <label class="form-label">Progress:</label>
-            <textarea rows="5" class="form-control" name="Progress" placeholder="Masukkan progress anda hari ini.."></textarea>
+            <textarea rows="5" class="form-control" name="Progress" placeholder="Masukkan progress anda hari ini.." required></textarea>
         </div>
         <div class="mb-3">
             <label class="form-label">Lokasi:</label>
@@ -55,9 +55,13 @@
         var sekarang = new Date();
         var jam = String(sekarang.getHours()).padStart(2, '0');
         var menit = String(sekarang.getMinutes()).padStart(2, '0');
-
+        var tanggal = String(sekarang.getDate()).padStart(2,'0');
+        var bulan = String(sekarang.getMonth()+1).padStart(2,'0');
+        var tahun = sekarang.getFullYear();
+       
         // Setel value input jam keluar
         document.getElementById('jamKeluar').value = jam + ':' + menit;
+        document.getElementById('tanggalKeluar').value = tahun+ "-" +bulan +"-" +tanggal;
     });
 </script>
 <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>

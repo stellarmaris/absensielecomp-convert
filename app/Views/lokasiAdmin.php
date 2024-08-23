@@ -4,12 +4,20 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-        <!--include css-->
+        <!--include leaflet css-->
         <link
             rel="stylesheet"
             href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
             integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
             crossorigin=""/>
+            <link
+                rel="stylesheet"
+                href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css"
+            />
+            <link
+                rel="stylesheet"
+                href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css"
+            />
         <style>
             #map, #map1{ 
                 height: 250px; 
@@ -48,7 +56,10 @@
         <script
             src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
             integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
-            crossorigin=""></script>
+            crossorigin="">
+        </script>
+        <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+
         <title>Lokasi</title>
     </head>
     <body>
@@ -77,37 +88,45 @@
         </div>
        
         <script>
+
+            //map (buat checkin)
             var map = L.map('map').setView([-7.981298, 112.631926], 13);
                       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                                    maxZoom: 19,
                                    attribution: '© OpenStreetMap'
                                  }).addTo(map);
            
+            var markers = L.markerClusterGroup();
             
             <?php foreach ($presensi as $dataPresensi): ?>
                 <?php if($dataPresensi['checkIn_latitude'] !== null && $dataPresensi['checkin_longitude'] !== null ):?>
-                    L.marker([<?= $dataPresensi['checkIn_latitude']?>,<?= $dataPresensi['checkin_longitude']?>])
-                    .addTo(map)
+               var marker= L.marker([<?= $dataPresensi['checkIn_latitude']?>,<?= $dataPresensi['checkin_longitude']?>])
                     .bindPopup("<?=$dataPresensi['Nama'] ?>")
-                    .openPopup();
+                markers.addLayer(marker);
+
                 <?php endif; ?>
             <?php endforeach ?>
+            map.addLayer(markers);
 
-            // Map 1
+            // Map 1(buat checkout)
                 var map1 = L.map('map1').setView([-7.981298, 112.631926], 13); 
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     maxZoom: 19,
                     attribution: '© OpenStreetMap'
                 }).addTo(map1);
 
-            <?php foreach ($presensi as $data): ?>
+            var markers1 =L.markerClusterGroup();
+
+            <?php foreach ($presensi as $dataPresensi): ?>
                 <?php if($dataPresensi['checkout_latitude'] !== null && $dataPresensi['checkout_longitude'] !== null): ?>
-                    L.marker([<?= $data['checkout_latitude'] ?>, <?= $data['checkout_longitude'] ?>])
-                        .addTo(map1)
-                        .bindPopup("<?= $data['Nama'] ?>")
-                        .openPopup();
+                   var marker1= L.marker([<?= $dataPresensi['checkout_latitude'] ?>, <?= $dataPresensi['checkout_longitude'] ?>])
+                        .bindPopup("<?= $dataPresensi['Nama'] ?>")
+                 
+                    markers1.addLayer(marker1);
                 <?php endif ?>
             <?php endforeach; ?>
+
+            map1.addLayer(markers1);
            
         </script>
     </body>
