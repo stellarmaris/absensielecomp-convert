@@ -24,9 +24,13 @@
     <div class="form-1">
         <div class="label"><label for="status">Status Perizinan</label></div>
         <div class="input">
-            <input type="text" name="status" id="status">
+            <select name="status" id="status">
+                <option value="sakit">Sakit</option>
+                <option value="izin">Izin</option>
+            </select>
         </div>
     </div>
+
     <div class="form-1">
         <div class="label"><label for="status">Status Perizinan</label></div>
         <div class="input">
@@ -39,4 +43,25 @@
     </div>
 
 </form>
+<script>
+    const waktu = new Date();
+    const year = String(waktu.getFullYear());
+    const month = String(waktu.getMonth() + 1).padStart(2, '0');
+    const date = String(waktu.getDate()).padStart(2, '0');
+    const hour = String(waktu.getHours()).padStart(2, '0');
+    const minute = String(waktu.getMinutes()).padStart(2, '0');
+
+    const TimeNow = `${hour}:${minute}`
+    const DateNow = `${year}-${month}-${date}`;
+    document.getElementById('date').value = DateNow;
+    document.getElementById('time').value = TimeNow;
+    // Geolocation untuk mendapatkan posisi saat ini
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition, showError);
+        } else {
+            alert("Geolocation tidak didukung oleh browser ini.");
+        }
+    }
+</script>
 <?= $this->endSection() ?>

@@ -22,7 +22,6 @@ class AuthController extends BaseController
 
         $user = $userModel->where('email', $email)->first();
 
-
         if ($user && password_verify($password, $user['password'])) {
             $this->setUserSession($user);
 
@@ -33,9 +32,12 @@ class AuthController extends BaseController
                 return redirect()->to('/Home');
             }
         } else {
-            return redirect()->back()->with('error', 'Email atau password salah');
+            // Set flashdata with an error message
+            session()->setFlashdata('error', 'Email atau password salah');
+            return redirect()->back();
         }
     }
+
 
     private function setUserSession($user)
     {

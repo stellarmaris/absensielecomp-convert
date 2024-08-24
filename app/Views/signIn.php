@@ -7,9 +7,7 @@
     <title>Login</title>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-    </style>
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-    <style>
+
         * {
             font-family: var(--font-family);
             margin: 0;
@@ -30,7 +28,7 @@
             --text-color-selected: var(--primary-color-light);
             --border-color: #898989;
 
-            /*===== Trasition =====*/
+            /*===== Transition =====*/
             --trans-01: all 0.1s ease-out;
             --trans-02: all 0.2s ease-out;
             --trans-03: all 0.3s ease-out;
@@ -57,7 +55,6 @@
             border-radius: 10px;
             box-shadow: 0 2px 2px 0px rgba(0, 0, 0, 0.25);
             padding: 30px;
-
         }
 
         .head {
@@ -102,7 +99,6 @@
             border-radius: 10px;
             padding: 10px 20px;
             border: 1px solid var(--border-color);
-
         }
 
         .form .form-password {
@@ -123,7 +119,6 @@
             border-radius: 10px;
             padding: 10px 20px;
             border: 1px solid var(--border-color);
-
         }
 
         .link-text {
@@ -147,7 +142,7 @@
             font-size: 14px;
             border-radius: 10px;
             font-family: var(--font-family);
-
+            border: none;
         }
 
         .sign-up-link {
@@ -157,21 +152,43 @@
             justify-content: center;
             align-items: center;
             margin: 20px 0px;
-
         }
 
         .sign-up-link a {
-            color: var(--text-color);
-            padding: 0px 3px;
             color: var(--primary-color);
+            padding: 0px 3px;
             font-weight: 500;
             text-decoration: none;
+        }
+
+        /* Pop-up styling */
+        .alert-popup {
+            position: fixed;
+            top: 5%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            max-width: 1500px;
+            z-index: 1050;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
 
 <body>
     <div class="container">
+        <!-- Menampilkan alert jika ada error -->
+        <?php if (session()->getFlashdata('error')): ?>
+            <div class="alert alert-danger alert-popup" role="alert">
+                <?= session()->getFlashdata('error') ?>
+            </div>
+            <script>
+                setTimeout(function() {
+                    document.querySelector('.alert-popup').style.display = 'none';
+                }, 3000);
+            </script>
+        <?php endif; ?>
+
         <form action="<?= base_url('login') ?>" method="post">
             <div class="head">
                 <div class="title">
@@ -182,33 +199,39 @@
                 </div>
             </div>
             <div class="form">
-
                 <div class="form-email">
                     <div class="label">
                         <label for="email">Email</label>
                     </div>
-                    <div class="input"><input type="email" name="email" id="email" required placeholder="Ex : Admin@gmail.com" /></div>
-
+                    <div class="input">
+                        <input type="email" name="email" id="email" required placeholder="Ex : Admin@gmail.com" />
+                    </div>
                 </div>
                 <div class="form-password">
                     <div class="password">
                         <label for="password">Kata Sandi</label>
                     </div>
-                    <div class="input"><input type="password" name="password" id="password" required placeholder="at least 16 character with number & spesial character" /></div>
+                    <div class="input">
+                        <input type="password" name="password" id="password" required placeholder="at least 16 character with number & special character" />
+                    </div>
                 </div>
             </div>
             <div class="link-text">
-                <a href="#">Having trouble in sign in ?</a>
+                <a href="#">Having trouble in sign in?</a>
             </div>
-            <div class="btn">
-                <input type="submit" value="Masuk">
+            <div class="btn" style="width: 100%;">
+                <input type="submit" value="Masuk" style="width:100%">
             </div>
             <div class="sign-up-link">
-                <p>Don’t Have an account ?</p>
-                <a href="#">Contact Admin</a>
+                <p>Don't Have an account? <a href="/signUp">Sign Up</a></p>
+
             </div>
         </form>
     </div>
+    <!-- Bootstrap JS for alert dismissal -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>

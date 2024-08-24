@@ -33,13 +33,10 @@ class IzinController extends BaseController
         $date = $this->request->getPost('date');
         $time = $this->request->getPost('time');
         $status = $this->request->getPost('status');
- 
-
 
         if (!$date || !$time || !$status) {
             return redirect()->back()->with('error', 'All fields are required.');
         }
-
 
         if (!$this->validate([
             'foto' => 'uploaded[foto]|max_size[foto,1024]|ext_in[foto,png,jpg,jpeg]'
@@ -47,17 +44,11 @@ class IzinController extends BaseController
             return redirect()->back()->with('errors', $this->validator->getErrors());
         }
 
-
         $file = $this->request->getFile('foto');
-
-
         $newName = $file->getRandomName();
-
-
         $file->move('uploads', $newName);
 
         $UserModel = new presensiModel();
-
 
         $data = [
             'id_magang' => $idMagang,
@@ -69,7 +60,11 @@ class IzinController extends BaseController
 
         // Try to save the data
         if ($UserModel->save($data)) {
-            return redirect()->to('/home')->with('success', 'Data successfully saved.');
+            // Simpan status izin ke dalam sesi
+            session()->setFlashdata('status_izin', $status);
+
+            // Redirect ke halaman sukses
+            return redirect()->to('/success-izin');
         } else {
             return redirect()->back()->with('error', 'Failed to save data.');
         }

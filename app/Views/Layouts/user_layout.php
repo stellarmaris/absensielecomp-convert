@@ -19,7 +19,7 @@
             height: 100vh;
             display: flex;
             align-items: flex-start;
-         
+
         }
 
         .container {
@@ -108,7 +108,8 @@
             border-radius: 15px;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            height: calc(100vh - 30px);
+            height: calc(100vh - 70px);
+            max-height: calc(100vh - 70px);
         }
 
         @media screen and (max-width: 768px) {
@@ -131,13 +132,13 @@
 </head>
 
 <body>
-        <?php 
-            if (isset($validation)):?>
-            <div class="alert alert-danger">
-                <?= $validation->listErrors()?> 
-            </div>
-        <?php endif; ?>
-        
+    <?php
+    if (isset($validation)): ?>
+        <div class="alert alert-danger">
+            <?= $validation->listErrors() ?>
+        </div>
+    <?php endif; ?>
+
     <div class="container">
         <?= $this->include('/partials/sidebar') ?>
 

@@ -15,12 +15,6 @@
                 <i class="fa-solid fa-location-dot"></i> Lokasi Pengguna
             </a>
         </li>
-        <li class="nav-item">
-            <span class="nav-header">SUPPORT</span>
-            <a href="#" class="nav-link">
-                <i class="fa-regular fa-circle-question"></i> Help & Support
-            </a>
-        </li>
     </ul>
     <div class="logout">
         <a href="<?= base_url('/logout') ?>" class="nav-link">

@@ -22,6 +22,8 @@ $routes->get('/check-in-form', 'CheckInController::index');
 $routes->post('/check-in-form', 'CheckInController::store');
 $routes->get('/checkout', 'CheckoutController::index');
 $routes->post('/checkout', 'CheckoutController::checkout');
+$routes->get('/success-check-in', 'SuccesCheckInController::index');
+$routes->get('/success-izin', 'SuccesIzinController::index');
 
 $routes->get('/lokasiSemua', 'LokasiController::index');
 $routes->get('/logout', 'AuthController::logout');

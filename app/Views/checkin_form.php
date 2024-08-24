@@ -6,32 +6,26 @@
 
 <?= $this->section('content') ?>
 <div>
-    <h2>Form Perizinan</h2>
+    <h2>Check In Form</h2>
 </div>
 
-<form action="/check-in-form" method="post" enctype="multipart/form-data">
+<form action="/check-in-form" method="POST" enctype="multipart/form-data">
     <div class="group">
         <div class="form">
-            <div class="label"><label for="date">Tanggal Perizinan</label></div>
-            <div class="input"> <input type="date" name="date" id="date"></div>
+            <div class="label"><label for="date">Tanggal Check In</label></div>
+            <div class="input"> <input type="date" name="date" id="date" readonly></div>
         </div>
         <div class="form">
-            <div class="label"><label for="time">Waktu Perizinan</label></div>
+            <div class="label"><label for="time">Waktu Check In</label></div>
             <div class="input">
-                <input type="time" name="time" id="time">
+                <input type="time" name="time" id="time" readonly>
             </div>
         </div>
     </div>
     <div class="form-1">
-        <div class="label"><label for="status">Status Perizinan</label></div>
+        <div class="label"><label for="foto">Upload Foto Check In</label></div>
         <div class="input">
-            <input type="text" name="status" id="status">
-        </div>
-    </div>
-    <div class="form-1">
-        <div class="label"><label for="foto">Upload Foto</label></div>
-        <div class="input">
-            <input type="file" name="foto">
+            <input type="file" name="foto" required>
         </div>
     </div>
     <div class="form-1" hidden>
@@ -48,7 +42,7 @@
     </div>
 
     <!-- Tambahkan div untuk map -->
-    <div id="map" style="height: 250px; margin-top: 20px;"></div>
+    <div id="map" style="height: 325px; margin-top: 20px;"></div>
 
     <div class="btn">
         <button type="submit">Upload</button>
@@ -57,6 +51,17 @@
 
 <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 <script>
+    const waktu = new Date();
+    const year = String(waktu.getFullYear());
+    const month = String(waktu.getMonth() + 1).padStart(2, '0');
+    const date = String(waktu.getDate()).padStart(2, '0');
+    const hour = String(waktu.getHours()).padStart(2, '0');
+    const minute = String(waktu.getMinutes()).padStart(2, '0');
+
+    const TimeNow = `${hour}:${minute}`
+    const DateNow = `${year}-${month}-${date}`;
+    document.getElementById('date').value = DateNow;
+    document.getElementById('time').value = TimeNow;
     // Geolocation untuk mendapatkan posisi saat ini
     function getLocation() {
         if (navigator.geolocation) {
@@ -88,7 +93,7 @@
     }
 
     function showError(error) {
-        switch(error.code) {
+        switch (error.code) {
             case error.PERMISSION_DENIED:
                 alert("Pengguna menolak permintaan Geolocation.");
                 break;

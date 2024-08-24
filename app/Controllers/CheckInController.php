@@ -62,7 +62,7 @@ class CheckInController extends BaseController
             // Create the data array with the path to the uploaded photo
             $data = [
                 'id_magang' => $idMagang,
-                'status' => $status,
+                'status' => 'hadir',
                 'tanggal' => $date,
                 'jam_masuk' => $time,
                 'checkIn_latitude' => $latitude,
@@ -72,6 +72,7 @@ class CheckInController extends BaseController
 
             // Save data to the database
             $PresensiModel->save($data);
+            return redirect()->to('/success-check-in')->with('success', 'Presensi berhasil disimpan.');
         } else {
             // Handle error if the file is not valid
             return redirect()->back()->with('error', 'Foto tidak valid atau gagal diunggah.');
