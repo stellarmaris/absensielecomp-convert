@@ -23,6 +23,7 @@ $routes->post('/check-in-form', 'CheckInController::store');
 $routes->get('/checkout', 'CheckoutController::index');
 $routes->post('/checkout', 'CheckoutController::checkout');
 $routes->get('/success-check-in', 'SuccesCheckInController::index');
+$routes->get('/pending-check-in', 'PendingCheckInController::index');
 $routes->get('/success-izin', 'SuccesIzinController::index');
 
 $routes->get('/lokasiSemua', 'LokasiController::index');
