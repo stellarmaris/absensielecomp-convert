@@ -11,6 +11,9 @@
         </li>
         <li class="nav-item">
             <span class="nav-header">APPS</span>
+            <a href="/VerifyUser" class="nav-link">
+                <i class="fa-solid fa-check"></i> Verifikasi Absensi
+            </a>
             <a href="/lokasiSemua" class="nav-link">
                 <i class="fa-solid fa-location-dot"></i> Lokasi Pengguna
             </a>
