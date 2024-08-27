@@ -16,15 +16,20 @@ class VerifyUser extends BaseController
 
         $ModelPresensi = new presensiModel();
 
-        // Gunakan pagination
-        $pagination = $this->paginateData();
+        // tanggal 
+        $tanggalHariIni = date('Y-m-d');
+
+        // pagination
+        $pagination = $this->paginateData($tanggalHariIni);
+
         $data['data_presensi'] = $ModelPresensi
             ->select('presensi.*, user.nama as Nama')
             ->join('user', 'user.id_magang = presensi.id_magang')
+            ->where('tanggal', $tanggalHariIni)
             ->orderBy('tanggal', 'desc')
             ->findAll($pagination['perPage'], $pagination['offset']);
 
-        $data = array_merge($data, $pagination); // Gabungkan data pagination ke $data
+        $data = array_merge($data, $pagination); // Gabung
 
         $data['tanggal_hari_ini'] = $this->getTanggalHariIni();
 
@@ -37,7 +42,7 @@ class VerifyUser extends BaseController
         $ModelPresensi = new presensiModel();
         $perPage = 10;
 
-        // Dapatkan nomor halaman saat ini
+        // fetch halaman
         $page = $this->request->getVar('page') ?? 1;
 
         // Hitung offset
@@ -49,11 +54,10 @@ class VerifyUser extends BaseController
         } else {
             $totalRecords = $ModelPresensi->countAllResults();
         }
-        
+
         // Hitung total halaman
         $totalPages = ceil($totalRecords / $perPage);
 
-        // Kembalikan data pagination
         return [
             'perPage' => $perPage,
             'currentPage' => $page,
@@ -64,7 +68,6 @@ class VerifyUser extends BaseController
 
     private function getTanggalHariIni(): string
     {
-        // Implementasi sama seperti sebelumnya
         $hari = date('l');
         $tanggal = date('j');
         $bulan = date('F');
@@ -98,11 +101,18 @@ class VerifyUser extends BaseController
         return $namaHari[$hari] . ', ' . $tanggal . ' ' . $namaBulan[$bulan] . ' ' . $tahun;
     }
 
-    public function delete($id_presensi)
+    public function updateVerifikasi($id_presensi)
     {
         $ModelPresensi = new presensiModel();
-        $ModelPresensi->delete($id_presensi);
-        
-        return redirect()->to(site_url('dashboardadmin'))->with('success', 'Data berhasil dihapus.');
+        $presensi = $ModelPresensi->find($id_presensi);
+    
+        if ($presensi) {
+            $newStatus = ($presensi['verifikasi'] == 'Pending') ? 'Sukses' : 'Pending';
+            $ModelPresensi->update($id_presensi, ['verifikasi' => $newStatus]);
+    
+            return redirect()->to(site_url('verifyuser'))->with('success', 'Status verifikasi berhasil diperbarui.');
+        }
+    
     }
+    
 }
