@@ -44,8 +44,13 @@
                             <td><?php echo $v['jam_keluar']?></td>
                             <td><?php echo $v['status']?></td>
                             <td><?php echo $v['kegiatan']; ?></td>
-                            <td></td>
-                           
+                            <td style="text-align: center;">
+                                <?php if($v['keterangan']=='Pending'): ?>
+                                    <span style="color:white; background-color:orange ; padding: 5px 15px; border-radius:50px" ><?php echo $v['keterangan']?></span>
+                                <?php else: ?>
+                                    <span style="color:white; background-color:green ; padding: 5px 15px; border-radius:50px" ><?php echo $v['keterangan']?></span>
+                                <?php endif?>
+                            </td>   
                         </tr>
                     
                     <?php endforeach; ?>
