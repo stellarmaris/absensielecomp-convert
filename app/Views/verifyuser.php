@@ -1,6 +1,6 @@
 <?= $this->extend('/layouts/admin_layout') ?>
 <?= $this->section('customStyles') ?>
-<link rel="stylesheet" href="/css/dashboardadmin.css">
+<link rel="stylesheet" href="/css/verifikasi.css">
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
@@ -19,7 +19,9 @@
             <th>No</th>
             <th>Nama</th>
             <th>Jam Masuk</th>
-            <th>Status</th>
+            <th>Status Kehadiran</th>
+            <th>Foto</th>
+            <th>Status Verifikasi</th>
             <th>Update</th>
         </tr>
     </thead>
@@ -35,15 +37,32 @@
             $nomor = $nomor + 1;
         ?>
         <tr>
-            <td><?php echo $nomor ?></td>
-            <td><?php echo $v['Nama'] ?></td>
-            <td><?php echo $v['jam_masuk'] ?></td>
-            <td><?php echo $v['verifikasi']; ?></td>
-            <td>
-                <a href="<?= site_url('dashboardadmin/delete/' . $v['id_presensi']); ?>" 
-                class="btn btn-danger" 
-                onclick="return confirm('Apakah Anda yakin ingin mengupdate data ini?');">Update</a>
+            <td style="text-align: center;"><?php echo $nomor ?></td>
+            <td style="text-align: center;"><?php echo $v['Nama'] ?></td>
+            <td style="text-align: center;"><?php echo $v['jam_masuk'] ?></td>
+            <td style="text-align: center;"><?php echo $v['status']; ?></td>
+            <td style="text-align: center;">
+                <?php if (!empty($v['foto'])): ?>
+                    <img src="<?= base_url('/uploads/' . $v['foto']); ?>" alt="Foto" style="max-width: 100px; max-height: 100px;">
+                <?php else: ?>
+                    Tidak ada foto
+                <?php endif; ?>
             </td>
+            <td style="text-align: center;">
+                                <?php if($v['verifikasi']=='Pending'): ?>
+                                    <span style="color:white; background-color:orange ; padding: 5px 15px; border-radius:50px" ><?php echo $v['verifikasi']?></span>
+                                <?php else: ?>
+                                    <span style="color:white; background-color:green ; padding: 5px 15px; border-radius:50px" ><?php echo $v['verifikasi']?></span>
+                                <?php endif?>
+                            </td>   
+                            <td>
+                            <a href="<?= site_url('verifyuser/updateVerifikasi/' . $v['id_presensi']); ?>" 
+                            class="btn custom-btn" 
+                            onclick="return confirm('Apakah Anda yakin ingin mengupdate status verifikasi : <?= $v['verifikasi']; ?>?');">
+                            Update
+                            </a>
+                    </td>
+
         </tr>
         <?php }?>
     </tbody>
