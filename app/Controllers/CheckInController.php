@@ -50,15 +50,55 @@ class CheckInController extends BaseController
         $latitude = $this->request->getPost('latitude');
         $longitude = $this->request->getPost('longitude');
         $status = $this->request->getPost('status');
+        $targetLat = -7.9742781;
+        $targetLong = 112.665592;
+        $radius = 1000; // Radius in meters
+
+        // Convert degrees to radians
+        function deg2rad($deg)
+        {
+            return $deg * (M_PI / 180);
+        }
+
+        // Calculate the distance using the Haversine formula
+        function haversine($lat1, $lon1, $lat2, $lon2)
+        {
+            $earthRadius = 6371000; // Earth radius in meters
+
+            $dLat = deg2rad($lat2 - $lat1);
+            $dLong = deg2rad($lon2 - $lon1);
+
+            $a = sin($dLat / 2) * sin($dLat / 2) +
+                cos(deg2rad($lat1)) * cos(deg2rad($lat2)) *
+                sin($dLong / 2) * sin($dLong / 2);
+
+            $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
+
+            $distance = $earthRadius * $c;
+
+            return $distance;
+        }
+
+        // Calculate the distance between the current and target locations
+        $distance = haversine($latitude, $longitude, $targetLat, $targetLong);
+
+        // Check if the distance is within the specified radius
+        if ($distance <= $radius) {
+            $verifikasiStatus = 'sukses';
+        } else {
+            $verifikasiStatus = 'pending';
+        }
+
+
 
         $PresensiModel = new presensiModel();
-
+        // dd($verifikasiStatus);
         // Handle file upload
         $foto = $this->request->getFile('foto');
         if ($foto->isValid() && !$foto->hasMoved()) {
             $newName = $foto->getRandomName(); // Generate random file name
             $foto->move('uploads/photos', $newName); // Move to the uploads/photos directory
-
+            dd($verifikasiStatus);
             // Create the data array with the path to the uploaded photo
             $data = [
                 'id_magang' => $idMagang,
@@ -67,6 +107,7 @@ class CheckInController extends BaseController
                 'jam_masuk' => $time,
                 'checkIn_latitude' => $latitude,
                 'checkin_longitude' => $longitude,
+                'verify' => $verifikasiStatus,
                 'foto' => 'uploads/photos/check-in/' . $newName // Save the path to the database
             ];
 

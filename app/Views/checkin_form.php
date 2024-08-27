@@ -28,16 +28,16 @@
             <input type="file" name="foto" required>
         </div>
     </div>
-    <div class="form-1" hidden>
+    <div class="form-1" >
         <div class="label"><label for="latitude">Latitude</label></div>
         <div class="input">
-            <input type="text" name="latitude" id="latitude" readonly>
+            <input type="text" name="latitude" id="latitude" >
         </div>
     </div>
-    <div class="form-1" hidden>
+    <div class="form-1" >
         <div class="label"><label for="longitude">Longitude</label></div>
         <div class="input">
-            <input type="text" name="longitude" id="longitude" readonly>
+            <input type="text" name="longitude" id="longitude" >
         </div>
     </div>
 
