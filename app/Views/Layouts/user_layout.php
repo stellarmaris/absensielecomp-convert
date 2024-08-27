@@ -110,6 +110,7 @@
             padding: 20px;
             height: calc(100vh - 70px);
             max-height: calc(100vh - 70px);
+            overflow: auto;
         }
 
         @media screen and (max-width: 768px) {

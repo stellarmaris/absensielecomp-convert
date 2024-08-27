@@ -42,7 +42,7 @@
             <td>
                 <a href="<?= site_url('dashboardadmin/delete/' . $v['id_presensi']); ?>" 
                 class="btn btn-danger" 
-                onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">Hapus</a>
+                onclick="return confirm('Apakah Anda yakin ingin mengupdate data ini?');">Update</a>
             </td>
         </tr>
         <?php }?>
