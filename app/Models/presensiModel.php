@@ -9,6 +9,7 @@ class presensiModel extends Model{
     protected $allowedFields = [
         'id_magang',
         'status',
+        'verifikasi',
         'tanggal',
         'jam_masuk',
         'jam_keluar',

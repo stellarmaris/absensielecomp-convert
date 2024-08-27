@@ -98,7 +98,7 @@ class CheckInController extends BaseController
         if ($foto->isValid() && !$foto->hasMoved()) {
             $newName = $foto->getRandomName(); // Generate random file name
             $foto->move('uploads/photos', $newName); // Move to the uploads/photos directory
-            dd($verifikasiStatus);
+            //dd($verifikasiStatus);
             // Create the data array with the path to the uploaded photo
             $data = [
                 'id_magang' => $idMagang,
@@ -107,7 +107,7 @@ class CheckInController extends BaseController
                 'jam_masuk' => $time,
                 'checkIn_latitude' => $latitude,
                 'checkin_longitude' => $longitude,
-                'verify' => $verifikasiStatus,
+                'verifikasi' => $verifikasiStatus,
                 'foto' => 'uploads/photos/check-in/' . $newName // Save the path to the database
             ];
 
