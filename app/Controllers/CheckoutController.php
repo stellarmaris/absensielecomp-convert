@@ -49,6 +49,7 @@ class CheckoutController extends BaseController
                                 ->first();
 
         
+
         //kalau ketemu update datanya
         if($presensi){
             $ModelPresensi->update($presensi['id_presensi'],[

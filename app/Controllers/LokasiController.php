@@ -22,6 +22,7 @@ class lokasiController extends BaseController
         $data =[
             'presensi' => $presensi,
             'tanggal' => $tanggal,
+            'title' => 'Lokasi',
         ];
                                  
         return view('lokasiAdmin', $data);

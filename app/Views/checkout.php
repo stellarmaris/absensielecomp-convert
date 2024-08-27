@@ -13,14 +13,14 @@
         </div>
     <?php endif; ?>
 
-<div class="title">
-    <h1>Checkout</h1>
-    <p>Sebelum pulang, checkout dulu yuk<p>
-</div>
+<div class="box-container">
+    <div class="title">
+        <h2>Checkout</h2>
+        <p>Sebelum pulang, checkout dulu yuk<p>
+    </div>
 
-<div class="row justify-content-center">
 
-    <form action="<?= base_url('/checkout')?>" method="POST" class="input-group">
+    <form action="<?= base_url('/checkout')?>" method="POST" class="input-group" style="max-width: 900px; width: 100%;">
         <div class="row">
             <div class="col">
                 <label class="form-label">Tanggal:</label>
@@ -31,7 +31,7 @@
                 <input type="text" class="form-control" name="jamKeluar" id="jamKeluar" readonly>
             </div>
         </div>
-        <div class="mb-3">
+        <div class=" col mb-3">
             <label class="form-label">Progress:</label>
             <textarea rows="5" class="form-control" name="Progress" placeholder="Masukkan progress anda hari ini.." required></textarea>
         </div>
@@ -47,7 +47,7 @@
                 <button type="submit" class="btn mb-2" style="background-color: #130C90; color:white;"><strong>Simpan</strong></button>
             </div>
     </form>
-
+</div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {

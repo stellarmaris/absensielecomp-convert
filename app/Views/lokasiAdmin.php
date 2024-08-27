@@ -1,10 +1,8 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-        <!--include leaflet css-->
+<?= $this->extend('/layouts/admin_layout') ?>
+<?= $this->section('customStyles') ?>
+<link rel="stylesheet" href="/css/tampilLokasi.css">
+
+<!--include leaflet css-->
         <link
             rel="stylesheet"
             href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
@@ -18,53 +16,22 @@
                 rel="stylesheet"
                 href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css"
             />
-        <style>
-            #map, #map1{ 
-                height: 250px; 
-                margin-bottom: 20px;
-               
-            }
-             
-            .form-control{
-                background-color:  rgba(19, 12, 144, 0.04);
-                font-size: 13px;
-            }
-            .container{
-            margin-top: 20px;
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            font-size: 13px;
-            max-width: 900px;
-            }
-            body{
-            background-color: rgba(19, 12, 144, 0.04);
-            padding: 12px;
-            font-family:"Poppins", sans-serif
-        }
-        .title{
-            font-weight: bold;
-            font-size: 14px;
-           
-        }
-        .info{
-            margin-bottom: 20px;
-            border-bottom: 1px solid #ddd;
-        }
-        </style>
-        <!--include javascript-->
-        <script
+       
+     
+<?= $this->endSection() ?>
+
+<?= $this->section('content') ?>
+
+ <!--include javascript-->
+ <script
             src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
             integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
             crossorigin="">
         </script>
         <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
 
-        <title>Lokasi</title>
-    </head>
-    <body>
 
-       <div class="container">
+<div class="box-container">
             <div class="info">
                 <h1>Lokasi</h1>
                 <p>Daftar lokasi check-in dan check-out member<p>
@@ -78,19 +45,21 @@
                     </form>
                         
             </div>
-            <div class="col-md-6 mb-3 title">Lokasi Masuk</div>
+            <div class="col-md-6 mb-3"><h4>Lokasi Masuk</h4></div>
              <div id="map"></div>
             
-            <div class="col-md-6 title">Lokasi Keluar</div>
+            <div class="col-md-6 "><h4>Lokasi Keluar</h4></div>
             <div id="map1"></div>
          
             
         </div>
+
+        
        
         <script>
 
             //map (buat checkin)
-            var map = L.map('map').setView([-7.981298, 112.631926], 13);
+            var map = L.map('map').setView([-7.981298, 112.631926], 12);
                       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                                    maxZoom: 19,
                                    attribution: '© OpenStreetMap'
@@ -109,7 +78,7 @@
             map.addLayer(markers);
 
             // Map 1(buat checkout)
-                var map1 = L.map('map1').setView([-7.981298, 112.631926], 13); 
+                var map1 = L.map('map1').setView([-7.981298, 112.631926], 12); 
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     maxZoom: 19,
                     attribution: '© OpenStreetMap'
@@ -129,5 +98,5 @@
             map1.addLayer(markers1);
            
         </script>
-    </body>
-</html>
+
+<?= $this->endSection() ?>

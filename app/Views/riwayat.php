@@ -5,9 +5,13 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
-<div class="container">
-        <div class="box">
-        <div class="title">Riwayat</div>
+
+    <div class="box">
+            <div class="title">
+                <h2>Riwayat</h2>
+                <p>Daftar riwayat presensi<p>
+            </div>
+            
                 <div class="col-md-3 mb-2 mb-md-0">
                     <form action="/riwayat" method="get" class="input-group mb-3">
                         <input type="date" name ="tanggal" id="date" class="form-control" value="<?= esc($tanggal)?>">
@@ -24,6 +28,7 @@
                         <th>Jam Keluar</th>
                         <th>Status</th>
                         <th>Kegiatan</th>
+                        <th>Keterangan</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,6 +44,8 @@
                             <td><?php echo $v['jam_keluar']?></td>
                             <td><?php echo $v['status']?></td>
                             <td><?php echo $v['kegiatan']; ?></td>
+                            <td></td>
+                           
                         </tr>
                     
                     <?php endforeach; ?>
@@ -54,10 +61,9 @@
                     <div class="pagination">
                        <?= $pager->links('presensi','custom') ?>
                     </div>
-        </div>
     </div>
 
 
-    <div class="container">
+
 <!-- Your content here -->
 <?= $this->endSection() ?>

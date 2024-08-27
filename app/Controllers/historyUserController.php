@@ -21,7 +21,7 @@ class historyUserController extends BaseController
         
         $tanggal = $this->request->getGet('tanggal');
         $currentPage = $this->request->getGet('page') ?? 1;
-        $perPage=2;
+        $perPage=5;
 
         $query = $ModelPresensi->where('id_magang',$userId);
 
