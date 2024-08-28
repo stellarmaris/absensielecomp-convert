@@ -19,14 +19,12 @@
             height: 100vh;
             display: flex;
             align-items: flex-start;
-
         }
 
         .container {
             display: flex;
             width: 100%;
             max-width: calc(100% - 15px);
-
             margin: 15px;
         }
 
@@ -119,34 +117,76 @@
             }
 
             .sidebar {
-                width: 100%;
-                margin-right: 0;
+                display: none;
+                /* Hide sidebar on mobile */
             }
 
             .content {
                 width: 100%;
                 margin-top: 15px;
             }
+
+            .show-sidebar {
+                display: block;
+                background-color: #000;
+                color: #fff;
+                padding: 10px;
+                border-radius: 5px;
+                position: fixed;
+                top: 15px;
+                left: 15px;
+                z-index: 1000;
+                cursor: pointer;
+            }
+        }
+
+        .show-sidebar {
+            display: none;
+        }
+
+        .sidebar.show {
+            display: block !important;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100vh;
+            z-index: 999;
+            background-color: #ffffff;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
         }
     </style>
     <?= $this->renderSection('customStyles') ?>
 </head>
 
 <body>
-    <?php
-    if (isset($validation)): ?>
+    <?php if (isset($validation)): ?>
         <div class="alert alert-danger">
             <?= $validation->listErrors() ?>
         </div>
     <?php endif; ?>
 
+    <!-- Button to show the sidebar on mobile -->
+    <div class="show-sidebar">
+        <i class='bx bx-menu'></i> Menu
+    </div>
+
     <div class="container">
+        <!-- Sidebar -->
         <?= $this->include('/partials/sidebar') ?>
 
+        <!-- Content -->
         <div class="content">
             <?= $this->renderSection('content') ?>
         </div>
     </div>
+
+    <!-- JavaScript for toggling the sidebar on mobile -->
+    <script>
+        document.querySelector('.show-sidebar').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('show');
+        });
+    </script>
 </body>
 
 </html>

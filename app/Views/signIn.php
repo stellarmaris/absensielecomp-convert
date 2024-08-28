@@ -163,6 +163,11 @@
 
         /* Pop-up styling */
         .alert-popup {
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
             position: fixed;
             top: 5%;
             left: 50%;
@@ -173,9 +178,11 @@
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
         }
     </style>
+
 </head>
 
 <body>
+
     <div class="container">
         <!-- Menampilkan alert jika ada error -->
         <?php if (session()->getFlashdata('error')): ?>
@@ -217,7 +224,7 @@
                 </div>
             </div>
             <div class="link-text">
-                <a href="#">Having trouble in sign in?</a>
+                <a href="/trouble-sign-in">Having trouble in sign in?</a>
             </div>
             <div class="btn" style="width: 100%;">
                 <input type="submit" value="Masuk" style="width:100%">

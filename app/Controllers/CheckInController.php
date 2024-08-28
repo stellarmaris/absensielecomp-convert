@@ -60,7 +60,7 @@ class CheckInController extends BaseController
             return $deg * (M_PI / 180);
         }
 
-        // Calculate the distance using the Haversine formula
+        
         function haversine($lat1, $lon1, $lat2, $lon2)
         {
             $earthRadius = 6371000; // Earth radius in meters
@@ -84,9 +84,9 @@ class CheckInController extends BaseController
 
         // Check if the distance is within the specified radius
         if ($distance <= $radius) {
-            $verifikasiStatus = 'sukses';
+            $verifikasiStatus = 'Sukses';
         } else {
-            $verifikasiStatus = 'pending';
+            $verifikasiStatus = 'Pending';
         }
 
 
@@ -108,12 +108,23 @@ class CheckInController extends BaseController
                 'checkIn_latitude' => $latitude,
                 'checkin_longitude' => $longitude,
                 'verifikasi' => $verifikasiStatus,
+<<<<<<< Updated upstream
                 'foto' => $newName // Save the path to the database
+=======
+                'foto' => 'uploads/photos/check-in/' . $newName // Simpan path ke database
+>>>>>>> Stashed changes
             ];
-
-            // Save data to the database
+            
+            // Simpan data ke database
             $PresensiModel->save($data);
-            return redirect()->to('/success-check-in')->with('success', 'Presensi berhasil disimpan.');
+            
+            // Cek status verifikasi dan arahkan ke rute yang sesuai
+            if ($verifikasiStatus === 'Sukses') {
+                return redirect()->to('/success-check-in')->with('success', 'Presensi berhasil disimpan.');
+            } else {
+                return redirect()->to('/pending-check-in')->with('warning', 'Verifikasi sedang diproses.');
+            }
+            
         } else {
             // Handle error if the file is not valid
             return redirect()->back()->with('error', 'Foto tidak valid atau gagal diunggah.');

@@ -55,7 +55,8 @@ class IzinController extends BaseController
             'tanggal' => $date,
             'jam_masuk' => $time,
             'status' => $status,
-            'foto' => 'uploads/' . $newName
+            'foto' => $newName,
+            'verifikasi' => 'Sukses'
         ];
 
         // Try to save the data

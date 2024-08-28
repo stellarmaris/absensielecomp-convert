@@ -34,7 +34,8 @@
     <div class="form-1">
         <div class="label"><label for="status">Status Perizinan</label></div>
         <div class="input">
-            <input type="file" name="foto">
+            <input type="file" name="foto" accept=".jpg, .jpeg, .png" required>
+
         </div>
     </div>
 
