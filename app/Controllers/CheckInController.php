@@ -108,7 +108,7 @@ class CheckInController extends BaseController
                 'checkIn_latitude' => $latitude,
                 'checkin_longitude' => $longitude,
                 'verifikasi' => $verifikasiStatus,
-                'foto' => 'uploads/photos/check-in/' . $newName // Save the path to the database
+                'foto' => $newName // Save the path to the database
             ];
 
             // Save data to the database
