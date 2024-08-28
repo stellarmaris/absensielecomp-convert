@@ -38,7 +38,7 @@ class historyUserController extends BaseController
        $data['title'] = 'Riwayat';
        $data['currentPage'] = $currentPage;
        $data['perPage'] = $perPage;
-
+    
        echo view ('riwayat',$data);
 
     //      // $data['data_presensi'] = $ModelPresensi->findAll();

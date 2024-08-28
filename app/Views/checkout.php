@@ -7,7 +7,11 @@
 
 <?= $this->section('content') ?>
 
-<?php if (session()->getFlashdata('error')) : ?>
+<?php
+
+use Kint\Zval\Value;
+
+ if (session()->getFlashdata('error')) : ?>
         <div class="alert alert-danger">
             <?= session()->getFlashdata('error'); ?>
         </div>
@@ -20,28 +24,29 @@
     </div>
 
 
-    <form action="<?= base_url('/checkout')?>" method="POST" class="input-group" style="max-width: 900px; width: 100%;">
-        <div class="row">
-            <div class="col">
-                <label class="form-label">Tanggal:</label>
-                <input type="date" class="form-control" name="tanggalKeluar" id="tanggalKeluar" readonly>
+    <form action="<?= base_url('/checkout')?>" method="POST" enctype="multipart/form-data">
+        <div class="group">
+            <div class="form">
+                <div class="label"><label class="form-label">Tanggal:</label></div>
+                <div class="input"><input type="date" class="form-control" name="tanggalKeluar" id="tanggalKeluar" readonly></div>   
             </div>
-            <div class="col mb-3">
-                <label class="form-label">Jam keluar:</label>
-                <input type="text" class="form-control" name="jamKeluar" id="jamKeluar" readonly>
+            <div class="form">
+                <div class="label"><label class="form-label">Jam keluar:</label></div>
+               <div><input type="text" class="form-control" name="jamKeluar" id="jamKeluar" readonly></div> 
             </div>
         </div>
-        <div class=" col mb-3">
-            <label class="form-label">Progress:</label>
-            <textarea rows="5" class="form-control" name="Progress" placeholder="Masukkan progress anda hari ini.." required></textarea>
+        <div class="form-1">
+            <div class="label"><label class="form-label">Progress:</label><div>
+            <div class="input"><textarea rows="5" class="form-control" name="Progress" placeholder="Masukkan progress anda hari ini.." required ><?= set_value('Progress') ?></textarea></div>
         </div>
-        <div class="mb-3">
+        <div class="form-1" >
             <label class="form-label">Lokasi:</label>
            
             <input type="hidden" class="form-control" id="latitude_checkout" name="latitude_checkout">
             <input type="hidden" class="form-control" id="longitude_checkout" name="longitude_checkout">
-            <div id="map"></div>
+           
         </div>
+        <div id="map" style="height: 325px; margin-top: 20px;"></div>
     
         <div class="d-grid">
                 <button type="submit" class="btn mb-2" style="background-color: #130C90; color:white;"><strong>Simpan</strong></button>

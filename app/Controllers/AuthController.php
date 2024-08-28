@@ -66,7 +66,7 @@ class AuthController extends BaseController
                     'errors' => [
                         'required' => '{field} harus diisi',
                         'min_length' => '{field} minimal 3 karakter.',
-                        'max_lentgh' => '{field} maksimal 255 karakter'
+                        'max_length' => '{field} maksimal 255 karakter'
                     ]
                 ],
                 'asal_institusi' => [
@@ -81,8 +81,11 @@ class AuthController extends BaseController
                 ],
                 'Nomor_telepon' => [
                     'label' => 'Nomor telepon',
-                    'rules' => 'required',
-                    'errors' => '{field} harus diisi'
+                    'rules' => 'required|min_length[10]',
+                    'errors' =>[
+                        'required' =>'{field} harus diisi',
+                        'min_length' => '{field} minimal 10 karakter.',
+                    ] 
                 ],
                 'email' => [
                     'label' => 'Email',
