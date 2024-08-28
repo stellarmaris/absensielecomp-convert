@@ -46,14 +46,11 @@
                 <td>
                     <?php if (!empty($v['foto'])): ?>
                         <?php $imagePath = base_url('/uploads/photos/' . $v['foto']); ?>
-                        <img src="<?= $imagePath ?>" alt="Foto" style="max-width: 300px; max-height: 400px;"> <!-- Ini akan menampilkan URL yang dibentuk -->
+                        <img src="<?= $imagePath ?>" alt="Foto" style="max-width: 300px; max-height: 400px;">
                     <?php else: ?>
                         <p>Gambar tidak tersedia.</p>
                     <?php endif; ?>
-
                 </td>
-
-
 
                 <td style="text-align: center;">
                     <?php if ($v['verifikasi'] == 'Pending'): ?>
@@ -67,11 +64,15 @@
                     <?php endif; ?>
                 </td>
                 <td>
-                    <a href="<?= site_url('verifyuser/updateVerifikasi/' . $v['id_presensi']); ?>"
-                        class="btn custom-btn"
-                        onclick="return confirm('Apakah Anda yakin ingin mengupdate status verifikasi : <?= $v['verifikasi']; ?>?');">
-                        Update
-                    </a>
+                    <?php if ($v['verifikasi'] == 'Pending'): ?>
+                                        <a href="<?= site_url('verifyuser/updateVerifikasi/' . $v['id_presensi']); ?>" 
+                                        class="btn custom-btn" 
+                                        onclick="return confirm('Apakah Anda yakin ingin mengupdate status verifikasi ?');">
+                                        Update
+                                        </a>
+                                    <?php else: ?>
+                                        <button class="btn custom-btn" disabled>Update</button>
+                    <?php endif; ?>
                 </td>
             </tr>
         <?php } ?>
