@@ -26,56 +26,55 @@
         </tr>
     </thead>
     <tbody>
-        <?php
-        // Urutkan data dari terbaru
-        usort($data_presensi, function ($a, $b) {
-            return strtotime($b['tanggal']) - strtotime($a['tanggal']);
-        });
-
-        // Nomor urut
-        $nomor = 0;
-        foreach ($data_presensi as $k => $v) {
-            $nomor++;
-        ?>
+        <?php if (empty($data_presensi)): ?>
             <tr>
-                <td style="text-align: center;"><?php echo $nomor; ?></td>
-                <td style="text-align: center;"><?php echo $v['Nama']; ?></td>
-                <td style="text-align: center;"><?php echo $v['jam_masuk']; ?></td>
-                <td style="text-align: center;"><?php echo $v['status']; ?></td>
-
-                <td>
-                    <?php if (!empty($v['foto'])): ?>
-                        <?php $imagePath = base_url('/uploads/photos/' . $v['foto']); ?>
-                        <img src="<?= $imagePath ?>" alt="Foto" style="max-width: 300px; max-height: 400px;">
-                    <?php else: ?>
-                        <p>Gambar tidak tersedia.</p>
-                    <?php endif; ?>
-                </td>
-
-                <td style="text-align: center;">
-                    <?php if ($v['verifikasi'] == 'Pending'): ?>
-                        <span style="color:white; background-color:orange; padding: 5px 15px; border-radius: 50px;">
-                            <?php echo $v['verifikasi']; ?>
-                        </span>
-                    <?php else: ?>
-                        <span style="color:white; background-color:green; padding: 5px 15px; border-radius: 50px;">
-                            <?php echo $v['verifikasi']; ?>
-                        </span>
-                    <?php endif; ?>
-                </td>
-                <td>
-                    <?php if ($v['verifikasi'] == 'Pending'): ?>
-                                        <a href="<?= site_url('verifyuser/updateVerifikasi/' . $v['id_presensi']); ?>" 
-                                        class="btn custom-btn" 
-                                        onclick="return confirm('Apakah Anda yakin ingin mengupdate status verifikasi ?');">
-                                        Update
-                                        </a>
-                                    <?php else: ?>
-                                        <button class="btn custom-btn" disabled>Update</button>
-                    <?php endif; ?>
-                </td>
+                <td colspan="7" style="text-align: center;">Data Tidak Ditemukan</td>
             </tr>
-        <?php } ?>
+        <?php else: ?>
+            <?php
+            // Urutkan data dari terbaru
+            usort($data_presensi, function ($a, $b) {
+                return strtotime($b['tanggal']) - strtotime($a['tanggal']);
+            });
+
+            // Nomor urut
+            $nomor = 0;
+            foreach ($data_presensi as $k => $v) {
+                $nomor++;
+            ?>
+                <tr>
+                    <td><?php echo $nomor; ?></td>
+                    <td><?php echo $v['Nama']; ?></td>
+                    <td><?php echo $v['jam_masuk']; ?></td>
+                    <td><?php echo $v['status']; ?></td>
+                    <td>
+                        <?php $imagePath = base_url('/uploads/photos/' . $v['foto']); ?>
+                        
+                        <!-- Image Thumbnail -->
+                        <img src="<?= $imagePath ?>" alt="Foto" style="max-width: 300px; max-height: 400px; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#imageModal<?= $v['id_presensi']; ?>">
+                    </td>
+                
+                    <td>
+                        <?php if ($v['verifikasi'] == 'Pending'): ?>
+                            <span style="color:white; background-color:orange; padding: 5px 15px; border-radius: 50px;">
+                                <?php echo $v['verifikasi']; ?>
+                            </span>
+                        <?php else: ?>
+                            <span style="color:white; background-color:green; padding: 5px 15px; border-radius: 50px;">
+                                <?php echo $v['verifikasi']; ?>
+                            </span>
+                        <?php endif; ?>
+                    </td>
+                    <td>
+                        <a href="<?= site_url('verifyuser/updateVerifikasi/' . $v['id_presensi']); ?>" 
+                        class="btn custom-btn" 
+                        onclick="return confirm('Apakah Anda yakin ingin mengupdate status verifikasi ?');">
+                        Update Data
+                        </a>
+                    </td>
+                </tr>
+            <?php } ?>
+        <?php endif; ?>
     </tbody>
 </table>
 

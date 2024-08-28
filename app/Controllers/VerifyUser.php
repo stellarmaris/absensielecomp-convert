@@ -26,6 +26,7 @@ class VerifyUser extends BaseController
             ->select('presensi.*, user.nama as Nama')
             ->join('user', 'user.id_magang = presensi.id_magang')
             ->where('tanggal', $tanggalHariIni)
+            ->where('verifikasi', 'Pending')
             ->orderBy('tanggal', 'desc')
             ->findAll($pagination['perPage'], $pagination['offset']);
 
