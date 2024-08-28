@@ -28,7 +28,7 @@
     <tbody>
         <?php
         // Urutkan data dari terbaru
-        usort($data_presensi, function($a, $b) {
+        usort($data_presensi, function ($a, $b) {
             return strtotime($b['tanggal']) - strtotime($a['tanggal']);
         });
 
@@ -37,43 +37,43 @@
         foreach ($data_presensi as $k => $v) {
             $nomor++;
         ?>
-        <tr>
-            <td style="text-align: center;"><?php echo $nomor; ?></td>
-            <td style="text-align: center;"><?php echo $v['Nama']; ?></td>
-            <td style="text-align: center;"><?php echo $v['jam_masuk']; ?></td>
-            <td style="text-align: center;"><?php echo $v['status']; ?></td>
-            
-            <td>
-                <?php if (!empty($v['foto'])): ?>
-                    <?php $imagePath = base_url('uploads/photos/' . $v['foto']); ?>
-                    <img src="<?= $imagePath ?>" alt="Foto" style="max-width: 300px; max-height: 400px;">
-                    <p><?= $imagePath ?></p> <!-- Ini akan menampilkan URL yang dibentuk -->
-                <?php else: ?>
-                    Tidak ada foto
-                <?php endif; ?>
-            </td>
+            <tr>
+                <td style="text-align: center;"><?php echo $nomor; ?></td>
+                <td style="text-align: center;"><?php echo $v['Nama']; ?></td>
+                <td style="text-align: center;"><?php echo $v['jam_masuk']; ?></td>
+                <td style="text-align: center;"><?php echo $v['status']; ?></td>
+
+                <td>
+                    <?php if (!empty($v['foto'])): ?>
+                        <?php $imagePath = base_url('/uploads/photos/' . $v['foto']); ?>
+                        <img src="<?= $imagePath ?>" alt="Foto" style="max-width: 300px; max-height: 400px;"> <!-- Ini akan menampilkan URL yang dibentuk -->
+                    <?php else: ?>
+                        <p>Gambar tidak tersedia.</p>
+                    <?php endif; ?>
+
+                </td>
 
 
 
-            <td style="text-align: center;">
-                <?php if($v['verifikasi'] == 'Pending'): ?>
-                    <span style="color:white; background-color:orange; padding: 5px 15px; border-radius: 50px;">
-                        <?php echo $v['verifikasi']; ?>
-                    </span>
-                <?php else: ?>
-                    <span style="color:white; background-color:green; padding: 5px 15px; border-radius: 50px;">
-                        <?php echo $v['verifikasi']; ?>
-                    </span>
-                <?php endif; ?>
-            </td>   
-            <td>
-                <a href="<?= site_url('verifyuser/updateVerifikasi/' . $v['id_presensi']); ?>" 
-                   class="btn custom-btn" 
-                   onclick="return confirm('Apakah Anda yakin ingin mengupdate status verifikasi : <?= $v['verifikasi']; ?>?');">
-                   Update
-                </a>
-            </td>
-        </tr>
+                <td style="text-align: center;">
+                    <?php if ($v['verifikasi'] == 'Pending'): ?>
+                        <span style="color:white; background-color:orange; padding: 5px 15px; border-radius: 50px;">
+                            <?php echo $v['verifikasi']; ?>
+                        </span>
+                    <?php else: ?>
+                        <span style="color:white; background-color:green; padding: 5px 15px; border-radius: 50px;">
+                            <?php echo $v['verifikasi']; ?>
+                        </span>
+                    <?php endif; ?>
+                </td>
+                <td>
+                    <a href="<?= site_url('verifyuser/updateVerifikasi/' . $v['id_presensi']); ?>"
+                        class="btn custom-btn"
+                        onclick="return confirm('Apakah Anda yakin ingin mengupdate status verifikasi : <?= $v['verifikasi']; ?>?');">
+                        Update
+                    </a>
+                </td>
+            </tr>
         <?php } ?>
     </tbody>
 </table>
