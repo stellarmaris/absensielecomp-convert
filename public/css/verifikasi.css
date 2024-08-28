@@ -28,6 +28,8 @@ thead {
 th, td {
   padding: 12px;
   border: 1px solid #ddd;
+  text-align: center; 
+  vertical-align: middle; 
 }
 
 th {
@@ -40,24 +42,26 @@ th {
   padding-left: 10px;
 }
 
-
 .custom-btn {
-  width: 150px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 15px;
-  font-weight: bold;
-  background-color: #130C90;
-  border-radius: 10px;
-  color: white;
+  background-color:#130C90; 
+  color: white; 
+  border: none; 
   text-decoration: none;
-  
+  border-radius: 5px; 
+  padding: 10px 20px; 
+  font-size: 14px;
+  font-weight: bold; 
 }
 
 .custom-btn:hover {
   background-color: #0C074F;
+}
+
+.custom-btn:disabled {
+  background-color: grey; 
+  color: white; 
+  opacity: 0.6; 
+  cursor: not-allowed; 
 }
 
 

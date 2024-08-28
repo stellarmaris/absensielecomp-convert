@@ -62,10 +62,15 @@
             <th>Jam Keluar</th>
             <th>Status</th>
             <th>Kegiatan</th>
-            <th>Detail</th>
+            <th>Aksi</th>
         </tr>
     </thead>
     <tbody>
+    <?php if (empty($data_presensi)): ?>
+        <tr>
+            <td colspan="8" style="text-align: center;">Data Tidak Ditemukan</td>
+        </tr>
+    <?php else: ?>
         <?php
         // Urutkan data dari terbaru
         usort($data_presensi, function($a, $b) {
@@ -74,7 +79,7 @@
         // Nomor urut
         $nomor = 0;
         foreach ($data_presensi as $k => $v) {
-            $nomor = $nomor + 1;
+            $nomor++;
         ?>
         <tr>
             <td><?php echo $nomor ?></td>
@@ -87,11 +92,13 @@
             <td>
                 <a href="<?= site_url('dashboardadmin/delete/' . $v['id_presensi']); ?>" 
                 class="btn btn-danger" 
-                onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">Hapus</a>
+                onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">Hapus Data</a>
             </td>
         </tr>
         <?php }?>
-    </tbody>
+    <?php endif; ?>
+</tbody>
+
 </table>
 <!-- Pagination -->
 <div class="row">
