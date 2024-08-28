@@ -31,60 +31,72 @@
         usort($data_presensi, function($a, $b) {
             return strtotime($b['tanggal']) - strtotime($a['tanggal']);
         });
+
         // Nomor urut
         $nomor = 0;
         foreach ($data_presensi as $k => $v) {
-            $nomor = $nomor + 1;
+            $nomor++;
         ?>
         <tr>
-            <td style="text-align: center;"><?php echo $nomor ?></td>
-            <td style="text-align: center;"><?php echo $v['Nama'] ?></td>
-            <td style="text-align: center;"><?php echo $v['jam_masuk'] ?></td>
+            <td style="text-align: center;"><?php echo $nomor; ?></td>
+            <td style="text-align: center;"><?php echo $v['Nama']; ?></td>
+            <td style="text-align: center;"><?php echo $v['jam_masuk']; ?></td>
             <td style="text-align: center;"><?php echo $v['status']; ?></td>
-            <td style="text-align: center;">
+            
+            <td>
                 <?php if (!empty($v['foto'])): ?>
-                    <img src="<?= base_url('/uploads/' . $v['foto']); ?>" alt="Foto" style="max-width: 100px; max-height: 100px;">
+                    <?php $imagePath = base_url('uploads/photos/' . $v['foto']); ?>
+                    <img src="<?= $imagePath ?>" alt="Foto" style="max-width: 300px; max-height: 400px;">
+                    <p><?= $imagePath ?></p> <!-- Ini akan menampilkan URL yang dibentuk -->
                 <?php else: ?>
                     Tidak ada foto
                 <?php endif; ?>
             </td>
-            <td style="text-align: center;">
-                                <?php if($v['verifikasi']=='Pending'): ?>
-                                    <span style="color:white; background-color:orange ; padding: 5px 15px; border-radius:50px" ><?php echo $v['verifikasi']?></span>
-                                <?php else: ?>
-                                    <span style="color:white; background-color:green ; padding: 5px 15px; border-radius:50px" ><?php echo $v['verifikasi']?></span>
-                                <?php endif?>
-                            </td>   
-                            <td>
-                            <a href="<?= site_url('verifyuser/updateVerifikasi/' . $v['id_presensi']); ?>" 
-                            class="btn custom-btn" 
-                            onclick="return confirm('Apakah Anda yakin ingin mengupdate status verifikasi : <?= $v['verifikasi']; ?>?');">
-                            Update
-                            </a>
-                    </td>
 
+
+
+            <td style="text-align: center;">
+                <?php if($v['verifikasi'] == 'Pending'): ?>
+                    <span style="color:white; background-color:orange; padding: 5px 15px; border-radius: 50px;">
+                        <?php echo $v['verifikasi']; ?>
+                    </span>
+                <?php else: ?>
+                    <span style="color:white; background-color:green; padding: 5px 15px; border-radius: 50px;">
+                        <?php echo $v['verifikasi']; ?>
+                    </span>
+                <?php endif; ?>
+            </td>   
+            <td>
+                <a href="<?= site_url('verifyuser/updateVerifikasi/' . $v['id_presensi']); ?>" 
+                   class="btn custom-btn" 
+                   onclick="return confirm('Apakah Anda yakin ingin mengupdate status verifikasi : <?= $v['verifikasi']; ?>?');">
+                   Update
+                </a>
+            </td>
         </tr>
-        <?php }?>
+        <?php } ?>
     </tbody>
 </table>
+
 <!-- Pagination -->
 <div class="row">
     <div class="col-12 col-md-6">
         <div class="pagination">
             <?php if ($currentPage > 1): ?>
-                <a href="<?= site_url('DashboardAdmin?page=' . ($currentPage - 1)) ?>">Sebelumnya</a>
+                <a href="<?= site_url('verifyuser?page=' . ($currentPage - 1)) ?>">Sebelumnya</a>
             <?php endif; ?>
 
             <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                <a href="<?= site_url('DashboardAdmin?page=' . $i) ?>" class="<?= $i == $currentPage ? 'active' : '' ?>"><?= $i ?></a>
+                <a href="<?= site_url('verifyuser?page=' . $i) ?>" class="<?= $i == $currentPage ? 'active' : '' ?>"><?= $i ?></a>
             <?php endfor; ?>
 
             <?php if ($currentPage < $totalPages): ?>
-                <a href="<?= site_url('DashboardAdmin?page=' . ($currentPage + 1)) ?>">Selanjutnya</a>
+                <a href="<?= site_url('verifyuser?page=' . ($currentPage + 1)) ?>">Selanjutnya</a>
             <?php endif; ?>
         </div>
     </div>
 </div>
+
 <!-- script buat word-break setelah 5 kata -->
 <script>
     document.querySelectorAll('.custom-column').forEach(cell => {
