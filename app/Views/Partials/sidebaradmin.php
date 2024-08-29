@@ -1,6 +1,7 @@
 <div class="sidebar">
     <div class="logo">
         <img src="<?= base_url('/images/Logo.jpeg') ?>" alt="ELECOMP Indonesia">
+        <i class="fa-solid fa-bars"></i>
     </div>
     <ul class="nav">
         <li class="nav-item">
