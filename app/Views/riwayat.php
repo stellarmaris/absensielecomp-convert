@@ -5,7 +5,7 @@
 
 <?= $this->section('content') ?>
 
-<div class="box">
+
     <div class="title">
         <h2>Riwayat</h2>
         <p>Daftar riwayat presensi</p>
@@ -22,9 +22,9 @@
             <thead>
                 <tr>
                 <th style="width: 5%">No</th>
-        <th style="width: 10%">Tanggal</th>
-        <th style="width: 10%">Jam Masuk</th>
-        <th style="width: 10%">Jam Keluar</th>
+        <th style="width: 14%">Tanggal</th>
+        <th style="width: 8%">Jam Masuk</th>
+        <th style="width: 8%">Jam Keluar</th>
         <th style="width:10%">Status</th>
         <th style="width: 45%; word-wrap: break-word;">Kegiatan</th>
         <th style="width: 10%; text-align: center;">Verifikasi</th>
@@ -42,7 +42,8 @@
                             <td><?php echo $v['jam_masuk'] ?></td>
                             <td><?php echo $v['jam_keluar'] ?></td>
                             <td><?php echo $v['status'] ?></td>
-                            <td style="width: 200px; word-wrap: break-word;"><?php echo $v['kegiatan']; ?></td>
+                            <td style="width: 200px;word-wrap:break-word;"><?php echo nl2br(esc($v['kegiatan']))?></td>
+
                 <td style="width: 150px; text-align: center;">
                                 <?php if ($v['verifikasi'] == 'Pending'): ?>
                                     <span style="color:white; background-color:orange ; padding: 5px 15px; border-radius:50px"><?php echo $v['verifikasi'] ?></span>
@@ -65,7 +66,7 @@
     <div class="pagination">
         <?= $pager->links('presensi', 'custom') ?>
     </div>
-</div>
+
 
 
 
