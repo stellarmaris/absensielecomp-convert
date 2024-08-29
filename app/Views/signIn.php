@@ -223,9 +223,7 @@
                     </div>
                 </div>
             </div>
-            <div class="link-text">
-                <a href="/trouble-sign-in">Having trouble in sign in?</a>
-            </div>
+           
             <div class="btn" style="width: 100%;">
                 <input type="submit" value="Masuk" style="width:100%">
             </div>
