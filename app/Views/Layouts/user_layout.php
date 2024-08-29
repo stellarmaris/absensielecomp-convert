@@ -48,6 +48,13 @@
         .logo {
             margin-top: 30px;
             text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        i {
+            display: none;
         }
 
         .logo img {
@@ -117,12 +124,38 @@
             }
 
             .sidebar {
+                width: 100%;
+                height: max-content;
+            }
+
+            .nav,
+            .logout {
                 display: none;
-                /* Hide sidebar on mobile */
+            }
+
+            .logo {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                /* Makes sure logo is centered and hamburger is at the end */
+                padding: 0 15px;
+                /* Optional padding */
+            }
+
+            .logo i {
+                /* Adjust size of the hamburger icon */
+                cursor: pointer;
+                margin-left: 10px;
+                /* Optional spacing between logo and icon */
+            }
+
+            .logo img {
+                max-width: 100%;
+                padding: 15px;
             }
 
             .content {
-                width: 100%;
+                width: calc(100%-15px);
                 margin-top: 15px;
             }
 
