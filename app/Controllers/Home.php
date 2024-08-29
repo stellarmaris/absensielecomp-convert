@@ -32,7 +32,7 @@ class Home extends BaseController
         $hasPresensi = $presensi ? true : false;
         $hasCheckedOut = $presensi && $presensi['jam_keluar'] ? true : false;
         $hasCheckedin = $presensi && $presensi['jam_masuk'] ? true : false;
-        $isIzin = $presensi && $presensi['status'] !== 'hadir' ? true : false;
+        $isIzin = $presensi && $presensi['status'] !== 'Hadir' ? true : false;
 
         // Data array yang akan dikirim ke view
         $data = [
