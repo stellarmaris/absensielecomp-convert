@@ -53,7 +53,7 @@
             align-items: center;
         }
 
-        i {
+        .logo i {
             display: none;
         }
 
@@ -146,6 +146,7 @@
                 /* Adjust size of the hamburger icon */
                 cursor: pointer;
                 margin-left: 10px;
+                display: block;
                 /* Optional spacing between logo and icon */
             }
 
@@ -159,17 +160,12 @@
                 margin-top: 15px;
             }
 
-            .show-sidebar {
+            .nav.active {
                 display: block;
-                background-color: #000;
-                color: #fff;
-                padding: 10px;
-                border-radius: 5px;
-                position: fixed;
-                top: 15px;
-                left: 15px;
-                z-index: 1000;
-                cursor: pointer;
+            }
+
+            .logout.active {
+                display: block;
             }
         }
 
@@ -216,10 +212,19 @@
 
     <!-- JavaScript for toggling the sidebar on mobile -->
     <script>
-        document.querySelector('.show-sidebar').addEventListener('click', function() {
-            document.querySelector('.sidebar').classList.toggle('show');
-        });
+        function toggleMobileMenu() {
+            const navbar = document.querySelector('.nav');
+            const logout = document.querySelector('.logout');
+
+            // Toggle a class that controls display
+            navbar.classList.toggle('active');
+            logout.classList.toggle('active');
+        }
+
+        // Add event listener to the hamburger icon for mobile
+        document.querySelector('.logo i').addEventListener('click', toggleMobileMenu);
     </script>
+
 </body>
 
 </html>

@@ -1,10 +1,10 @@
 <div class="sidebar">
 
-        <div class="logo">
-            <img src="<?= base_url('/images/Logo.jpeg') ?>" alt="ELECOMP Indonesia">
-            <i class="fa-solid fa-bars"></i>
-        </div>
- 
+    <div class="logo">
+        <img src="<?= base_url('/images/Logo.jpeg') ?>" alt="ELECOMP Indonesia">
+        <i class="fa-solid fa-bars"></i>
+    </div>
+
 
 
     <ul class="nav">
@@ -30,3 +30,22 @@
         </a>
     </div>
 </div>
+<script>
+    // Function to toggle nav and logout visibility on mobile
+    function toggleMobileMenu() {
+        const nav = document.querySelector('.nav');
+        const logout = document.querySelector('.logout');
+
+        // Toggle the 'show' class on nav and logout
+        nav.classList.toggle('show');
+        logout.classList.toggle('show');
+    }
+
+    // Run the script only on screens less than 768px wide
+    if (window.innerWidth <= 768) {
+        const hamburgerIcon = document.querySelector('.logo i');
+
+        // Add click event listener to the hamburger icon
+        hamburgerIcon.addEventListener('click', toggleMobileMenu);
+    }
+</script>
