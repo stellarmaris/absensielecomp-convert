@@ -31,7 +31,7 @@
         <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
 
 
-<div class="box-container">
+
             <div class="info">
                 <h1>Lokasi</h1>
                 <p>Daftar lokasi check-in dan check-out member<p>
@@ -52,7 +52,7 @@
             <div id="map1"></div>
          
             
-        </div>
+ 
 
         
        
