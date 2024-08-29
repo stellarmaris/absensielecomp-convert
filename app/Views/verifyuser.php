@@ -28,7 +28,7 @@
     <tbody>
         <?php if (empty($data_presensi)): ?>
             <tr>
-                <td colspan="7" style="text-align: center;">Data Tidak Ditemukan</td>
+                <td colspan="7" style="text-align: center;">Semua Data Telah Diverifikasi</td>
             </tr>
         <?php else: ?>
             <?php

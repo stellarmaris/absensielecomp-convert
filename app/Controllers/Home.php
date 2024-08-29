@@ -31,12 +31,16 @@ class Home extends BaseController
         // Cek apakah sudah ada presensi dan apakah jam_keluar sudah terisi
         $hasPresensi = $presensi ? true : false;
         $hasCheckedOut = $presensi && $presensi['jam_keluar'] ? true : false;
+        $hasCheckedin = $presensi && $presensi['jam_masuk'] ? true : false;
+        $isIzin = $presensi && $presensi['status'] !== 'hadir' ? true : false;
 
         // Data array yang akan dikirim ke view
         $data = [
             'nama' => $userData['Nama'], // pass data Nama
             'hasPresensi' => $hasPresensi, // Cek apakah ada data presensi
             'hasCheckedOut' => $hasCheckedOut, // Cek apakah sudah check-out
+            'hasCheckedin' =>$hasCheckedin,
+            'isIzin' => $isIzin, // Cek apakah status izin
         ];
         $data['title'] = 'Dashboard';
         return view('dashboarduser', $data);

@@ -151,4 +151,24 @@ class DashboardAdmin extends BaseController
         
         return redirect()->to(site_url('dashboardadmin'))->with('success', 'Data berhasil dihapus.');
     }
+    public function detail($id_presensi)
+{
+    $ModelPresensi = new presensiModel();
+
+    // Dapatkan data presensi berdasarkan id
+    $data['presensi'] = $ModelPresensi
+        ->select('presensi.*, user.nama as Nama')
+        ->join('user', 'user.id_magang = presensi.id_magang')
+        ->where('id_presensi', $id_presensi)
+        ->first();
+
+    if (!$data['presensi']) {
+        return redirect()->to(site_url('dashboardadmin'))->with('error', 'Data tidak ditemukan.');
+    }
+
+    $data['title'] = 'Detail Presensi';
+    return view('detailpresensi', $data);
+}
+
+
 }

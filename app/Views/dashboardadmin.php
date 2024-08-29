@@ -61,7 +61,7 @@
             <th>Jam Masuk</th>
             <th>Jam Keluar</th>
             <th>Status</th>
-            <th>Kegiatan</th>
+            <!-- <th>Kegiatan</th> -->
             <th>Aksi</th>
         </tr>
     </thead>
@@ -88,12 +88,12 @@
             <td><?php echo $v['jam_masuk'] ?></td>
             <td><?php echo $v['jam_keluar']?></td>
             <td><?php echo $v['status']; ?></td>
-            <td class="custom-column"><?php echo $v['kegiatan']; ?></td>
             <td>
-                <a href="<?= site_url('dashboardadmin/delete/' . $v['id_presensi']); ?>" 
-                class="btn btn-danger" 
-                onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">Hapus Data</a>
+                <a href="<?= site_url('dashboardadmin/detail/' . $v['id_presensi']); ?>" class="btn btn-danger" >
+                    Detail
+                </a>
             </td>
+
         </tr>
         <?php }?>
     <?php endif; ?>
@@ -118,14 +118,4 @@
         </div>
     </div>
 </div>
-<!-- script buat word-break setelah 5 kata -->
-<script>
-    document.querySelectorAll('.custom-column').forEach(cell => {
-        let words = cell.innerText.split(' ');
-        for (let i = 5; i < words.length; i += 6) {
-            words[i] = '<br>' + words[i];
-        }
-        cell.innerHTML = words.join(' ');
-    });
-</script>
 <?= $this->endSection() ?>

@@ -39,7 +39,9 @@
             <h1 class="card-title bold-text">CHECK - OUT</h1>
             <p class="card-text bold-text">Gunakan tombol "Check Out" untuk mencatat kehadiran Anda dengan tepat.</p>
         </div>
-        <a href="/checkout" class="btn btn-primary custom-btn <?= $hasCheckedOut ? 'disabled-link' : '' ?>">CHECK - OUT</a>
+        
+       
+        <a href="/checkout" class="btn btn-primary custom-btn <?= $hasCheckedin && !$hasCheckedOut && !$isIzin ? '' : 'disabled-link' ?>">CHECK - OUT</a>
     </div>
 </div>
 
