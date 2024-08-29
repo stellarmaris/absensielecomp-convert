@@ -39,14 +39,20 @@
 </div>
 
 
-        <div class="form-group flex-item">
+        <div class="form-group">
             <label for="foto" class="form-label custom-font">Foto</label>
             <?php if ($presensi['foto']): ?>
-                <img src="/uploads/photos/<?= $presensi['foto'] ?>" alt="Foto Presensi" class="img-fluid rounded">
+                <div class="img-container">
+                    <img src="/uploads/photos/<?= $presensi['foto'] ?>" alt="Foto Presensi" class="img-fluid rounded bordered-image">
+                </div>
             <?php else: ?>
-                <input type="text" id="foto" name="foto" class="form-control custom-font" value="Tidak ada foto yang tersedia." readonly>
+                <div class="img-container">
+                    <img src="/images/nophotoexisted.jpg" alt="Foto Presensi" class="img-fluid rounded">
+                    <p class="no-photo-text">Tidak Ada Foto</p>
+                </div>
             <?php endif; ?>
         </div>
+
 
         <a href="<?= site_url('dashboardadmin/delete/' . $presensi['id_presensi']); ?>" 
                 class="btn btn-danger" 

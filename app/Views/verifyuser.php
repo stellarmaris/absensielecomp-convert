@@ -47,12 +47,17 @@
                     <td><?php echo $v['Nama']; ?></td>
                     <td><?php echo $v['jam_masuk']; ?></td>
                     <td><?php echo $v['status']; ?></td>
-                    <td>
-                        <?php $imagePath = base_url('/uploads/photos/' . $v['foto']); ?>
-                        
-                        <!-- Image Thumbnail -->
-                        <img src="<?= $imagePath ?>" alt="Foto" style="max-width: 300px; max-height: 400px; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#imageModal<?= $v['id_presensi']; ?>">
-                    </td>
+<td>
+    <?php $imagePath = base_url('/uploads/photos/' . $v['foto']); ?>
+    <div class="img-container">
+        <?php if ($v['foto']): ?>
+            <img src="<?= $imagePath; ?>" alt="Foto <?php echo $v['status']; ?>" style="max-width: 300px; max-height: 400px; width: auto; height: auto;">
+        <?php else: ?>
+            <p class="no-photo-text">Tidak Ada Foto</p>
+        <?php endif; ?>
+    </div>
+</td>
+
                 
                     <td>
                         <?php if ($v['verifikasi'] == 'Pending'): ?>
