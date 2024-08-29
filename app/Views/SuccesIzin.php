@@ -85,25 +85,26 @@ $judul = "Selamat Izin Disetujui!";
         "Izinnya approved, tinggal nikmati dan kembali dengan fresh!"
     ];
 
-    const images = [
-        '/images/image1.png',
-        '/images/image2.png',
-        '/images/image3.png',
-        '/images/image4.png',
-        '/images/image5.png',
-        '/images/image6.png',
-        '/images/image7.png',
-        '/images/image8.png',
-        '/images/image9.png',
-        '/images/image10.png',
-        '/images/image11.png',
-        '/images/image12.png',
+    const imagesSakit = [
+        '/images/sakit1.png',
+        '/images/sakit2.png',
+        '/images/sakit3.png',
+        '/images/sakit4.png',
+        '/images/sakit5.png'
+    ];
+
+    const imagesIzin = [
+        '/images/izin1.png',
+        '/images/izin2.png'
     ];
 
     const subJudul = statusIzin === 'sakit' ? subJudulSakit : subJudulIzin;
-    const randomIndex = Math.floor(Math.random() * subJudul.length);
+    const images = statusIzin === 'sakit' ? imagesSakit : imagesIzin;
 
-    document.getElementById('randomImage').src = images[Math.floor(Math.random() * images.length)];
+    const randomIndex = Math.floor(Math.random() * subJudul.length);
+    const randomImageIndex = Math.floor(Math.random() * images.length);
+
+    document.getElementById('randomImage').src = images[randomImageIndex];
     document.getElementById('subJudul').innerText = subJudul[randomIndex];
 </script>
 

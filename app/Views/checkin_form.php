@@ -25,19 +25,19 @@
     <div class="form-1">
         <div class="label"><label for="foto">Upload Foto Check In</label></div>
         <div class="input">
-            <input type="file" name="foto" required>
+            <input type="file" name="foto" accept=".jpg, .jpeg, .png" required>
         </div>
     </div>
-    <div class="form-1" >
+    <div class="form-1" hidden>
         <div class="label"><label for="latitude">Latitude</label></div>
         <div class="input">
-            <input type="text" name="latitude" id="latitude" >
+            <input type="text" name="latitude" id="latitude">
         </div>
     </div>
-    <div class="form-1" >
+    <div class="form-1" hidden>
         <div class="label"><label for="longitude">Longitude</label></div>
         <div class="input">
-            <input type="text" name="longitude" id="longitude" >
+            <input type="text" name="longitude" id="longitude">
         </div>
     </div>
 
