@@ -59,7 +59,7 @@ class CheckoutController extends BaseController
                 'checkout_longitude' => $longitude_checkout,
             ]);
 
-            return redirect()->to('/home')->with('success','Checkout berhasil dilakukan');
+            return redirect()->to('/success-checkout')->with('success','Checkout berhasil dilakukan');
         }else{
             session()->setFlashdata('error', 'Check-out gagal. Pastikan anda sudah melakukan check-in pada tanggal tersebut.');
             return redirect()->back()->withInput();

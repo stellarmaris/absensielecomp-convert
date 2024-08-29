@@ -8,8 +8,7 @@
 <div class="box">
     <div class="title">
         <h2>Riwayat</h2>
-        <p>Daftar riwayat presensi
-        <p>
+        <p>Daftar riwayat presensi</p>
     </div>
 
     <div class="col-md-3 mb-2 mb-md-0">
@@ -22,13 +21,13 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>No</th>
-                    <th>Tanggal</th>
-                    <th>Jam Masuk</th>
-                    <th>Jam Keluar</th>
-                    <th>Status</th>
-                    <th>Kegiatan</th>
-                    <th>Keterangan</th>
+                <th style="width: 5%">No</th>
+        <th style="width: 10%">Tanggal</th>
+        <th style="width: 10%">Jam Masuk</th>
+        <th style="width: 10%">Jam Keluar</th>
+        <th style="width:10%">Status</th>
+        <th style="width: 45%; word-wrap: break-word;">Kegiatan</th>
+        <th style="width: 10%; text-align: center;">Verifikasi</th>
                 </tr>
             </thead>
             <tbody>
@@ -43,20 +42,20 @@
                             <td><?php echo $v['jam_masuk'] ?></td>
                             <td><?php echo $v['jam_keluar'] ?></td>
                             <td><?php echo $v['status'] ?></td>
-                            <td><?php echo $v['kegiatan']; ?></td>
-                            <td style="text-align: center;">
+                            <td style="width: 200px; word-wrap: break-word;"><?php echo $v['kegiatan']; ?></td>
+                <td style="width: 150px; text-align: center;">
                                 <?php if ($v['verifikasi'] == 'Pending'): ?>
                                     <span style="color:white; background-color:orange ; padding: 5px 15px; border-radius:50px"><?php echo $v['verifikasi'] ?></span>
                                 <?php else: ?>
-                                    <span style="color:white; background-color:green ; padding: 5px 15px; border-radius:50px"><?php echo $v['verifikasi'] ?></span>
-                                <?php endif ?>
-                            </td>
+                                    <span style="color:white; background-color:green ; padding: 5px 15px; border-radius:50px" ><?php echo $v['verifikasi']?></span>
+                                <?php endif?>
+                            </td>   
                         </tr>
 
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="6" style="text-align: center;"> Data Tidak Ditemukan</td>
+                        <td colspan="7" style="text-align: center;"> Data Tidak Ditemukan</td>
                     </tr>
                 <?php endif ?>
             </tbody>

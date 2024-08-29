@@ -28,14 +28,6 @@
     border-color: #ffeeba;
 }
 
-.box-container{
-    background-color: white;
-    border-radius: 10px;
-    font-size: 13px;
-    max-width: 900px;
-}
-
-
 .title {
     border-bottom: 2px solid #ddd;
     margin-bottom: 20px;
@@ -57,6 +49,7 @@ p {
   .form-1 {
     margin-bottom: 20px;
   }
+
   .label {
     margin-bottom: 10px;
   }
@@ -64,7 +57,7 @@ p {
     font-size: 16px;
     font-weight: 500;
   }
-  .input input {
+  .input input{
     width: calc(100% - 20px);
     height: 30px;
     padding: 5px 10px;
@@ -72,6 +65,12 @@ p {
     border: solid 1px #d9d9d9;
   }
 
+  .input textarea{
+    width: calc(100% - 20px);
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: solid 1px #d9d9d9;
+  }
 
 .form-control {
     border: 1px solid #130C90;
@@ -79,17 +78,6 @@ p {
     padding: 10px;
     font-size: 14px;
     background-color: rgba(19, 12, 144, 0.04);
-    width: 100%;
-}
-
-.form-control[rows="5"] {
-    resize: none; 
-}
-
-
-.input-group input{
-   margin-bottom: 12px;
-   
 }
 
 

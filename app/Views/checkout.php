@@ -9,7 +9,6 @@
 
 <?php
 
-use Kint\Zval\Value;
 
  if (session()->getFlashdata('error')) : ?>
         <div class="alert alert-danger">
@@ -17,7 +16,7 @@ use Kint\Zval\Value;
         </div>
     <?php endif; ?>
 
-<div class="box-container">
+
     <div class="title">
         <h2>Checkout</h2>
         <p>Sebelum pulang, checkout dulu yuk<p>
@@ -32,7 +31,7 @@ use Kint\Zval\Value;
             </div>
             <div class="form">
                 <div class="label"><label class="form-label">Jam keluar:</label></div>
-               <div><input type="text" class="form-control" name="jamKeluar" id="jamKeluar" readonly></div> 
+               <div class="input"><input type="time" class="form-control" name="jamKeluar" id="jamKeluar" readonly></div> 
             </div>
         </div>
         <div class="form-1">
@@ -52,7 +51,7 @@ use Kint\Zval\Value;
                 <button type="submit" class="btn mb-2" style="background-color: #130C90; color:white;"><strong>Simpan</strong></button>
             </div>
     </form>
-</div>
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
