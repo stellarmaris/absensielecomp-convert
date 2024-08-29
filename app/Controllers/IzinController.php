@@ -46,7 +46,7 @@ class IzinController extends BaseController
 
         $file = $this->request->getFile('foto');
         $newName = $file->getRandomName();
-        $file->move('uploads', $newName);
+        $file->move('uploads/photos', $newName);
 
         $UserModel = new presensiModel();
 
