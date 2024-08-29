@@ -35,13 +35,14 @@
 <!-- kartu check-out -->
 <div class="card check-in custom-font card-checkout">
     <div class="card-body d-flex justify-content-between align-items-center">
+  
         <div>
             <h1 class="card-title bold-text">CHECK - OUT</h1>
             <p class="card-text bold-text">Gunakan tombol "Check Out" untuk mencatat kehadiran Anda dengan tepat.</p>
         </div>
-        
+        <a href="/checkout" class="btn btn-primary custom-btn">CHECK - OUT</a>
        
-        <a href="/checkout" class="btn btn-primary custom-btn <?= $hasCheckedin && !$hasCheckedOut && !$isIzin ? '' : 'disabled-link' ?>">CHECK - OUT</a>
+      
     </div>
 </div>
 
