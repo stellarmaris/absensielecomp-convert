@@ -18,6 +18,9 @@
             <a href="/lokasiSemua" class="nav-link">
                 <i class="fa-solid fa-location-dot"></i> Lokasi Pengguna
             </a>
+            <a href="/user-list" class="nav-link">
+                <i class="fa-solid fa-user-group"></i> Daftar Pengguna
+            </a>
         </li>
     </ul>
     <div class="logout">
