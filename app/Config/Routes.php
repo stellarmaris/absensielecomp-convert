@@ -26,11 +26,16 @@ $routes->get('/success-check-in', 'SuccesCheckInController::index');
 $routes->get('/pending-check-in', 'PendingCheckInController::index');
 $routes->get('/success-izin', 'SuccesIzinController::index');
 $routes->get('/success-checkout', 'SuccessCheckoutController::index');
-$routes->get('/user-list', 'UserListController::index');
+
 
 $routes->get('/lokasiSemua', 'LokasiController::index');
 $routes->get('/logout', 'AuthController::logout');
 
+$routes->get('/user-list', 'UserListController::index');
 $routes->get('/detail-user/(:num)', 'UserListController::detail/$1');
 $routes->get('/detail-user/edit-user/(:num)', 'UserListController::edit/$1');
 $routes->post('/detail-user/update-user/(:num)', 'UserListController::update/$1');
+$routes->get('/trouble-form', 'TroubleFormController::index');
+$routes->get('/help-support', 'HelpSupportController::index');
+$routes->post('delete-user/(:num)', 'UserListController::delete/$1');
+

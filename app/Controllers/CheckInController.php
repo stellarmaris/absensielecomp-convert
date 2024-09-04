@@ -29,6 +29,7 @@ class CheckInController extends BaseController
     }
     public function store()
     {
+        // Check if the user is logged in
         if (!session()->get('logged_in')) {
             return redirect()->to('/login');
         }
@@ -45,22 +46,25 @@ class CheckInController extends BaseController
         // Add title data
         $data['title'] = 'Dashboard';
 
+        // Get form data
         $date = $this->request->getPost('date');
         $time = $this->request->getPost('time');
         $latitude = $this->request->getPost('latitude');
         $longitude = $this->request->getPost('longitude');
         $status = $this->request->getPost('status');
+
+        // Target location coordinates and radius
         $targetLat = -7.9742781;
         $targetLong = 112.665592;
         $radius = 1000; // Radius in meters
 
-        // Convert degrees to radians
+        // Function to convert degrees to radians
         function deg2rad($deg)
         {
             return $deg * (M_PI / 180);
         }
 
-
+        // Function to calculate distance between two coordinates using the Haversine formula
         function haversine($lat1, $lon1, $lat2, $lon2)
         {
             $earthRadius = 6371000; // Earth radius in meters
@@ -89,37 +93,54 @@ class CheckInController extends BaseController
             $verifikasiStatus = 'Pending';
         }
 
+        $PresensiModel = new PresensiModel();
 
+        // Check if the user has already checked in today
+        $existingCheckIn = $PresensiModel->where('id_magang', $idMagang)
+            ->where('tanggal', $date)
+            ->where('status', 'hadir')
+            ->first();
 
-        $PresensiModel = new presensiModel();
-        // dd($verifikasiStatus);
+        if ($existingCheckIn) {
+            // If the user has already checked in, redirect with an error message
+            return redirect()->back()->with('error', 'Anda sudah melakukan check-in hari ini.');
+        }
+
         // Handle file upload
         $foto = $this->request->getFile('foto');
         if ($foto->isValid() && !$foto->hasMoved()) {
-            $newName = $foto->getRandomName(); // Generate random file name
-            $foto->move('uploads/photos', $newName); // Move to the uploads/photos directory
-            //dd($verifikasiStatus);
-            // Create the data array with the path to the uploaded photo
-            $data = [
-                'id_magang' => $idMagang,
-                'status' => 'hadir',
-                'tanggal' => $date,
-                'jam_masuk' => $time,
-                'checkIn_latitude' => $latitude,
-                'checkin_longitude' => $longitude,
-                'verifikasi' => $verifikasiStatus,
-                'foto' => $newName // Save the path to the database
+            // Check file extension
+            $allowedExtensions = ['jpg', 'jpeg', 'png'];
+            $fileExtension = $foto->getExtension();
 
-            ];
+            if (in_array($fileExtension, $allowedExtensions)) {
+                $newName = $foto->getRandomName(); // Generate random file name
+                $foto->move('uploads/photos', $newName); // Move to the uploads/photos directory
 
-            // Simpan data ke database
-            $PresensiModel->save($data);
+                // Create the data array with the path to the uploaded photo
+                $data = [
+                    'id_magang' => $idMagang,
+                    'status' => 'hadir',
+                    'tanggal' => $date,
+                    'jam_masuk' => $time,
+                    'checkIn_latitude' => $latitude,
+                    'checkin_longitude' => $longitude,
+                    'verifikasi' => $verifikasiStatus,
+                    'foto' => $newName // Save the path to the database
+                ];
 
-            // Cek status verifikasi dan arahkan ke rute yang sesuai
-            if ($verifikasiStatus === 'Sukses') {
-                return redirect()->to('/success-check-in')->with('success', 'Presensi berhasil disimpan.');
+                // Simpan data ke database
+                $PresensiModel->save($data);
+
+                // Cek status verifikasi dan arahkan ke rute yang sesuai
+                if ($verifikasiStatus === 'Sukses') {
+                    return redirect()->to('/success-check-in')->with('success', 'Presensi berhasil disimpan.');
+                } else {
+                    return redirect()->to('/pending-check-in')->with('warning', 'Verifikasi sedang diproses.');
+                }
             } else {
-                return redirect()->to('/pending-check-in')->with('warning', 'Verifikasi sedang diproses.');
+                // Handle error if the file extension is not allowed
+                return redirect()->back()->with('error', 'Format file tidak didukung. Hanya .jpg, .jpeg, dan .png yang diperbolehkan.');
             }
         } else {
             // Handle error if the file is not valid

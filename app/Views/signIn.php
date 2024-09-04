@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
@@ -16,7 +17,6 @@
         }
 
         :root {
-            /*===== Color =====*/
             --body-color: #eff0f7;
             --sidebar-color: #ffffff;
             --primary-color: #130c90;
@@ -27,8 +27,6 @@
             --text-color-hover: var(--primary-color);
             --text-color-selected: var(--primary-color-light);
             --border-color: #898989;
-
-            /*===== Transition =====*/
             --trans-01: all 0.1s ease-out;
             --trans-02: all 0.2s ease-out;
             --trans-03: all 0.3s ease-out;
@@ -177,6 +175,33 @@
             z-index: 1050;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
         }
+
+        .input-password {
+            position: relative;
+        }
+
+        .input-password input {
+            padding-right: 30px;
+        }
+
+        .input-password .toggle-password {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        .trouble {
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .trouble a {
+            text-decoration: none;
+            color: black;
+
+        }
     </style>
 
 </head>
@@ -218,12 +243,17 @@
                     <div class="password">
                         <label for="password">Kata Sandi</label>
                     </div>
-                    <div class="input">
+                    <div class="input-password">
                         <input type="password" name="password" id="password" required placeholder="at least 16 character with number & special character" />
+                        <i class="fas fa-eye toggle-password"></i>
                     </div>
+
                 </div>
             </div>
-           
+            <div class="trouble">
+                <p><a href="/trouble-form">Lupa Password ?</a></p>
+            </div>
+
             <div class="btn" style="width: 100%;">
                 <input type="submit" value="Masuk" style="width:100%">
             </div>
@@ -238,5 +268,17 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+<script>
+    const togglePassword = document.querySelector('.toggle-password');
+    const passwordInput = document.getElementById('password');
+
+    togglePassword.addEventListener('click', function(e) {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+
+        this.classList.toggle('fa-eye');
+        this.classList.toggle('fa-eye-slash');
+    });
+</script>
 
 </html>

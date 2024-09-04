@@ -2,11 +2,77 @@
 <?= $this->section('customStyles') ?>
 <link rel="stylesheet" href="/css/dashboard.css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+<style>
+    .alert-custom {
+        background-color: #cce5ff;
+        /* Light blue background */
+        color: #004085;
+        /* Dark blue text */
+        border: 1px solid #b8daff;
+        /* Light blue border */
+        border-radius: 5px;
+        /* Rounded corners */
+        padding: 10px;
+        margin: 20px 0;
+    }
+
+    .alert {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+
+    .alert-danger {
+        color: #a94442;
+        background-color: #f2dede;
+        border-color: #ebccd1;
+    }
+
+    .alert-custom h4 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    .alert-custom p {
+        margin-bottom: 10px;
+    }
+
+    .alert-custom ul {
+        list-style-type: disc;
+        padding-left: 20px;
+    }
+
+    .alert-custom hr {
+        border-top: 1px solid #b8daff;
+        margin: 15px 0;
+    }
+
+    .alert-custom .mb-0 {
+        margin-bottom: 0;
+    }
+</style>
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
 <div>
     <h2>Check In Form</h2>
+</div>
+<?php if (session()->getFlashdata('error')): ?>
+    <div class="alert alert-danger">
+        <?= esc(session()->getFlashdata('error')) ?>
+    </div>
+<?php endif; ?>
+<div class="alert-custom">
+    <h4 class="alert-heading">Ketentuan Foto</h4>
+    <p>Pastikan foto check-in Anda memenuhi kriteria berikut:</p>
+    <ul>
+        <li>Foto harus diambil dalam mode potret.</li>
+        <li>Foto harus berupa selfie muka diri sendiri.</li>
+        <li>Foto harus menyertakan watermark (jika ada).</li>
+    </ul>
+    <hr>
+    <p class="mb-0">Pastikan untuk mengikuti panduan ini agar check-in Anda berhasil.</p>
 </div>
 
 <form action="/check-in-form" method="POST" enctype="multipart/form-data">

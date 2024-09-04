@@ -11,27 +11,39 @@ class UserListController extends BaseController
         if (!session()->get('logged_in')) {
             return redirect()->to('/login');
         }
-
-        $ModelUser = new UserModel(); // Pastikan model ini sesuai dengan nama model user Anda
-
-        // Konfigurasi pagination
-        $perPage = 10; // Jumlah user per halaman
-
-        // Query untuk mendapatkan data user dengan pagination
-        $data['data_user'] = $ModelUser
-            ->where('role', 'user')
-            ->orderBy('nama', 'asc')
-            ->paginate($perPage); // Menggunakan fungsi paginate
-
-        // Generate link pagination
+    
+        $ModelUser = new UserModel(); // Ensure this matches your user model
+    
+        // Get search input
+        $search = $this->request->getVar('search');
+        $perPage = 10; // Users per page
+    
+        // If a search query is provided, filter the user data
+        if ($search) {
+            $data['data_user'] = $ModelUser
+                ->where('role', 'user')
+                ->like('nama', $search)
+                ->orLike('email', $search)
+                ->orLike('Jenis_kelamin', $search)
+                ->orLike('Nomor_telepon', $search)
+                ->orderBy('nama', 'asc')
+                ->paginate($perPage, 'presensi');
+        } else {
+            $data['data_user'] = $ModelUser
+                ->where('role', 'user')
+                ->orderBy('nama', 'asc')
+                ->paginate($perPage, 'presensi');
+        }
+    
+        // Generate pagination links
         $data['pager'] = $ModelUser->pager;
-        $tanggalHariIni = date('Y-m-d');
-
-        $data['tanggal_hari_ini'] = $this->getTanggalHariIni();
-
+    
+        // Pass the search term back to the view for display
+        $data['search'] = $search;
         $data['title'] = 'All Users';
         return view('user_list', $data);
     }
+    
     private function getTanggalHariIni(): string
     {
         $hari = date('l');
@@ -153,5 +165,30 @@ class UserListController extends BaseController
 
             return redirect()->to('/user-list');
         }
+    }
+    public function delete($id_magang)
+    {
+        // Inisialisasi model UserModel
+        $userModel = new UserModel();
+
+        // Periksa apakah pengguna dengan ID tersebut ada
+        $user = $userModel->find($id_magang);
+
+        if ($user) {
+            // Hapus pengguna berdasarkan ID
+            if ($userModel->delete($id_magang)) {
+                // Set flashdata untuk pesan sukses
+                session()->setFlashdata('success', 'Pengguna berhasil dihapus.');
+            } else {
+                // Set flashdata untuk pesan error
+                session()->setFlashdata('error', 'Pengguna gagal dihapus.');
+            }
+        } else {
+            // Set flashdata untuk pesan error jika pengguna tidak ditemukan
+            session()->setFlashdata('error', 'Pengguna tidak ditemukan.');
+        }
+
+        // Redirect ke halaman daftar pengguna
+        return redirect()->to('/user-list');
     }
 }

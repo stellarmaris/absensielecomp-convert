@@ -1,4 +1,4 @@
-<?= $this->extend('/layouts/admin_layout') ?>
+<?= $this->extend('/Layouts/admin_layout') ?>
 <?= $this->section('customStyles') ?>
 <style>
     /* Styling CSS */
@@ -13,53 +13,6 @@
         box-shadow: 0.1px 4px 6px rgba(0, 0, 0, 0.1);
         padding-left: 20px;
         border: 2px solid #130C90;
-    }
-
-    .box-container {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 30px;
-        gap: 30px;
-    }
-
-    .box {
-        border-radius: 10px;
-        height: 150px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        padding: 40px;
-        width: 200px;
-    }
-
-    .box1 {
-        background-color: #B1DFE6;
-    }
-
-    .box2 {
-        background-color: #8BCFF1;
-    }
-
-    .box3 {
-        background-color: #5087F7;
-    }
-
-    .box4 {
-        background-color: #406BC4;
-    }
-
-    .box p {
-        font-size: 30px;
-        font-weight: bold;
-        margin-bottom: 0px;
-    }
-
-    .box h1 {
-        font-size: 100px;
-        font-weight: bold;
-        font-style: italic;
-        margin: 0px;
     }
 
     .btn-danger {
@@ -124,26 +77,53 @@
 
     .pagination {
         display: flex;
-        margin-bottom: 15px;
-        margin-top: 20px;
+        justify-content: right;
+        list-style-type: none;
     }
 
-    .pagination a {
-        color: black;
-        padding: 0 4px;
+    .page-item {
+        margin: 0 2px;
+        margin-top: 12px;
+        list-style-type: none;
+    }
+
+    .page-link {
+        display: block;
+        color: #130C90;
+        padding: 8px 18px;
+        border: 1px solid #130C90;
+        border-radius: 4px;
         text-decoration: none;
-        margin: 0 1px;
-        background-color: rgba(19, 12, 144, 0.04);
     }
 
-    .pagination a.active {
+    .page-link:hover {
+        background-color: rgba(19, 12, 144, 0.04);
+        color: #130C90;
+        border-color: #130C90;
+    }
+
+    .page-item.active .page-link {
         background-color: #130C90;
         color: white;
+        border-color: #130C90;
     }
 
-    .pagination a:hover:not(.active) {
-        background-color: #ddd;
+    .btn-search {
+        padding: 10px 15px;
+        background-color: #130C90;
+        color: white;
+        font-weight: 600;
     }
+
+    .btn-search:hover {
+        background-color: #0C074F;
+    }
+
+    #search {
+        padding: 10px 20px;
+        width: 200px;
+    }
+
 </style>
 <?= $this->endSection() ?>
 
@@ -151,13 +131,20 @@
 <div class="card title-card">
     <div class="card-body">
         <h3 class="card-title bold-text"><?= esc($title) ?></h3>
-        <p><em><?= $tanggal_hari_ini ?></em></p>
+        <p><em>Daftar Seluruh User</em></p>
     </div>
 </div>
 
 
+<form method="get" action="<?= site_url('user-list') ?>">
+    <input type="text" name="search" id="search" placeholder="Search users..." value="<?= esc($search) ?>">
+    <button type="submit" class="btn-search btn-primary">Search</button>
+</form>
+
+
+
 <?php if (!empty($data_user) && is_array($data_user)): ?>
-    <table class="table table-bordered">
+    <table class="table table-bordered" id="userTable">
         <thead>
             <tr>
                 <th>#</th>
@@ -165,8 +152,7 @@
                 <th>Email</th>
                 <th>Jenis Kelamin</th>
                 <th>Nomor Telepon</th>
-                <th>Alamat</th>
-                <th>Detail</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -178,8 +164,12 @@
                     <td><?= esc($user['email']) ?></td>
                     <td><?= esc($user['Jenis_kelamin']) ?></td>
                     <td><?= esc($user['Nomor_telepon']) ?></td>
-                    <td><?= esc($user['alamat']) ?></td>
-                    <td><a href="<?= site_url('detail-user/' . $user['id_magang']) ?>" class="custom-btn">Detail</a></td>
+                    <td>
+                        <a href="<?= site_url('detail-user/' . $user['id_magang']) ?>" class="custom-btn">Detail</a>
+                        <form action="<?= site_url('delete-user/' . $user['id_magang']) ?>" method="post" style="display:inline;">
+                            <button type="submit" class="custom-btn" style="background-color:red" onclick="return confirm('Apakah Anda yakin ingin menghapus pengguna ini?');">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
@@ -188,11 +178,13 @@
     <!-- Pagination Links -->
     <?php if ($pager): ?>
         <div class="pagination">
-            <?= $pager->links() ?>
+            <?= $pager->links('presensi', 'custom') ?>
+
         </div>
     <?php endif; ?>
 
 <?php else: ?>
     <div class="alert alert-warning">Tidak ada data pengguna yang ditemukan.</div>
 <?php endif; ?>
+
 <?= $this->endSection() ?>
