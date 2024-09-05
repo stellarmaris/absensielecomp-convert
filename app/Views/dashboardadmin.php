@@ -1,6 +1,7 @@
 <?= $this->extend('/Layouts/admin_layout') ?>
 <?= $this->section('customStyles') ?>
 <link rel="stylesheet" href="/css/dashboardadmin.css">
+<link rel="stylesheet" href="/css/pagination.css">
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
