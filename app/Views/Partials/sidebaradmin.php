@@ -6,7 +6,7 @@
     <ul class="nav">
         <li class="nav-item">
             <span class="nav-header">MAIN</span>
-            <a href="/DashboardAdmin" class="nav-link">
+            <a href="/dashboardadmin" class="nav-link">
                 <i class="fas fa-home"></i> Dashboard
             </a>
         </li>
@@ -17,6 +17,9 @@
             </a>
             <a href="/lokasiSemua" class="nav-link">
                 <i class="fa-solid fa-location-dot"></i> Lokasi Pengguna
+            </a>
+            <a href="/RekapitulasiAbsen" class="nav-link">
+                <i class="fa-solid fa-file-alt"></i> Rekapitulasi Absensi
             </a>
             <a href="/user-list" class="nav-link">
                 <i class="fa-solid fa-user-group"></i> Daftar Pengguna
