@@ -58,7 +58,7 @@
                 class="btn btn-danger" 
                 onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">Hapus Data</a>
 
-        <a href="<?= site_url('dashboardadmin') ?>" class="btn btn-primary custom-btn">Kembali</a>
+        <a href="<?= site_url('RekapitulasiAbsen') ?>" class="btn btn-primary custom-btn">Kembali</a>
     </div>
 </div>
 <?= $this->endSection() ?>

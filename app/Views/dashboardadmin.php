@@ -70,10 +70,6 @@
             </tr>
         <?php else: ?>
             <?php
-            // Urutkan data dari terbaru
-            usort($data_presensi, function($a, $b) {
-                return strtotime($b['tanggal']) - strtotime($a['tanggal']);
-            });
             // Nomor urut
             $nomor = 0;
             foreach ($data_presensi as $k => $v) {
@@ -93,24 +89,12 @@
     </table>
 </div>
 
-<!-- Pagination -->
-<div class="row">
-    <div class="col-12 col-md-6">
+    <!-- Pagination Links -->
+    <?php if ($pager): ?>
         <div class="pagination">
-            <?php if ($currentPage > 1): ?>
-                <a href="<?= site_url('dashboardadmin?page=' . ($currentPage - 1)) ?>">Sebelumnya</a>
-            <?php endif; ?>
-            
-            <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                <a href="<?= site_url('dashboardadmin?page=' . $i) ?>" class="<?= $i == $currentPage ? 'active' : '' ?>"><?= $i ?></a>
-            <?php endfor; ?>
-            
-            <?php if ($currentPage < $totalPages): ?>
-                <a href="<?= site_url('dashboardadmin?page=' . ($currentPage + 1)) ?>">Selanjutnya</a>
-            <?php endif; ?>
+            <?= $pager->links('presensi', 'custom') ?>
 
         </div>
-    </div>
-</div>
+    <?php endif; ?>
 
 <?= $this->endSection() ?>
