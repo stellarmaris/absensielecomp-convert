@@ -89,6 +89,16 @@
         </div>
     </div>
     <div class="form-1">
+        <div class="label"><label for="status">Status (WFO/WFH)</label></div>
+        <div class="input">
+            <select name="status" id="status" required>
+                <option value="">Pilih Status</option>
+                <option value="WFO">Work From Office (WFO)</option>
+                <option value="WFH">Work From Home (WFH)</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-1">
         <div class="label"><label for="foto">Upload Foto Check In</label></div>
         <div class="input">
             <input type="file" name="foto" accept=".jpg, .jpeg, .png" required>
