@@ -63,60 +63,58 @@ th {
 
 /* WFO - Hijau Tua */
 .btn-wfo {
-  background-color: #2E7D32; /* Hijau gelap */
+  background-color: #2E7D32; 
   color: white;
   border: none;
 }
 
 .btn-wfo:hover {
-  background-color: #256628; /* Lebih gelap saat hover */
+  background-color: #256628;
 }
 
 /* WFH - Biru Tua */
 .btn-wfh {
-  background-color: #1565C0; /* Biru gelap */
+  background-color: #1565C0; 
   color: white;
   border: none;
 }
 
 .btn-wfh:hover {
-  background-color: #0D47A1; /* Lebih gelap saat hover */
+  background-color: #0D47A1; 
 }
 
 /* Izin - Kuning Tua */
 .btn-izin {
-  background-color: #FF8F00; /* Kuning gelap */
+  background-color: #FF8F00;
   color: white;
   border: none;
 }
 
 .btn-izin:hover {
-  background-color: #FF6F00; /* Lebih gelap saat hover */
+  background-color: #FF6F00; 
 }
 
 /* Sakit - Oranye Tua */
 .btn-sakit {
-  background-color: #D84315; /* Oranye gelap */
+  background-color: #D84315; 
   color: white;
   border: none;
 }
 
 .btn-sakit:hover {
-  background-color: #BF360C; /* Lebih gelap saat hover */
+  background-color: #BF360C; 
 }
 
 /* Alpha - Merah Tua */
 .btn-alpha {
-  background-color: #C62828; /* Merah gelap */
+  background-color: #C62828; 
   color: white;
   border: none;
 }
 
 .btn-alpha:hover {
-  background-color: #B71C1C; /* Lebih gelap saat hover */
+  background-color: #B71C1C; 
 }
-
-
 
 
 .button-container {
@@ -125,16 +123,4 @@ th {
 
 .button-container:last-child {
   margin-bottom: 0;
-}
-
-.pagination {
-  display: flex;
-  margin-bottom: 15px;
-  margin-top: 20px;
-}
-
-.pagination a {
-  color: black;
-  padding: 0 4px;
-  text-decoration: none;
 }

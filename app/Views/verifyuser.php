@@ -1,6 +1,7 @@
 <?= $this->extend('/Layouts/admin_layout') ?>
 <?= $this->section('customStyles') ?>
 <link rel="stylesheet" href="/css/verifikasi.css">
+<link rel="stylesheet" href="/css/pagination.css">
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
@@ -114,33 +115,12 @@
     </table>
 </div>
 
-<!-- Pagination -->
-<div class="row">
-    <div class="col-12 col-md-6">
+    <!-- Pagination Links -->
+    <?php if ($pager): ?>
         <div class="pagination">
-            <?php if ($currentPage > 1): ?>
-                <a href="<?= site_url('verifyuser?page=' . ($currentPage - 1)) ?>">Sebelumnya</a>
-            <?php endif; ?>
+            <?= $pager->links('presensi', 'custom') ?>
 
-            <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                <a href="<?= site_url('verifyuser?page=' . $i) ?>" class="<?= $i == $currentPage ? 'active' : '' ?>"><?= $i ?></a>
-            <?php endfor; ?>
-
-            <?php if ($currentPage < $totalPages): ?>
-                <a href="<?= site_url('verifyuser?page=' . ($currentPage + 1)) ?>">Selanjutnya</a>
-            <?php endif; ?>
         </div>
-    </div>
-</div>
+    <?php endif; ?>
 
-<!-- script buat word-break setelah 5 kata -->
-<script>
-    document.querySelectorAll('.custom-column').forEach(cell => {
-        let words = cell.innerText.split(' ');
-        for (let i = 5; i < words.length; i += 6) {
-            words[i] = '<br>' + words[i];
-        }
-        cell.innerHTML = words.join(' ');
-    });
-</script>
 <?= $this->endSection() ?>

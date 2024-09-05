@@ -20,59 +20,25 @@ class VerifyUser extends BaseController
         $tanggalHariIni = date('Y-m-d');
 
         // pagination
-        $pagination = $this->paginateData($tanggalHariIni);
+        $perPage = 5; // Users per page
 
         $data['data_presensi'] = $ModelPresensi
-        ->select('presensi.*, user.nama as Nama')
-        ->join('user', 'user.id_magang = presensi.id_magang')
-        ->where('tanggal', $tanggalHariIni)
-        ->where('verifikasi', 'Pending')
-        ->orderBy('tanggal', 'desc')
-        ->findAll($pagination['perPage'], $pagination['offset']);
+            ->select('presensi.*, user.nama as Nama')
+            ->join('user', 'user.id_magang = presensi.id_magang')
+            ->where('tanggal', $tanggalHariIni)
+            ->where('verifikasi', 'Pending')
+            ->orderBy('jam_masuk', 'desc')
+            ->paginate($perPage, 'presensi');
 
-
-        $data = array_merge($data, $pagination); // Gabung
+         // Generate pagination links
+         $data['pager'] = $ModelPresensi->pager;
 
         $data['tanggal_hari_ini'] = $this->getTanggalHariIni();
-
+        
+        
         $data['title'] = 'Verify User';
         return view('verifyuser', $data);
     }
-
-    private function paginateData(?string $tanggal = null): array
-    {
-        $ModelPresensi = new presensiModel();
-        $perPage = 10;
-    
-        // fetch halaman
-        $page = $this->request->getVar('page') ?? 1;
-    
-        // Hitung offset
-        $offset = ($page - 1) * $perPage;
-    
-        // Hitung total data dengan kondisi verifikasi 'Pending'
-        if ($tanggal) {
-            $totalRecords = $ModelPresensi
-                ->where('tanggal', $tanggal)
-                ->where('verifikasi', 'Pending')
-                ->countAllResults();
-        } else {
-            $totalRecords = $ModelPresensi
-                ->where('verifikasi', 'Pending')
-                ->countAllResults();
-        }
-    
-        // Hitung total halaman
-        $totalPages = ceil($totalRecords / $perPage);
-    
-        return [
-            'perPage' => $perPage,
-            'currentPage' => $page,
-            'totalPages' => $totalPages,
-            'offset' => $offset
-        ];
-    }
-
 
     private function getTanggalHariIni(): string
     {
