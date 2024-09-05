@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\UserModel;
+use App\Models\presensiModel;
 
 class Profile extends BaseController
 {
@@ -103,6 +104,25 @@ class Profile extends BaseController
         } else {
             return redirect()->back()->withInput()->with('validation', $this->validator);
         }
+    }
+    
+        public function delete()
+    {
+        $userId = session()->get('user_id');
+
+        // Hapus data dari tabel presensi
+        $presensiModel = new PresensiModel();
+        $presensiModel->where('id_magang', $userId)->delete();
+
+        // Hapus data pengguna dari tabel user
+        $userModel = new UserModel();
+        $userModel->delete($userId);
+
+        // Hapus session
+        session()->destroy();
+
+        // Redirect ke halaman login
+        return redirect()->to('/login');
     }
     
 }

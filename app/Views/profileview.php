@@ -1,4 +1,4 @@
-<?= $this->extend('/layouts/user_layout') ?>
+<?= $this->extend('/Layouts/user_layout') ?>
 <?= $this->section('customStyles') ?>
 <link rel="stylesheet" href="/css/profile.css">
 <?= $this->endSection() ?>
@@ -34,6 +34,10 @@
                     <input type="alamat" id="alamat" name="alamat" class="form-control" value="<?= $alamat; ?>" readonly>
                 </div>
                 <a href="<?= site_url('profile/edit'); ?>" class="btn btn-primary custom-btn">Edit Profil</a>
+                
+                <a href="<?= site_url('profile/delete'); ?>" class="btn btn-danger custom-btn delete-btn"  
+                   onclick="return confirm('Apakah Anda yakin ingin menghapus akun ini?');">Hapus Akun</a>
+
             </div>
         </div>
 <?= $this->endSection() ?>
