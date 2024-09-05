@@ -9,6 +9,7 @@ class dashboardadmin extends BaseController
 {
     public function index()
     {
+        
         if (!session()->get('logged_in')) {
             return redirect()->to('/login');
         }
@@ -79,8 +80,12 @@ class dashboardadmin extends BaseController
     {
         $ModelPresensi = new presensiModel();
         $tanggal_hari_ini = date('Y-m-d');
-
-        $data['total_hadir'] = $ModelPresensi->where('status', 'HADIR')->where('tanggal', $tanggal_hari_ini)->countAllResults();
+        $data['total_hadir'] = $ModelPresensi->groupStart()
+            ->where('status', 'WFO')
+            ->orWhere('status', 'WFH')
+            ->groupEnd()
+            ->where('tanggal', $tanggal_hari_ini)
+            ->countAllResults();
         $data['total_sakit'] = $ModelPresensi->where('status', 'SAKIT')->where('tanggal', $tanggal_hari_ini)->countAllResults();
         $data['total_izin'] = $ModelPresensi->where('status', 'IZIN')->where('tanggal', $tanggal_hari_ini)->countAllResults();
         $data['total_rekap'] = $data['total_hadir'] + $data['total_sakit'] + $data['total_izin'];
