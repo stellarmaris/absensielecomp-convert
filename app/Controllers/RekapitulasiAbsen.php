@@ -11,27 +11,43 @@ class RekapitulasiAbsen extends BaseController
         if (!session()->get('logged_in')) {
             return redirect()->to('/login');
         }
-
+    
         $userId = session()->get('user_id');
         $modelPresensi = new presensiModel();
-
+    
+        // Ambil nilai pencarian dari input search
+        $search = $this->request->getGet('search');
+        $tanggal = $this->request->getGet('tanggal');
+    
         // Gunakan pagination
-        $pagination = $this->paginateData();
-        $data['data_presensi'] = $modelPresensi
-            ->select('presensi.*, user.nama as Nama')
-            ->join('user', 'user.id_magang = presensi.id_magang')
+        $pagination = $this->paginateData($search, $tanggal);
+        $builder = $modelPresensi->select('presensi.*, user.nama as Nama')->join('user', 'user.id_magang = presensi.id_magang');
+    
+        // Jika ada filter pencarian
+        if ($search) {
+            $builder->like('user.nama', $search);
+        }
+    
+        // Jika ada filter tanggal
+        if ($tanggal) {
+            $builder->where('presensi.tanggal', $tanggal);
+        }
+    
+        // Ambil data dengan pagination
+        $data['data_presensi'] = $builder
             ->orderBy('tanggal', 'desc')
             ->findAll($pagination['perPage'], $pagination['offset']);
-
+    
         $data = array_merge($data, $pagination); // Gabungkan data pagination ke $data
-
         $data['tanggal_hari_ini'] = $this->getTanggalHariIni();
-
+        $data['search'] = $search;
+        $data['tanggal_pilih'] = $tanggal;
         $data['title'] = 'Rekapitulasi Absensi';
+    
         return view('rekapitulasi', $data);
     }
-
-    private function paginateData(?string $tanggal = null): array
+    
+    private function paginateData(?string $search = null, ?string $tanggal = null): array
     {
         $modelPresensi = new presensiModel();
         $perPage = 10;
@@ -42,17 +58,20 @@ class RekapitulasiAbsen extends BaseController
         // Hitung offset
         $offset = ($page - 1) * $perPage;
     
-        // Hitung total data
-        if ($tanggal) {
-            $totalRecords = $modelPresensi->where('tanggal', $tanggal)->countAllResults();
-        } else {
-            $totalRecords = $modelPresensi->countAllResults();
+        // Hitung total data berdasarkan filter search dan tanggal
+        $builder = $modelPresensi->join('user', 'user.id_magang = presensi.id_magang');
+        
+        if ($search) {
+            $builder->like('user.nama', $search);
         }
     
-        // Hitung total halaman
+        if ($tanggal) {
+            $builder->where('presensi.tanggal', $tanggal);
+        }
+    
+        $totalRecords = $builder->countAllResults(false); // Jangan reset query
         $totalPages = ceil($totalRecords / $perPage);
     
-        // Kembalikan data pagination
         return [
             'perPage' => $perPage,
             'currentPage' => $page,

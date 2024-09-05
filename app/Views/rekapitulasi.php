@@ -1,6 +1,23 @@
 <?= $this->extend('/Layouts/admin_layout') ?>
 <?= $this->section('customStyles') ?>
 <link rel="stylesheet" href="/css/dashboardadmin.css">
+<style>
+     .btn-search {
+        padding: 10px 15px;
+        background-color: #130C90;
+        color: white;
+        font-weight: 600;
+    }
+
+    .btn-search:hover {
+        background-color: #0C074F;
+    }
+
+    #search {
+        padding: 10px 20px;
+        width: 200px;
+    }
+</style>
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
@@ -14,16 +31,24 @@
     </div>
 </div>
 
- <!--Form filter tanggal -->
-<div class="row mb-2">
-    <div class="col-md-12">
-        <form action="<?= site_url('/RekapitulasiAbsen/Filtertanggal') ?>" method="get" class="d-flex">
+<!--Form filter tanggal -->
+<!-- Form filter tanggal dan search -->
+
+<div class="row mb-2" style="display:flex; justify-content: space-between;">
+    <div class="col-md-6">
+        <form action="<?= site_url('/RekapitulasiAbsen') ?>" method="get" class="d-flex">
             <input type="date" id="date" name="tanggal" class="form-control date-picker" value="<?= isset($tanggal_pilih) ? $tanggal_pilih : $tanggal_hari_ini ?>">
             <button type="submit" class="btn custom-btn">Tampilkan Data</button>
         </form>
     </div>
-</div>
+    <div class="col-md-6">
+        <form action="<?= site_url('/RekapitulasiAbsen') ?>" method="get" class="d-flex" style="display:flex">
+            <input type="text" name="search" id="search" class="form-control" placeholder="Cari Nama ....." value="<?= isset($search) ? $search : '' ?>">
+            <button type="submit" class="btn-search">Search</button>
+        </form>
+    </div>
 
+</div>
 
 <!-- Tabel data presensi -->
 <div class="table-responsive">
@@ -36,41 +61,31 @@
                 <th>Jam Masuk</th>
                 <th>Jam Keluar</th>
                 <th>Status</th>
-                <!-- <th>Kegiatan</th> -->
                 <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
-        <?php if (empty($data_presensi)): ?>
-            <tr>
-                <td colspan="8" style="text-align: center;">Data Tidak Ditemukan</td>
-            </tr>
-        <?php else: ?>
-            <?php
-            // Urutkan data dari terbaru
-            usort($data_presensi, function($a, $b) {
-                return strtotime($b['tanggal']) - strtotime($a['tanggal']);
-            });
-            // Nomor urut
-            $nomor = 0;
-            foreach ($data_presensi as $k => $v) {
-                $nomor++;
-            ?>
-            <tr>
-                <td><?php echo $nomor ?></td>
-                <td><?php echo $v['tanggal'] ?></td>
-                <td><?php echo $v['Nama'] ?></td>
-                <td><?php echo $v['jam_masuk'] ?></td>
-                <td><?php echo $v['jam_keluar']?></td>
-                <td><?php echo $v['status']; ?></td>
-                <td>
-                    <a href="<?= site_url('RekapitulasiAbsen/detail/' . $v['id_presensi']); ?>" class="btn btn-danger">
-                        Detail
-                    </a>
-                </td>
-            </tr>
-            <?php }?>
-        <?php endif; ?>
+            <?php if (empty($data_presensi)): ?>
+                <tr>
+                    <td colspan="8" style="text-align: center;">Data Tidak Ditemukan</td>
+                </tr>
+            <?php else: ?>
+                <?php
+                $nomor = ($currentPage - 1) * $perPage + 1;
+                foreach ($data_presensi as $v): ?>
+                    <tr>
+                        <td><?= $nomor++ ?></td>
+                        <td><?= $v['tanggal'] ?></td>
+                        <td><?= $v['Nama'] ?></td>
+                        <td><?= $v['jam_masuk'] ?></td>
+                        <td><?= $v['jam_keluar'] ?></td>
+                        <td><?= $v['status'] ?></td>
+                        <td>
+                            <a href="<?= site_url('RekapitulasiAbsen/detail/' . $v['id_presensi']); ?>" class="btn btn-danger">Detail</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </tbody>
     </table>
 </div>
@@ -80,18 +95,19 @@
     <div class="col-12 col-md-6">
         <div class="pagination">
             <?php if ($currentPage > 1): ?>
-                <a href="<?= site_url('RekapitulasiAbsen/Filtertanggal?page=' . ($currentPage - 1) . (isset($tanggal_pilih) ? '&tanggal=' . $tanggal_pilih : '')) ?>">Sebelumnya</a>
+                <a href="<?= site_url('RekapitulasiAbsen?page=' . ($currentPage - 1) . '&search=' . $search . '&tanggal=' . $tanggal_pilih) ?>">Sebelumnya</a>
             <?php endif; ?>
 
             <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                <a href="<?= site_url('RekapitulasiAbsen/Filtertanggal?page=' . $i . (isset($tanggal_pilih) ? '&tanggal=' . $tanggal_pilih : '')) ?>" class="<?= $i == $currentPage ? 'active' : '' ?>"><?= $i ?></a>
+                <a href="<?= site_url('RekapitulasiAbsen?page=' . $i . '&search=' . $search . '&tanggal=' . $tanggal_pilih) ?>" class="<?= $i == $currentPage ? 'active' : '' ?>"><?= $i ?></a>
             <?php endfor; ?>
 
             <?php if ($currentPage < $totalPages): ?>
-                <a href="<?= site_url('RekapitulasiAbsen/Filtertanggal?page=' . ($currentPage + 1) . (isset($tanggal_pilih) ? '&tanggal=' . $tanggal_pilih : '')) ?>">Selanjutnya</a>
+                <a href="<?= site_url('RekapitulasiAbsen?page=' . ($currentPage + 1) . '&search=' . $search . '&tanggal=' . $tanggal_pilih) ?>">Selanjutnya</a>
             <?php endif; ?>
         </div>
     </div>
 </div>
+
 
 <?= $this->endSection() ?>
