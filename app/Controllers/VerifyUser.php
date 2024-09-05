@@ -23,12 +23,13 @@ class VerifyUser extends BaseController
         $pagination = $this->paginateData($tanggalHariIni);
 
         $data['data_presensi'] = $ModelPresensi
-            ->select('presensi.*, user.nama as Nama')
-            ->join('user', 'user.id_magang = presensi.id_magang')
-            ->where('tanggal', $tanggalHariIni)
-            ->where('verifikasi', 'Pending')
-            ->orderBy('tanggal', 'desc')
-            ->findAll($pagination['perPage'], $pagination['offset']);
+        ->select('presensi.*, user.nama as Nama')
+        ->join('user', 'user.id_magang = presensi.id_magang')
+        ->where('tanggal', $tanggalHariIni)
+        ->where('verifikasi', 'Pending')
+        ->orderBy('tanggal', 'desc')
+        ->findAll($pagination['perPage'], $pagination['offset']);
+
 
         $data = array_merge($data, $pagination); // Gabung
 
@@ -42,23 +43,28 @@ class VerifyUser extends BaseController
     {
         $ModelPresensi = new presensiModel();
         $perPage = 10;
-
+    
         // fetch halaman
         $page = $this->request->getVar('page') ?? 1;
-
+    
         // Hitung offset
         $offset = ($page - 1) * $perPage;
-
-        // Hitung total data
+    
+        // Hitung total data dengan kondisi verifikasi 'Pending'
         if ($tanggal) {
-            $totalRecords = $ModelPresensi->where('tanggal', $tanggal)->countAllResults();
+            $totalRecords = $ModelPresensi
+                ->where('tanggal', $tanggal)
+                ->where('verifikasi', 'Pending')
+                ->countAllResults();
         } else {
-            $totalRecords = $ModelPresensi->countAllResults();
+            $totalRecords = $ModelPresensi
+                ->where('verifikasi', 'Pending')
+                ->countAllResults();
         }
-
+    
         // Hitung total halaman
         $totalPages = ceil($totalRecords / $perPage);
-
+    
         return [
             'perPage' => $perPage,
             'currentPage' => $page,
@@ -66,6 +72,7 @@ class VerifyUser extends BaseController
             'offset' => $offset
         ];
     }
+
 
     private function getTanggalHariIni(): string
     {
@@ -102,18 +109,27 @@ class VerifyUser extends BaseController
         return $namaHari[$hari] . ', ' . $tanggal . ' ' . $namaBulan[$bulan] . ' ' . $tahun;
     }
 
-    public function updateVerifikasi($id_presensi)
+    public function updateVerifikasi($id_presensi, $status)
     {
         $ModelPresensi = new presensiModel();
         $presensi = $ModelPresensi->find($id_presensi);
-    
+        
         if ($presensi) {
-            $newStatus = ($presensi['verifikasi'] == 'Pending') ? 'Sukses' : 'Pending';
-            $ModelPresensi->update($id_presensi, ['verifikasi' => $newStatus]);
-    
-            return redirect()->to(site_url('verifyuser'))->with('success', 'Status verifikasi berhasil diperbarui.');
+            // Set verifikasi
+            $verifikasiStatus = 'Sukses';
+            
+            // Set 'status' ke parameter
+            $newStatus = $status;
+            
+            // Update
+            $ModelPresensi->update($id_presensi, [
+                'status' => $newStatus,
+                'verifikasi' => $verifikasiStatus
+            ]);
+        
+            return redirect()->to(site_url('verifyuser'))->with('success', 'Status verifikasi dan status berhasil diperbarui.');
         }
-    
     }
+
     
 }

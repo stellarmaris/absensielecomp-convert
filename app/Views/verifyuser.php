@@ -1,4 +1,4 @@
-<?= $this->extend('/layouts/admin_layout') ?>
+<?= $this->extend('/Layouts/admin_layout') ?>
 <?= $this->section('customStyles') ?>
 <link rel="stylesheet" href="/css/verifikasi.css">
 <?= $this->endSection() ?>
@@ -13,19 +13,20 @@
 </div>
 
 <!-- Tabel data presensi -->
-<table class="table table-responsive">
-    <thead>
-        <tr>
-            <th>No</th>
-            <th>Nama</th>
-            <th>Jam Masuk</th>
-            <th>Status Kehadiran</th>
-            <th>Foto</th>
-            <th>Status Verifikasi</th>
-            <th>Update</th>
-        </tr>
-    </thead>
-    <tbody>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama</th>
+                <th>Jam Masuk</th>
+                <th>Status Kehadiran</th>
+                <th>Foto</th>
+                <th>Status Verifikasi</th>
+                <th>Update</th>
+            </tr>
+        </thead>
+        <tbody>
         <?php if (empty($data_presensi)): ?>
             <tr>
                 <td colspan="7" style="text-align: center;">Semua Data Telah Diverifikasi</td>
@@ -33,33 +34,30 @@
         <?php else: ?>
             <?php
             // Urutkan data dari terbaru
-            usort($data_presensi, function ($a, $b) {
+            usort($data_presensi, function($a, $b) {
                 return strtotime($b['tanggal']) - strtotime($a['tanggal']);
             });
-
             // Nomor urut
             $nomor = 0;
             foreach ($data_presensi as $k => $v) {
                 $nomor++;
             ?>
-                <tr>
-                    <td><?php echo $nomor; ?></td>
-                    <td><?php echo $v['Nama']; ?></td>
-                    <td><?php echo $v['jam_masuk']; ?></td>
-                    <td><?php echo $v['status']; ?></td>
-<td>
-    <?php $imagePath = base_url('/uploads/photos/' . $v['foto']); ?>
-    <div class="img-container">
-        <?php if ($v['foto']): ?>
-            <img src="<?= $imagePath; ?>" alt="Foto <?php echo $v['status']; ?>" style="max-width: 300px; max-height: 400px; width: auto; height: auto;">
-        <?php else: ?>
-            <p class="no-photo-text">Tidak Ada Foto</p>
-        <?php endif; ?>
-    </div>
-</td>
-
-                
-                    <td>
+            <tr>
+                <td><?php echo $nomor; ?></td>
+                <td><?php echo $v['Nama']; ?></td>
+                <td><?php echo $v['jam_masuk']; ?></td>
+                <td><?php echo $v['status']; ?></td>
+                <td>
+                    <?php $imagePath = base_url('/uploads/photos/' . $v['foto']); ?>
+                    <div class="img-container">
+                        <?php if ($v['foto']): ?>
+                            <img src="<?= $imagePath; ?>" alt="Foto <?php echo $v['status']; ?>" style="max-width: 300px; max-height: 400px; width: auto; height: auto;">
+                        <?php else: ?>
+                            <p class="no-photo-text">Tidak Ada Foto</p>
+                        <?php endif; ?>
+                    </div>
+                </td>
+                <td>
                         <?php if ($v['verifikasi'] == 'Pending'): ?>
                             <span style="color:white; background-color:orange; padding: 5px 15px; border-radius: 50px;">
                                 <?php echo $v['verifikasi']; ?>
@@ -70,18 +68,44 @@
                             </span>
                         <?php endif; ?>
                     </td>
-                    <td>
-                        <a href="<?= site_url('verifyuser/updateVerifikasi/' . $v['id_presensi']); ?>" 
-                        class="btn custom-btn" 
-                        onclick="return confirm('Apakah Anda yakin ingin mengupdate status verifikasi ?');">
-                        Update Data
-                        </a>
-                    </td>
+<td>
+    <div class="button-container">
+        <a href="<?= site_url('verifyuser/updateVerifikasi/' . $v['id_presensi'] . '/Hadir'); ?>" 
+           class="btn custom-btn btn-hadir" 
+           onclick="return confirm('Apakah Anda yakin ingin mengupdate status menjadi Hadir?');">
+           Hadir
+        </a>
+    </div>
+    <div class="button-container">
+        <a href="<?= site_url('verifyuser/updateVerifikasi/' . $v['id_presensi'] . '/Izin'); ?>" 
+           class="btn custom-btn btn-izin" 
+           onclick="return confirm('Apakah Anda yakin ingin mengupdate status menjadi Izin?');">
+           Izin
+        </a>
+    </div>
+    <div class="button-container">
+        <a href="<?= site_url('verifyuser/updateVerifikasi/' . $v['id_presensi'] . '/Sakit'); ?>" 
+           class="btn custom-btn btn-sakit" 
+           onclick="return confirm('Apakah Anda yakin ingin mengupdate status menjadi Sakit?');">
+           Sakit
+        </a>
+    </div>
+    <div class="button-container">
+        <a href="<?= site_url('verifyuser/updateVerifikasi/' . $v['id_presensi'] . '/Alpha'); ?>" 
+           class="btn custom-btn btn-alpha" 
+           onclick="return confirm('Apakah Anda yakin ingin mengupdate status menjadi Alpha?');">
+           Alpha
+        </a>
+    </div>
+</td>
+
+
                 </tr>
             <?php } ?>
         <?php endif; ?>
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
 
 <!-- Pagination -->
 <div class="row">
