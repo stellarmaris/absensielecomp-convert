@@ -24,7 +24,7 @@ class dashboardadmin extends BaseController
             ->select('presensi.*, user.nama as Nama')
             ->join('user', 'user.id_magang = presensi.id_magang')
             ->where('tanggal', $tanggalHariIni)
-            ->orderBy('tanggal', 'desc')
+            ->orderBy('jam_masuk', 'desc')
             ->paginate($perPage, 'presensi');
 
          // Generate pagination links
