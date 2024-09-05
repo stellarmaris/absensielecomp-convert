@@ -18,17 +18,17 @@ class dashboardadmin extends BaseController
 
         // Dapatkan tanggal hari ini
         $tanggalHariIni = date('Y-m-d');
+        $perPage = 5; // Users per page
 
-        // Gunakan pagination
-        $pagination = $this->paginateData();
         $data['data_presensi'] = $ModelPresensi
             ->select('presensi.*, user.nama as Nama')
             ->join('user', 'user.id_magang = presensi.id_magang')
             ->where('tanggal', $tanggalHariIni)
             ->orderBy('tanggal', 'desc')
-            ->findAll($pagination['perPage'], $pagination['offset']);
+            ->paginate($perPage, 'presensi');
 
-        $data = array_merge($data, $pagination); // Gabungkan data pagination ke $data
+         // Generate pagination links
+         $data['pager'] = $ModelPresensi->pager;
 
         $data['tanggal_hari_ini'] = $this->getTanggalHariIni();
         $this->rekapitulasiHariIni($data);
@@ -39,31 +39,6 @@ class dashboardadmin extends BaseController
         return view('dashboardadmin', $data);
     }
 
-    private function paginateData(): array
-    {
-        $ModelPresensi = new presensiModel();
-        $perPage = 5;
-    
-        // Dapatkan nomor halaman saat ini
-        $page = $this->request->getVar('page') ?? 1;
-    
-        // Hitung offset
-        $offset = ($page - 1) * $perPage;
-    
-        // Hitung total data
-        $totalRecords = $ModelPresensi->where('tanggal', date('Y-m-d'))->countAllResults();
-    
-        // Hitung total halaman
-        $totalPages = ceil($totalRecords / $perPage);
-    
-        // Kembalikan data pagination
-        return [
-            'perPage' => $perPage,
-            'currentPage' => $page,
-            'totalPages' => $totalPages,
-            'offset' => $offset
-        ];
-    }
     
     private function getTanggalHariIni(): string
     {
