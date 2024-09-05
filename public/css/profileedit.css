@@ -76,7 +76,18 @@
   width: 48%;
 }
 
+.password-field {
+  margin-bottom: 20px;
+  position: relative;
+}
 
+.password-field .toggle-password {
+  position: absolute;
+  top: 60%;
+  left: 44%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
 
 
 @media (max-width: 768px) {
@@ -110,7 +121,6 @@
     padding: 15px;
     width: 100%;
   }
-  
 }
 
 @media (max-width: 480px) {
