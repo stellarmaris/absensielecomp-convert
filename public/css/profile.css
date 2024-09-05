@@ -14,13 +14,22 @@
   font-weight: bold; 
   background-color: #130C90;
   border-radius: 8px;
-  margin: 0 auto;
+  margin: 10px 0; 
   color: white;
   text-decoration: none;
 }
 .custom-btn:hover {
   background-color: #0C074F;
 }
+
+.btn-danger {
+  background-color: #c82333;
+}
+
+.btn-danger:hover {
+  background-color: #ab1e2d;
+}
+
 .bold-text {
   font-weight: 900; 
 }

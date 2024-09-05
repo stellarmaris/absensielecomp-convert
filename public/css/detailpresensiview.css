@@ -4,7 +4,7 @@
 }
 
 .custom-font {
-  font-family: 'Inter', sans-serif; 
+  font-family: 'Inter', sans-serif;
 }
 
 .custom-btn, .btn-danger {
@@ -39,7 +39,7 @@
 }
 
 .card {
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
   border-radius: 10px;
   padding: 20px;
 }
@@ -56,12 +56,13 @@
 }
 
 textarea.form-control {
-  line-height: 2; 
+  line-height: 2;
 }
 
 .form-row {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap; 
 }
 
 .form-group {
@@ -96,7 +97,57 @@ textarea.form-control {
 
 .button-group {
   display: flex;
-  gap: 10px; 
+  gap: 10px;
   margin-top: 20px;
+  flex-wrap: wrap; 
 }
 
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .custom-btn, .btn-danger {
+    font-size: 16px;
+    height: 36px;
+  }
+
+  .form-group.flex-item {
+    width: 100%;
+  }
+
+  .img-fluid {
+    max-width: 100%;
+  }
+
+  .no-photo-text {
+    font-size: 14px;
+  }
+
+  .title {
+    margin-left: 0;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .custom-btn, .btn-danger {
+    font-size: 14px;
+    height: 32px;
+  }
+
+  .button-group {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .card {
+    padding: 15px;
+  }
+
+  .profile .form-control[readonly], textarea.form-control {
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  .no-photo-text {
+    font-size: 12px;
+  }
+}
