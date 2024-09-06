@@ -8,4 +8,5 @@ class UserModel extends Model{
     protected $useAutoIncrement = true;
     protected $allowedFields = ['Nama','asal_institusi','Jenis_kelamin','Nomor_telepon','email','password','alamat','role'];
 
+
 }

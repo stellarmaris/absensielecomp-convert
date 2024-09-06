@@ -93,6 +93,23 @@
         .input-group-append .btn:hover {
             color: #130C90
         }
+
+        .password-wrapper{
+            position: relative;
+        }
+        .password-wrapper input{
+            padding-right: 30px;
+        }
+        .password-wrapper .toggle-password{
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+
+
     </style>
 
 
@@ -148,10 +165,11 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Password</label>
-                <div class="input-group">
-                    <input type="password" class="form-control" name="password" placeholder="Setidaknya 8 karakter disertai angka dan spesial karakter" value="<?= set_value('password') ?>" required>
-                </div>
-
+                    <div class=" password-wrapper" >
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Setidaknya 8 karakter disertai angka dan spesial karakter" value="<?= set_value('password')?>" required>
+                        <i class="fas fa-eye toggle-password"></i>
+                    </div>
+                
             </div>
             <div class="mb-5">
                 <label class="form-label">Alamat</label>
@@ -166,4 +184,19 @@
     </div>
 </body>
 
+<script>
+const togglePassword = document.querySelector('.toggle-password');
+const passwordInput = document.getElementById('password');
+
+togglePassword.addEventListener('click',function(e){
+    const type = passwordInput.getAttribute('type') ==='password' ?'text' : 'password';
+    passwordInput.setAttribute('type',type);
+
+    this.classList.toggle('fa-eye');
+    this.classList.toggle('fa-eye-slash');
+});
+</script>
 </html>
+
+
+

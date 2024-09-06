@@ -60,11 +60,27 @@
                 <div class="form-group flex-item">
                     <label for="kata_sandi" class="form-label">Kata Sandi</label>
                     <input type="password" id="kata_sandi" name="password" class="form-control">
+                    <i class="fas fa-eye toggle-password"></i>  
+                </div>
                 </div>
             </div>
 
             <button type="submit" class="btn btn-primary custom-btn">Simpan Perubahan</button>
         </form>
     </div>
+   
 </div>
+<script>
+    const togglePassword = document.querySelector('.toggle-password');
+    const passwordInput = document.getElementById('kata_sandi');
+
+    togglePassword.addEventListener('click',function(e){
+        const type = passwordInput.getAttribute('type') ==='password' ?'text' : 'password';
+        passwordInput.setAttribute('type',type);
+
+        this.classList.toggle('fa-eye');
+        this.classList.toggle('fa-eye-slash');
+    }); 
+</script>
+
 <?= $this->endSection() ?>

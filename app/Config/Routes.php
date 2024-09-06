@@ -1,5 +1,6 @@
 <?php
 
+use App\Controllers\AuthController;
 use CodeIgniter\Router\RouteCollection;
 
 /**
@@ -39,3 +40,4 @@ $routes->get('/trouble-form', 'TroubleFormController::index');
 $routes->get('/help-support', 'HelpSupportController::index');
 $routes->post('delete-user/(:num)', 'UserListController::delete/$1');
 
+$routes->post('/deleteFoto','deleteFotoController::deleteAll');
