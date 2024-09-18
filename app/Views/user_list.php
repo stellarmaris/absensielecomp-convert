@@ -11,7 +11,7 @@
         margin-bottom: 30px;
         max-width: 100%;
         box-shadow: 0.1px 4px 6px rgba(0, 0, 0, 0.1);
-        padding-left: 20px;
+        padding: 10px 15px;
         border: 2px solid #130C90;
     }
 

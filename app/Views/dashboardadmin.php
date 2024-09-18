@@ -16,7 +16,7 @@
 
 <!-- container khusus untuk box -->
 <div class="box-container">
-    <!-- kartu sakit, izin, hadir -->    
+    <!-- kartu sakit, izin, hadir -->
     <div class="box box1">
         <p>HADIR</p>
         <h1><?= $total_hadir ?></h1>
@@ -66,37 +66,37 @@
             </tr>
         </thead>
         <tbody>
-        <?php if (empty($data_presensi)): ?>
-            <tr>
-                <td colspan="8" style="text-align: center;">Data Tidak Ditemukan</td>
-            </tr>
-        <?php else: ?>
-            <?php
-            // Nomor urut
-            $nomor = 0;
-            foreach ($data_presensi as $k => $v) {
-                $nomor++;
-            ?>
-            <tr>
-                <td><?php echo $nomor ?></td>
-                <td><?php echo $v['tanggal'] ?></td>
-                <td><?php echo $v['Nama'] ?></td>
-                <td><?php echo $v['jam_masuk'] ?></td>
-                <td><?php echo $v['jam_keluar']?></td>
-                <td><?php echo $v['status']; ?></td>
-            </tr>
-            <?php }?>
-        <?php endif; ?>
+            <?php if (empty($data_presensi)): ?>
+                <tr>
+                    <td colspan="8" style="text-align: center;">Data Tidak Ditemukan</td>
+                </tr>
+            <?php else: ?>
+                <?php
+                // Nomor urut
+                $nomor = 0;
+                foreach ($data_presensi as $k => $v) {
+                    $nomor++;
+                ?>
+                    <tr>
+                        <td><?php echo $nomor ?></td>
+                        <td><?php echo $v['tanggal'] ?></td>
+                        <td><?php echo $v['Nama'] ?></td>
+                        <td><?php echo $v['jam_masuk'] ?></td>
+                        <td><?php echo $v['jam_keluar'] ?></td>
+                        <td><?php echo $v['status']; ?></td>
+                    </tr>
+                <?php } ?>
+            <?php endif; ?>
         </tbody>
     </table>
 </div>
 
-    <!-- Pagination Links -->
-    <?php if ($pager): ?>
-        <div class="pagination">
-            <?= $pager->links('presensi', 'custom') ?>
+<!-- Pagination Links -->
+<?php if ($pager): ?>
+    <div class="pagination">
+        <?= $pager->links('presensi', 'custom') ?>
 
-        </div>
-    <?php endif; ?>
+    </div>
+<?php endif; ?>
 
 <?= $this->endSection() ?>

@@ -41,3 +41,4 @@ $routes->get('/help-support', 'HelpSupportController::index');
 $routes->post('delete-user/(:num)', 'UserListController::delete/$1');
 
 $routes->post('/deleteFoto','deleteFotoController::deleteAll');
+$routes->get('/summary-presensi','SummaryPresensiController::index');
