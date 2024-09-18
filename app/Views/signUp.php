@@ -8,6 +8,7 @@
 
     <!-- FontAwesome JS -->
     <script defer src="<?php echo base_url('assets/plugins/fontawesome/js/all.min.js'); ?>"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <!-- App CSS -->
     <link id="theme-style" rel="stylesheet" href="<?php echo base_url('/css/portal.css'); ?>">
@@ -119,6 +120,22 @@
             font-weight: 500;
             text-decoration: none;
         }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-wrapper input {
+            padding-right: 30px;
+        }
+
+        .password-wrapper .toggle-password {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -219,5 +236,17 @@
         <div class="col-6 col-md-5 col-lg-6 h-100 auth-background-col"></div>
     </div>
 </body>
+<script>
+    const togglePassword = document.querySelector('.toggle-password');
+    const passwordInput = document.getElementById('password');
+
+    togglePassword.addEventListener('click', function(e) {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+
+        this.classList.toggle('fa-eye');
+        this.classList.toggle('fa-eye-slash');
+    });
+</script>
 
 </html>
