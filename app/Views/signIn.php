@@ -12,6 +12,7 @@
     <meta name="description" content="CRM">
     <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
     <link rel="shortcut icon" href="<?= base_url('/images/Logo.jpeg') ?>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <!-- FontAwesome JS-->
     <script defer src="<?php echo base_url('assets/plugins/fontawesome/js/all.min.js'); ?>"></script>
@@ -36,7 +37,7 @@
             --trans-04: all 0.4s ease-out;
             --trans-05: all 0.5s ease-out;
 
-           
+
         }
 
         .head {
@@ -46,13 +47,13 @@
         }
 
         .title {
-          
+
             font-size: 25px;
             font-weight: 700;
         }
 
         .subtitle {
-          
+
             font-size: 15px;
             color: var(--text-color);
             margin: 0px !important;
@@ -65,7 +66,7 @@
             font-weight: 500;
             font-size: 14px;
             border-radius: 10px;
-          
+
             border: none;
         }
 
@@ -84,7 +85,7 @@
         }
 
         label {
-          
+
             font-size: 14px;
             font-weight: 600;
             color: var(--text-color);
@@ -111,7 +112,7 @@
         }
 
         .sign-up-link {
-          
+
             font-size: 14px;
             display: flex;
             justify-content: center;
@@ -125,11 +126,38 @@
             font-weight: 500;
             text-decoration: none;
         }
+
+        .input-password {
+            position: relative;
+        }
+
+        .input-password input {
+            padding-right: 30px;
+        }
+
+        .input-password .toggle-password {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
     </style>
 
 </head>
 
 <body class="app app-login p-0">
+    <?php if (session()->getFlashdata('error')): ?>
+        <div class="alert alert-danger alert-popup" role="alert">
+            <?= session()->getFlashdata('error') ?>
+        </div>
+        <script>
+            setTimeout(function() {
+                document.querySelector('.alert-popup').style.display = 'none';
+            }, 3000);
+        </script>
+    <?php endif; ?>
+
     <div class="row g-0 app-auth-wrapper">
         <div class="col-6 col-md-7 col-lg-6 auth-main-col  d-flex justify-content-center  " style="padding-top:50px">
             <div>
@@ -156,8 +184,9 @@
                             <div>
                                 <label for="password">Kata Sandi</label>
                             </div>
-                            <div>
+                            <div class="input-password">
                                 <input type="password" name="password" id="password" required placeholder="at least 16 character with number & special character" />
+                                <i class="fas fa-eye toggle-password"></i>
                             </div>
 
                         </div>
@@ -190,5 +219,22 @@
         </div><!--//auth-background-col-->
     </div><!--//row-->
 </body>
+<!-- Bootstrap JS for alert dismissal -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+<script>
+    const togglePassword = document.querySelector('.toggle-password');
+    const passwordInput = document.getElementById('password');
+
+    togglePassword.addEventListener('click', function(e) {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+
+        this.classList.toggle('fa-eye');
+        this.classList.toggle('fa-eye-slash');
+    });
+</script>
 
 </html>
