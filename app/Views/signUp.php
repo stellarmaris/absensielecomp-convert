@@ -3,147 +3,144 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,<!DOCTYPE html>
-<html lang=" en">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Absensi Elecomp</title>
 
-    <head>
-        <title>Absensi Elecomp</title>
+    <!-- FontAwesome JS -->
+    <script defer src="<?php echo base_url('assets/plugins/fontawesome/js/all.min.js'); ?>"></script>
 
-        <!-- Meta -->
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- App CSS -->
+    <link id="theme-style" rel="stylesheet" href="<?php echo base_url('/css/portal.css'); ?>">
 
-        <meta name="description" content="CRM">
-        <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
-        <link rel="shortcut icon" href="<?= base_url('/images/Logo.jpeg') ?>">
+    <style>
+        :root {
+            --body-color: #eff0f7;
+            --sidebar-color: #ffffff;
+            --primary-color: #130c90;
+            --primary-color-light: rgba(18, 13, 144, 0.04);
+            --toggle-color: var(--primary-color);
+            --toggle-color-hover: var(--primary-color-light);
+            --text-color: rgba(0, 0, 0, 0.74);
+            --border-color: #898989;
+        }
 
-        <!-- FontAwesome JS-->
-        <script defer src="<?php echo base_url('assets/plugins/fontawesome/js/all.min.js'); ?>"></script>
+        body {
+            position: relative;
+        }
 
-        <!-- App CSS -->
-        <link id="theme-style" rel="stylesheet" href="<?php echo base_url('/css/portal.css'); ?>">
-        <style>
-            :root {
-                --body-color: #eff0f7;
-                --sidebar-color: #ffffff;
-                --primary-color: #130c90;
-                --primary-color-light: rgba(18, 13, 144, 0.04);
-                --toggle-color: var(--primary-color);
-                --toggle-color-hover: var(--primary-color-light);
-                --text-color: rgba(0, 0, 0, 0.74);
-                --text-color-hover: var(--primary-color);
-                --text-color-selected: var(--primary-color-light);
-                --border-color: #898989;
-                --trans-01: all 0.1s ease-out;
-                --trans-02: all 0.2s ease-out;
-                --trans-03: all 0.3s ease-out;
-                --trans-04: all 0.4s ease-out;
-                --trans-05: all 0.5s ease-out;
+        .alert {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            font-size: 14px;
+            line-height: 1.5;
+            z-index: 999;
+            width: 95%;
 
+        }
 
-            }
+        /* Success Alert */
+        .alert-success {
+            color: #155724;
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
 
-            .head {
-                text-align: center;
-                display: grid;
-                /* row-gap: 1px; */
-            }
+        /* Danger Alert */
+        .alert-danger {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
 
-            .title {
+        /* Other styles... */
+        .head {
+            text-align: center;
+            display: grid;
+        }
 
-                font-size: 25px;
-                font-weight: 700;
-            }
+        .title {
+            font-size: 25px;
+            font-weight: 700;
+        }
 
-            .subtitle {
+        .subtitle {
+            font-size: 15px;
+            color: var(--text-color);
+            margin: 0px !important;
+        }
 
-                font-size: 15px;
-                color: var(--text-color);
-                margin: 0px !important;
-            }
+        .btn-log-in {
+            background-color: #130c90;
+            height: 50px;
+            color: var(--sidebar-color);
+            font-weight: 500;
+            font-size: 14px;
+            border-radius: 10px;
+            border: none;
+        }
 
-            .btn-log-in {
-                background-color: #130c90;
-                height: 50px;
-                color: var(--sidebar-color);
-                font-weight: 500;
-                font-size: 14px;
-                border-radius: 10px;
+        .auth-background-col {
+            background-image: url('/images/hero-image2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+        }
 
-                border: none;
-            }
+        label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 10px;
+        }
 
-            .auth-background-col {
-                background-image: url('/images/hero-image2.jpg');
-                /* Ganti dengan URL gambar Anda */
-                background-size: cover;
-                /* Agar gambar memenuhi seluruh elemen */
-                background-position: center;
-                /* Memusatkan gambar */
-                background-repeat: no-repeat;
-                /* Mencegah pengulangan gambar */
-                height: 100vh;
+        input {
+            width: 100%;
+            height: 40px;
+            border-radius: 5px;
+            padding: 10px 20px;
+            border: 1px solid var(--border-color);
+        }
 
-                /* Tinggi elemen setara dengan tinggi layar */
-            }
+        .sign-up-link {
+            font-size: 14px;
+            text-align: center;
+            margin: 20px 0px;
+        }
 
-            label {
-
-                font-size: 14px;
-                font-weight: 600;
-                color: var(--text-color);
-                margin-bottom: 10px;
-            }
-
-            input {
-                width: 100%;
-                height: 40px;
-                border-radius: 5px;
-                padding: 10px 20px;
-                border: 1px solid var(--border-color);
-            }
-
-            .trouble {
-                font-size: 14px;
-                margin-bottom: 10px;
-            }
-
-            .trouble a {
-                text-decoration: none;
-                color: black;
-
-            }
-
-            .sign-up-link {
-
-                font-size: 14px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                margin: 20px 0px;
-            }
-
-            .sign-up-link a {
-                color: var(--primary-color);
-                padding: 0px 3px;
-                font-weight: 500;
-                text-decoration: none;
-            }
-        </style>
-
-    </head>
+        .sign-up-link a {
+            color: var(--primary-color);
+            font-weight: 500;
+            text-decoration: none;
+        }
+    </style>
+</head>
 
 <body class="app app-login p-0">
+    <?php if (isset($validation)): ?>
+        <div class="alert alert-danger">
+            <?= $validation->listErrors() ?>
+        </div>
+    <?php elseif (isset($eror)) : ?>
+        <div class="alert alert-danger">
+            <?= $eror ?>
+        </div>
+    <?php endif; ?>
+
     <div class="row g-0 app-auth-wrapper">
-        <div class="col-6 col-md-7 col-lg-6 auth-main-col  d-flex justify-content-center  " style="padding-top:10px">
+        <div class="col-6 col-md-7 col-lg-6 auth-main-col d-flex justify-content-center" style="padding-top:10px">
             <div>
                 <div class="head" style="padding-left:175px; padding-right:175px">
-                    <p class="title ">Pendaftaran Absensi</p>
-                    <p class="subtitle ">Haiii, masukkan detail informasi dirimu.</p>
-
+                    <p class="title">Pendaftaran Absensi</p>
+                    <p class="subtitle">Haiii, masukkan detail informasi dirimu.</p>
                 </div>
-                <div class="" style="    padding-top:20px;">
+                <div style="padding-top:20px;">
                     <form class="auth-form login-form" method="post" action="<?= base_url('signUp') ?>">
                         <?= csrf_field(); ?>
                         <div class="email mb-3">
@@ -169,7 +166,7 @@
                             </div>
                         </div><!--//form-group-->
                         <div class="row">
-                            <div class="email mb-3 ">
+                            <div class="email mb-3 col-6 ">
                                 <div>
                                     <label class="form-label">Asal Institusi:</label>
                                 </div>
@@ -178,6 +175,10 @@
 
                                 </div>
 
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label class="form-label">Alamat</label>
+                                <input type="text" name="alamat" placeholder="Cth: Jl. Danau Amora No.C5 E8, Sawojajar" value="<?= set_value('alamat') ?>" required>
                             </div>
 
                         </div>
@@ -212,23 +213,11 @@
 
                         </div>
                     </form>
-
                 </div>
-
             </div>
-
-        </div><!--//auth-main-col-->
-        <div class="col-6 col-md-5 col-lg-6 h-100 auth-background-col">
-            <div class="auth-background-holder">
-            </div>
-            <div class="auth-background-mask"></div>
-            <div class="auth-background-overlay p-3 p-lg-5">
-                <div class="d-flex flex-column align-content-end h-100">
-                    <div class="h-100"></div>
-                </div>
-            </div><!--//auth-background-overlay-->
-        </div><!--//auth-background-col-->
-    </div><!--//row-->
+        </div>
+        <div class="col-6 col-md-5 col-lg-6 h-100 auth-background-col"></div>
+    </div>
 </body>
 
 </html>
