@@ -36,6 +36,8 @@ class IzinController extends BaseController
         $endDate = $this->request->getPost('end_date');
         $time = $this->request->getPost('time');
         $status = $this->request->getPost('status');
+        $kegiatan = $this->request->getPost('kegiatan');
+
 
         // Cek apakah semua field diisi
         if (!$startDate || !$endDate || !$time || !$status) {
@@ -108,23 +110,36 @@ class IzinController extends BaseController
         $startDateTime = new DateTime($startDate);
         $endDateTime = new DateTime($endDate);
 
+        // Inisialisasi array untuk menyimpan tanggal yang gagal disimpan
+        $failedDates = [];
+
         while ($startDateTime <= $endDateTime) {
-            $data = [
-                'id_magang' => $idMagang,
-                'tanggal' => $startDateTime->format('Y-m-d'),
-                'jam_masuk' => $time,
-                'status' => $status,
-                'foto' => $newName,
-                'verifikasi' => 'Sukses'
-            ];
+            // Cek apakah hari bukan hari Minggu (0 = Minggu, 1 = Senin, ..., 6 = Sabtu)
+            if ($startDateTime->format('w') != 0) {
+                $data = [
+                    'id_magang' => $idMagang,
+                    'tanggal' => $startDateTime->format('Y-m-d'),
+                    'jam_masuk' => $time,
+                    'status' => $status,
+                    'foto' => $newName,
+                    'verifikasi' => 'Pending',
+                    'kegiatan'=> $kegiatan
+                ];
 
-            // Simpan data ke database
-            if (!$presensiModel->save($data)) {
-                return redirect()->back()->withInput()->with('error', 'Gagal menyimpan data perizinan untuk tanggal ' . $startDateTime->format('Y-m-d') . '.');
+                // Simpan data ke database
+                if (!$presensiModel->save($data)) {
+                    // Jika gagal, simpan tanggalnya untuk ditampilkan ke user
+                    $failedDates[] = $startDateTime->format('Y-m-d');
+                }
             }
-
             // Tambah satu hari ke tanggal
             $startDateTime->modify('+1 day');
+        }
+
+        if (!empty($failedDates)) {
+            // Jika ada tanggal yang gagal disimpan
+            $errorMsg = 'Gagal menyimpan data perizinan untuk tanggal: ' . implode(', ', $failedDates);
+            return redirect()->back()->withInput()->with('error', $errorMsg);
         }
 
         // Simpan status izin ke dalam sesi
@@ -133,6 +148,8 @@ class IzinController extends BaseController
         // Redirect ke halaman sukses
         return redirect()->to('/success-izin')->with('message', 'Perizinan berhasil diupload.');
     }
+
+
 
 
     public function success()
