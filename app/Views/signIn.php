@@ -40,55 +40,57 @@
 
         }
 
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eff0f7;
+            color: rgba(0, 0, 0, 0.74);
+        }
+
         .head {
             text-align: center;
             display: grid;
-            /* row-gap: 1px; */
         }
 
         .title {
-
             font-size: 25px;
             font-weight: 700;
         }
 
         .subtitle {
-
             font-size: 15px;
-            color: var(--text-color);
-            margin: 0px !important;
+            color: rgba(0, 0, 0, 0.74);
+            margin: 0;
         }
 
         .btn-log-in {
             background-color: #130c90;
             height: 50px;
-            color: var(--sidebar-color);
+            color: #ffffff;
             font-weight: 500;
             font-size: 14px;
             border-radius: 10px;
-
             border: none;
         }
 
         .auth-background-col {
             background-image: url('/images/hero-images.jpg');
-            /* Ganti dengan URL gambar Anda */
             background-size: cover;
-            /* Agar gambar memenuhi seluruh elemen */
             background-position: center;
-            /* Memusatkan gambar */
             background-repeat: no-repeat;
-            /* Mencegah pengulangan gambar */
             height: 100vh;
-
-            /* Tinggi elemen setara dengan tinggi layar */
         }
 
         label {
-
             font-size: 14px;
             font-weight: 600;
-            color: var(--text-color);
+            color: rgba(0, 0, 0, 0.74);
             margin-bottom: 10px;
         }
 
@@ -97,7 +99,7 @@
             height: 55px;
             border-radius: 10px;
             padding: 10px 20px;
-            border: 1px solid var(--border-color);
+            border: 1px solid #898989;
         }
 
         .trouble {
@@ -108,21 +110,19 @@
         .trouble a {
             text-decoration: none;
             color: black;
-
         }
 
         .sign-up-link {
-
             font-size: 14px;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 20px 0px;
+            margin: 20px 0;
         }
 
         .sign-up-link a {
-            color: var(--primary-color);
-            padding: 0px 3px;
+            color: #130c90;
+            padding: 0 3px;
             font-weight: 500;
             text-decoration: none;
         }
@@ -141,6 +141,48 @@
             right: 10px;
             transform: translateY(-50%);
             cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .auth-main-col {
+                width: 100%;
+                padding: 20px;
+            }
+
+            .auth-background-col {
+                display: none;
+            }
+
+            .head {
+                padding-left: 0;
+                padding-right: 0;
+                text-align: center;
+            }
+
+            .title {
+                font-size: 20px;
+            }
+
+            .subtitle {
+                font-size: 14px;
+            }
+
+            .btn-log-in {
+                height: 45px;
+                font-size: 13px;
+            }
+
+            .input-password {
+                position: relative;
+            }
+
+            .input-password input {
+                padding-right: 30px;
+            }
+
+            .input-password .toggle-password {
+                right: 10px;
+            }
         }
     </style>
 

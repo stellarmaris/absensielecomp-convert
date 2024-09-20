@@ -136,6 +136,31 @@
             transform: translateY(-50%);
             cursor: pointer;
         }
+
+        @media (max-width: 768px) {
+            .auth-background-col {
+                display: none;
+            }
+
+            .auth-main-col {
+                width: 100%;
+                padding: 20px;
+            }
+
+            .head {
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            .form-group,
+            .form-group input {
+                width: 100%;
+            }
+
+            .sign-up-link {
+                margin-top: 10px;
+            }
+        }
     </style>
 </head>
 

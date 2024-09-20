@@ -85,17 +85,27 @@
 <form action="<?= base_url('/izin-form') ?>" method="post" enctype="multipart/form-data">
     <?= csrf_field() ?>
     <div class="group">
+
         <div class="form">
-            <div class="label"><label for="date">Tanggal Perizinan</label></div>
+            <div class="label"><label for="start_date">Tanggal Mulai</label></div>
             <div class="input">
-                <input type="date" name="date" id="date" value="<?= esc(old('date')) ?>">
+                <input type="date" name="start_date" id="start_date" value="<?= esc(old('start_date')) ?>">
             </div>
         </div>
         <div class="form">
-            <div class="label"><label for="time">Waktu Perizinan</label></div>
+            <div class="label"><label for="end_date">Tanggal Akhir</label></div>
             <div class="input">
-                <input type="time" name="time" id="time" value="<?= esc(old('time')) ?>">
+                <input type="date" name="end_date" id="end_date" value="<?= esc(old('end_date')) ?>">
             </div>
+        </div>
+
+
+
+    </div>
+    <div class="form">
+        <div class="label"><label for="time">Waktu Perizinan</label></div>
+        <div class="input">
+            <input type="time" name="time" id="time" value="<?= esc(old('time')) ?>">
         </div>
     </div>
     <div class="form-1">

@@ -94,6 +94,43 @@
             /* Ensure header is positioned relative for dropdown positioning */
         }
 
+        .menu-header {
+            list-style: none;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .menu-header li {
+            width: 100%;
+        }
+
+        .menu-header li a {
+            display: block;
+            padding: 15px 20px;
+            color: #1d2124;
+            text-decoration: none;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+
+
+        .menu-header li a:hover {
+            background-color: #1d2124;
+            color: #fff
+        }
+
+        .menu-header li a.active {
+            background-color: #1d2124;
+            color: #fff
+        }
+
+        .menu-header li a i {
+            margin-right: 10px;
+        }
+
+
         .user-profile {
             position: relative;
             /* Ensure dropdown is positioned relative to this container */
@@ -115,14 +152,13 @@
             /* Position absolutely within the user-profile container */
             top: 50px;
             /* Adjust as needed */
-            right: 18px;
+            right: 0;
             background-color: #fff;
             border: 1px solid lightgray;
 
             list-style: none;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             z-index: 1000;
-       
             /* Ensure dropdown is on top */
         }
 
@@ -147,13 +183,57 @@
             padding: 15px 20px;
             overflow: auto;
         }
+
+        /* Default untuk tampilan desktop */
+        #icon-header {
+            display: none;
+            /* Tidak tampil di desktop */
+        }
+
+        .head-header {
+            display: flex;
+            justify-content: end;
+            /* Gambar profil berada di kanan */
+            width: 100%;
+            align-items: center;
+        }
+
+   
+
+        /* Tampilan untuk layar mobile (dibawah 768px) */
+        @media (max-width: 768px) {
+            #icon-header {
+                display: block;
+                /* Tampilkan ikon burger */
+                cursor: pointer;
+                /* Tampilkan sebagai tombol */
+                margin-right: auto;
+                /* Posisikan di kiri */
+                padding-left: 15px;
+            }
+
+         
+
+            .head-header {
+                justify-content: space-between;
+                /* Ikon di kiri, gambar profil di kanan */
+            }
+
+            .main-content {
+                width: 100%;
+            }
+
+            .sidebar {
+                display: none;
+            }
+        }
     </style>
     <?= $this->renderSection('customStyles') ?>
 </head>
 
 <body>
     <div class="container">
-        <?= $this->include('/Partials/sidebar_admin') ?>
+    <?= $this->include('/Partials/sidebar_admin') ?>
         <main class="main-content">
             <?= $this->include('/Partials/header_admin') ?>
 

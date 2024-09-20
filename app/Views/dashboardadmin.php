@@ -2,6 +2,14 @@
 <?= $this->section('customStyles') ?>
 <link rel="stylesheet" href="/css/dashboardadmin.css">
 <link rel="stylesheet" href="/css/pagination.css">
+<style>
+    @media only screen and (max-width: 768px) {
+        .box {
+            height: 200px;
+            /* Set height to 100px on mobile screens */
+        }
+    }
+</style>
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
